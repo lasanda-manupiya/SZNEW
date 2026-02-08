@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion & Sustainability: The Complete Guide | SustainZone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #1a1a2e;
+            background-color: #f8f9fa;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-s {
+            color: #8b6f47;
+        }
+
+        .logo-zone {
+            color: #1a1a2e;
+        }
+
+        .nav-right {
+            font-weight: 500;
+            color: #1a8a7d;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-right:hover {
+            color: #e67e22;
+        }
+
+        /* Back Link */
+        .back-link {
+            background-color: white;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .back-link a {
+            color: #1a8a7d;
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-link a:hover {
+            color: #e67e22;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Layout */
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            flex: 0 0 280px;
+            position: sticky;
+            top: 120px;
+            max-height: calc(100vh - 140px);
+            overflow-y: auto;
+        }
+
+        .sidebar h3 {
+            font-size: 0.9rem;
+            color: #1a8a7d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-list li {
+            margin-bottom: 0.75rem;
+        }
+
+        .toc-list a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: block;
+            padding: 0.5rem 0;
+            border-left: 3px solid transparent;
+            padding-left: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .toc-list a:hover {
+            color: #1a8a7d;
+            border-left-color: #1a8a7d;
+        }
+
+        /* Content Area */
+        .content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        section {
+            background: white;
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        section h2 {
+            color: #1a1a2e;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #1a8a7d;
+        }
+
+        section h3 {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        section p {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        section ul {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-left: 4px solid #1a8a7d;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .stat-box strong {
+            color: #1a8a7d;
+            font-size: 1.1rem;
+        }
+
+        .highlight {
+            color: #e67e22;
+            font-weight: 600;
+        }
+
+        .circle-process {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 8px;
+            border: 2px solid #1a8a7d;
+        }
+
+        .process-step .number {
+            display: inline-flex;
+            width: 50px;
+            height: 50px;
+            background-color: #1a8a7d;
+            color: white;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .process-step p {
+            font-weight: 500;
+            color: #1a1a2e;
+        }
+
+        .arrow {
+            font-size: 1.5rem;
+            color: #1a8a7d;
+            margin: 0 0.5rem;
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .arrow {
+                display: block;
+            }
+        }
+
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .material-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border: 2px solid #1a8a7d;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .material-card h4 {
+            color: #1a8a7d;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .material-card p {
+            font-size: 0.95rem;
+            color: #2c3e50;
+        }
+
+        /* Case Study */
+        .case-study {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-left: 4px solid #e67e22;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .case-study h3 {
+            color: #e67e22;
+            margin-top: 0;
+        }
+
+        .case-study p {
+            color: #2c3e50;
+        }
+
+        .case-study ul {
+            color: #2c3e50;
+        }
+
+        /* FAQ */
+        .faq-item {
+            border: 1px solid #e8e8e8;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #1a1a2e;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #e8e8e8;
+        }
+
+        .faq-toggle {
+            color: #1a8a7d;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            color: #2c3e50;
+            display: none;
+            background-color: white;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* CTA Form */
+        .cta-section {
+            background: linear-gradient(135deg, #1a8a7d 0%, #15726a 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .cta-section h2 {
+            border-bottom-color: white;
+            color: white;
+        }
+
+        .cta-section p {
+            color: white;
+        }
+
+        .cta-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .cta-form input {
+            padding: 1rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        .cta-form input[type="email"],
+        .cta-form input[type="text"] {
+            grid-column: auto;
+        }
+
+        .cta-form input[type="submit"] {
+            grid-column: 1 / -1;
+            background-color: #e67e22;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-form input[type="submit"]:hover {
+            background-color: #d36900;
+        }
+
+        /* Contact Footer */
+        .contact-footer {
+            background: white;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #e8e8e8;
+            margin-top: 3rem;
+        }
+
+        .contact-footer h3 {
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info p {
+            margin: 0;
+            color: #2c3e50;
+        }
+
+        .contact-info a {
+            color: #1a8a7d;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #e67e22;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                position: static;
+                flex: 1;
+                max-height: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            .circle-process {
+                flex-direction: column;
+            }
+
+            .arrow {
+                transform: rotate(90deg);
+            }
+
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-form {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Scrollbar */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #1a8a7d;
+            border-radius: 3px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: #15726a;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <span class="logo-s">S</span><span class="logo-zone">ustainZone</span>
+        </div>
+        <a href="#" class="nav-right">Global</a>
+    </nav>
+
+    <!-- Back Link -->
+    <div class="back-link">
+        <a href="fashion-industry.html">← Back to Fashion Industry</a>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Fashion & Sustainability: The Complete Guide</h1>
+        <p>Unraveling the environmental cost of fashion and building a path to circular, responsible production</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Sidebar TOC -->
+        <aside class="sidebar">
+            <h3>Contents</h3>
+            <ul class="toc-list">
+                <li><a href="#footprint">Environmental Footprint</a></li>
+                <li><a href="#emissions">Carbon Emissions</a></li>
+                <li><a href="#regulatory">Regulatory Landscape</a></li>
+                <li><a href="#circular">Circular Fashion</a></li>
+                <li><a href="#materials">Sustainable Materials</a></li>
+                <li><a href="#sustainzone">How SustainZone Helps</a></li>
+                <li><a href="#casestudy">Case Study</a></li>
+                <li><a href="#faq">FAQs</a></li>
+                <li><a href="#cta">Join Our Network</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Section 1: Fashion's Environmental Footprint -->
+            <section id="footprint">
+                <h2>Fashion's Environmental Footprint</h2>
+                <p>The fashion industry is one of the world's largest contributors to environmental degradation. The scale of this problem is staggering and demands immediate action from brands, retailers, and consumers alike.</p>
+
+                <div class="stat-box">
+                    <strong>Over 100 billion garments</strong> are produced annually, with an estimated <strong>60% discarded within a year</strong> of purchase.
+                </div>
+
+                <h3>The Global Impact</h3>
+                <p>Fashion accounts for approximately <span class="highlight">8-10% of global greenhouse gas emissions</span>, rivaling the aviation and shipping industries combined. The industry consumes vast quantities of water, generates significant waste, and relies heavily on synthetic materials derived from fossil fuels.</p>
+
+                <h3>Resource Consumption</h3>
+                <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                    <li>Water usage: 79 trillion liters per year (mainly for cotton production)</li>
+                    <li>Textile waste: 92 million tons annually end up in landfills</li>
+                    <li>Chemical pollution: Dyeing and finishing processes discharge 200,000 tons of toxic chemicals into waterways</li>
+                    <li>Microplastic shedding: Synthetic textiles release microfibers during washing and wear</li>
+                </ul>
+
+                <p>Without intervention, these figures will continue to grow as global demand for fashion increases, particularly in emerging markets where consumption patterns are shifting toward Western levels.</p>
+            </section>
+
+            <!-- Section 2: Understanding Fashion Carbon Emissions -->
+            <section id="emissions">
+                <h2>Understanding Fashion Carbon Emissions</h2>
+                <p>To effectively reduce emissions, brands must understand their full carbon footprint across the entire value chain. This requires tracking emissions across three distinct scopes.</p>
+
+                <h3>Scope 1 & 2 Emissions</h3>
+                <p><strong>Scope 1 (Direct Emissions):</strong> Generated from operations owned or controlled by the company, such as on-site manufacturing facilities and fleet vehicles.</p>
+                <p><strong>Scope 2 (Purchased Energy):</strong> Indirect emissions from purchased electricity, steam, heating, and cooling used in facilities.</p>
+
+                <h3>Scope 3 Emissions (The Hidden Giant)</h3>
+                <p>Scope 3 emissions represent the largest portion of fashion's carbon footprint, often accounting for <span class="highlight">70-90% of a brand's total emissions</span>. These include:</p>
+
+                <div class="stat-box">
+                    <ul style="margin: 0; padding-left: 1.5rem;">
+                        <li><strong>Raw material production:</strong> Farming, extraction, and processing (cotton, polyester, wool)</li>
+                        <li><strong>Manufacturing:</strong> Spinning, weaving, dyeing, and finishing processes</li>
+                        <li><strong>Transportation:</strong> Global supply chain logistics from factory to retail</li>
+                        <li><strong>Retail operations:</strong> Store heating, lighting, and climate control</li>
+                        <li><strong>Consumer use:</strong> Washing, drying, and wearing garments</li>
+                        <li><strong>End-of-life:</strong> Textile disposal and incineration</li>
+                    </ul>
+                </div>
+
+                <h3>Water & Chemical Pollution</h3>
+                <p>Water consumption varies dramatically by material. Cotton production requires 2,700 liters of water per t-shirt, while synthetic fibers depend on petrochemical processing. Chemical pollution from dyes and finishes contaminates local water sources, affecting communities near production facilities.</p>
+            </section>
+
+            <!-- Section 3: Regulatory Landscape -->
+            <section id="regulatory">
+                <h2>Regulatory Landscape</h2>
+                <p>Governments and regulatory bodies worldwide are tightening requirements for fashion brands and retailers. Compliance is becoming a competitive necessity.</p>
+
+                <h3>EU Extended Producer Responsibility (EPR)</h3>
+                <p>The EU is implementing Extended Producer Responsibility directives that hold brands accountable for the end-of-life management of textiles. Producers must finance collection, sorting, and recycling of their products, incentivizing circular design practices.</p>
+
+                <h3>Corporate Sustainability Reporting Directive (CSRD)</h3>
+                <p>Starting 2024, large EU companies must report detailed sustainability information, including emissions, water usage, and social impact. The directive creates standardized reporting requirements that enable comparability and drive transparency.</p>
+
+                <h3>Digital Product Passport (DPP)</h3>
+                <p>The EU is developing Digital Product Passports that will require brands to provide information about:</p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                    <li>Material composition and sourcing</li>
+                    <li>Care instructions to extend garment life</li>
+                    <li>Recycling instructions and material recyclability</li>
+                    <li>Environmental and social impact data</li>
+                </ul>
+
+                <p>Global initiatives like the UN Fashion Charter and Science-Based Targets initiative (SBTi) are driving voluntary commitments from major brands to align with the Paris Climate Agreement and achieve net-zero emissions.</p>
+            </section>
+
+            <!-- Section 4: Circular Fashion -->
+            <section id="circular">
+                <h2>Circular Fashion: Closing the Loop</h2>
+                <p>The linear "take-make-waste" model of fashion is unsustainable. Circular fashion reimagines the entire product lifecycle, eliminating waste and maximizing resource efficiency.</p>
+
+                <div class="circle-process">
+                    <div class="process-step">
+                        <div class="number">1</div>
+                        <p>Production</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="process-step">
+                        <div class="number">2</div>
+                        <p>Consumer</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="process-step">
+                        <div class="number">3</div>
+                        <p>Resale</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="process-step">
+                        <div class="number">4</div>
+                        <p>Reuse</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="process-step">
+                        <div class="number">5</div>
+                        <p>Recycling</p>
+                    </div>
+                </div>
+
+                <h3>Circular Strategies</h3>
+                <p><strong>Design for Durability:</strong> Create garments built to last, with timeless design and high-quality construction. This reduces the need for frequent replacements.</p>
+                <p><strong>Design for Disassembly:</strong> Use mono-material construction and avoid permanent bonding so garments can be easily separated and recycled.</p>
+                <p><strong>Resale Platforms:</strong> Enable consumers to resell unwanted clothing, extending the garment lifecycle and reducing textile waste.</p>
+                <p><strong>Rental Models:</strong> Offer clothing rental for special occasions, reducing overall consumption and resource use.</p>
+                <p><strong>Recycling Infrastructure:</strong> Partner with textile recycling facilities to recover fibers from end-of-life garments and transform them into new products.</p>
+            </section>
+
+            <!-- Section 5: Sustainable Materials -->
+            <section id="materials">
+                <h2>Sustainable Materials</h2>
+                <p>Material selection is foundational to sustainability. Each material has distinct environmental tradeoffs that brands must carefully evaluate.</p>
+
+                <div class="materials-grid">
+                    <div class="material-card">
+                        <h4>Organic Cotton</h4>
+                        <p>Grown without synthetic pesticides, reduces water pollution and soil degradation. Lower yield requires more land.</p>
+                    </div>
+                    <div class="material-card">
+                        <h4>Recycled Polyester</h4>
+                        <p>Diverts plastic waste from landfills and oceans. Reduces virgin polyester production and associated emissions.</p>
+                    </div>
+                    <div class="material-card">
+                        <h4>Linen</h4>
+                        <p>Biodegradable plant-based fiber requiring minimal pesticides. Very durable, lasting many years with proper care.</p>
+                    </div>
+                    <div class="material-card">
+                        <h4>Hemp</h4>
+                        <p>Fast-growing, requires no pesticides, regenerates soil. Durable and increasingly versatile in fashion applications.</p>
+                    </div>
+                    <div class="material-card">
+                        <h4>Lyocell (Tencel)</h4>
+                        <p>Made from sustainably managed forests using closed-loop processing. Biodegradable and reduces chemical waste.</p>
+                    </div>
+                    <div class="material-card">
+                        <h4>Mycelium Leather</h4>
+                        <p>Lab-grown fungus-based alternative to animal leather. Zero animal cruelty, biodegradable, innovative material.</p>
+                    </div>
+                </div>
+
+                <h3>Material Decision Framework</h3>
+                <p>Leading brands assess materials using Life Cycle Assessment (LCA) that evaluates environmental impact across production, transportation, use, and end-of-life phases. This holistic approach prevents shifting problems rather than solving them.</p>
+            </section>
+
+            <!-- Section 6: How SustainZone Helps -->
+            <section id="sustainzone">
+                <h2>How SustainZone Helps Fashion Brands</h2>
+                <p>SustainZone provides comprehensive tools and insights to help fashion brands measure, manage, and reduce their environmental impact at every stage of the value chain.</p>
+
+                <h3>Garment Tracking & Transparency</h3>
+                <p>Our platform enables end-to-end traceability of garments from raw material sourcing through consumer use and end-of-life. Brands can track:</p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                    <li>Material origins and certifications</li>
+                    <li>Production facility locations and practices</li>
+                    <li>Transportation routes and modes</li>
+                    <li>Chemical usage and waste management</li>
+                </ul>
+
+                <h3>Life Cycle Assessment (LCA) Modeling</h3>
+                <p>Our LCA tools calculate the complete environmental footprint of garments, including emissions, water usage, chemical pollution, and waste generation. Brands can compare different materials, suppliers, and processes to identify optimization opportunities.</p>
+
+                <h3>Science-Based Targets Alignment (SBTi)</h3>
+                <p>SustainZone helps brands set and achieve Science-Based Targets aligned with the Paris Climate Agreement. Our platform provides roadmaps for emissions reductions across Scopes 1, 2, and 3, tracking progress against validated targets.</p>
+
+                <h3>Consumer Engagement & Impact</h3>
+                <p>Research shows that garments worn <span class="highlight">30-40 times during their lifetime represent the optimal sustainability sweet spot</span>, as the carbon cost per wear is minimized. SustainZone helps brands communicate care instructions and durability benefits, compared to the industry average of just 7 wears per garment.</p>
+
+                <div class="stat-box">
+                    <strong>Key Impact Metric:</strong> A garment worn 40 times vs. 7 times reduces the per-wear carbon footprint by over 85%, making durability one of the most effective sustainability levers.
+                </div>
+
+                <h3>Supplier Collaboration</h3>
+                <p>Our platform facilitates collaboration with suppliers to implement emissions reduction initiatives, energy efficiency projects, and renewable energy transitions throughout the supply chain.</p>
+            </section>
+
+            <!-- Section 7: Case Study -->
+            <section id="casestudy">
+                <h2>Case Study: UK Fashion Brand Cuts Supply Chain Emissions by 40%</h2>
+
+                <div class="case-study">
+                    <h3>The Challenge</h3>
+                    <p>A mid-sized British fashion brand with annual production of 2 million units faced pressure from investors and consumers to reduce its carbon footprint. Initial Scope 1 and 2 emissions reductions had plateaued, and the brand needed to tackle the more challenging Scope 3 emissions that accounted for 85% of its total impact.</p>
+
+                    <h3>The Solution</h3>
+                    <p>Using SustainZone's LCA platform, the brand identified that the largest emissions drivers were:</p>
+                    <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li>Cotton cultivation (35% of emissions)</li>
+                        <li>Dyeing and finishing processes (25%)</li>
+                        <li>Air freight for time-sensitive orders (20%)</li>
+                    </ul>
+
+                    <h3>Implementation</h3>
+                    <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                        <li><strong>Material Transition:</strong> Shifted 60% of cotton orders to organic sources and introduced recycled polyester blends, reducing agricultural emissions by 22%</li>
+                        <li><strong>Supplier Upgrades:</strong> Invested in low-impact dyeing technologies with suppliers, reducing water usage by 40% and emissions by 18%</li>
+                        <li><strong>Logistics Optimization:</strong> Implemented consolidated shipping and seasonal production planning to nearly eliminate air freight, saving 15% in transportation emissions</li>
+                    </ul>
+
+                    <h3>Results</h3>
+                    <p>Within two years, the brand achieved a <span class="highlight">40% reduction in supply chain emissions</span> while maintaining product quality and timeline performance. Additionally:</p>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Production costs decreased by 8% due to operational efficiencies</li>
+                        <li>Brand reputation improved significantly with millennial and Gen Z consumers</li>
+                        <li>Investor confidence increased, leading to expanded funding for further sustainability initiatives</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 8: FAQ -->
+            <section id="faq">
+                <h2>Frequently Asked Questions</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What is the difference between sustainable and eco-friendly fashion?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sustainable fashion considers the entire lifecycle and impact on people and planet, including fair labor practices, resource conservation, and circular design. Eco-friendly fashion focuses primarily on environmental impact. Sustainability is a broader concept that encompasses social responsibility alongside environmental stewardship.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How can consumers contribute to sustainable fashion?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Consumers can make significant impact by: buying fewer, higher-quality garments; choosing durable pieces with timeless design; caring for clothes properly to extend their lifespan; shopping secondhand; supporting brands with transparent sustainability practices; and participating in garment rental or resale platforms when ready to move on from items.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What certifications should I look for when buying sustainable fashion?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Key certifications include: GOTS (Global Organic Textile Standard) for organic fibers, Fair Trade for labor practices, FSC (Forest Stewardship Council) for viscose and cellulose fibers, Cradle to Cradle for circular design, and B Corp for overall company sustainability. However, certifications should be one factor alongside brand transparency and third-party verification.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is recycled fabric as good as virgin material?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Recycled fabrics have come a long way in quality. Recycled polyester is now comparable to virgin polyester in most performance metrics. However, recycled natural fibers (like recycled cotton) may have shorter fibers that affect durability. The environmental benefit of recycled materials typically outweighs slight quality differences, and innovation continues to improve performance of recycled options.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How does garment longevity impact sustainability?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Longevity is one of the most powerful sustainability levers. A garment worn 40 times has approximately 85% lower carbon footprint per wear compared to one worn only 7 times. This is why durability, timeless design, and proper care instructions are critical. Investing in quality pieces you'll wear for years is more sustainable than buying disposable fast fashion.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What is the EU Digital Product Passport and how will it affect consumers?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The Digital Product Passport will provide consumers with QR codes on garments linking to detailed information about materials, care instructions, recyclability, and environmental impact. This transparency helps consumers make informed decisions, understand how to care for items properly, and know end-of-life options. For brands, it incentivizes sustainable design and reduces greenwashing.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can fashion brands truly become carbon neutral?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Brands can achieve net-zero emissions through Science-Based Targets that reduce actual emissions across the value chain while using verified carbon offsets for residual emissions. True carbon neutrality requires measurable reductions in Scope 1, 2, and 3 emissions first, with offsets as a last resort. Leading brands are setting 2030-2050 net-zero targets aligned with climate science.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How does SustainZone help brands comply with regulations like CSRD?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>SustainZone provides comprehensive sustainability data collection, analysis, and reporting tools that align with CSRD requirements. Our platform tracks emissions, water usage, chemical compliance, and social metrics across the entire supply chain. We generate standardized reports that meet regulatory requirements and support third-party verification and audit processes.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: CTA -->
+            <section class="cta-section" id="cta">
+                <h2>Become Part of Our Sustainability Network</h2>
+                <p>Join leading fashion brands revolutionizing sustainability. Get insights, tools, and support to transform your operations.</p>
+
+                <form class="cta-form" onsubmit="return handleFormSubmit(event)">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <input type="submit" value="Join SustainZone Network">
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <!-- Contact Footer -->
+    <div class="contact-footer">
+        <h3>Contact Us</h3>
+        <div class="contact-info">
+            <p><a href="mailto:contact@sustainzone.com">contact@sustainzone.com</a></p>
+            <p><a href="tel:+1234567890">+1 (234) 567-890</a></p>
+            <p>sustainability@sustainzone.com</p>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('.toc-list a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // FAQ Toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // Form submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for your interest! We will contact you shortly.');
+            event.target.reset();
+            return false;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart & Sustainable Facilities Management | SustainZone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span.s {
+            color: #8B4513;
+        }
+
+        .global-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .globe-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            color: #1a1a2e;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: #1a8a7d;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #157a6f;
+            box-shadow: 0 4px 12px rgba(26, 138, 125, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: #e67e22;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #d56817;
+            box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background-color: white;
+            padding: 3rem 2rem;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .stats-boxes {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #f0f9f8 0%, #ffffff 100%);
+            border: 2px solid #1a8a7d;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: #1a8a7d;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-text {
+            color: #2c3e50;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .chart-container {
+            text-align: center;
+        }
+
+        .donut-chart {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 1rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .donut-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .chart-caption {
+            color: #2c3e50;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Challenge Section */
+        .challenge-section {
+            background-color: #f8f9fa;
+            padding: 3.5rem 2rem;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #1a1a2e;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .challenge-card {
+            background-color: white;
+            border: 2px solid #1a8a7d;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .challenge-card h3 {
+            color: #1a8a7d;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Demand Section */
+        .demand-section {
+            background-color: white;
+            padding: 3.5rem 2rem;
+        }
+
+        .three-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0e0e0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            color: #1a8a7d;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .card p {
+            color: #2c3e50;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Vision Section */
+        .vision-section {
+            background-color: #f8f9fa;
+            padding: 3.5rem 2rem;
+        }
+
+        .journey-flow {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-top: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .journey-title {
+            color: #1a8a7d;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .journey-steps {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .journey-step {
+            flex: 1;
+            min-width: 160px;
+            text-align: center;
+            background-color: #f0f9f8;
+            padding: 1.5rem;
+            border-radius: 6px;
+            border: 1px solid #1a8a7d;
+            font-weight: 600;
+            color: #1a1a2e;
+            font-size: 0.95rem;
+        }
+
+        .journey-arrow {
+            color: #1a8a7d;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .journey-description {
+            color: #2c3e50;
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .vision-cta {
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+
+        /* Services Section */
+        .services-section {
+            background-color: white;
+            padding: 3.5rem 2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0e0e0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card h3 {
+            color: #1a8a7d;
+            margin-bottom: 1rem;
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: #2c3e50;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Action Section */
+        .action-section {
+            background-color: #f8f9fa;
+            padding: 3.5rem 2rem;
+        }
+
+        .comparison-table {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-top: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #f0f9f8;
+            color: #1a1a2e;
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #1a8a7d;
+        }
+
+        th.sustainzone-header {
+            background-color: #1a8a7d;
+            color: white;
+        }
+
+        td {
+            padding: 1rem 1.2rem;
+            border-bottom: 1px solid #e0e0e0;
+            color: #2c3e50;
+            font-size: 0.95rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        td.feature-name {
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        td.sustainzone-value {
+            color: #1a8a7d;
+            font-weight: 600;
+        }
+
+        .metrics-section {
+            margin-top: 3rem;
+        }
+
+        .metrics-title {
+            color: #1a1a2e;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .metrics-subtitle {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .chart-placeholder {
+            background-color: #f0f9f8;
+            border: 2px dashed #1a8a7d;
+            border-radius: 8px;
+            padding: 3rem;
+            text-align: center;
+            color: #1a8a7d;
+            margin: 1.5rem 0;
+            font-weight: 600;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            background-color: white;
+            padding: 3.5rem 2rem;
+        }
+
+        .four-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0e0e0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-card h3 {
+            color: #1a8a7d;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .benefit-card p {
+            color: #2c3e50;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Future Section */
+        .future-section {
+            background-color: #f8f9fa;
+            padding: 3.5rem 2rem;
+        }
+
+        .segments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .segment-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 2px solid #1a8a7d;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .segment-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .segment-card h3 {
+            color: #1a8a7d;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .segment-card p {
+            color: #2c3e50;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .future-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .future-cta a {
+            display: inline-block;
+            color: #1a8a7d;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .future-cta a:hover {
+            color: #157a6f;
+        }
+
+        .arrow-icon {
+            margin-left: 0.5rem;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: linear-gradient(135deg, #1a8a7d 0%, #157a6f 100%);
+            padding: 3.5rem 2rem;
+            color: white;
+        }
+
+        .newsletter-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .newsletter-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .newsletter-subtitle {
+            text-align: center;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem;
+            border: none;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: #1a1a2e;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #999;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .checkbox-group input {
+            width: auto;
+            margin-top: 0.3rem;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .form-button {
+            width: 100%;
+            padding: 1rem;
+            background-color: #e67e22;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-button:hover {
+            background-color: #d56817;
+        }
+
+        /* Footer */
+        footer {
+            background-color: white;
+            border-top: 1px solid #e0e0e0;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .journey-steps {
+                flex-direction: column;
+            }
+
+            .journey-arrow {
+                transform: rotate(90deg);
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .three-columns,
+            .four-columns,
+            .segments-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo"><span class="s">S</span>ustainZone</div>
+            <div class="global-badge">
+                <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+                Global
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Smart & Sustainable Facilities Management for ESG Success</h1>
+            <p>Buildings consume 40% of global energy and account for 36% of CO₂ emissions. Transform your facilities operations with intelligent sustainability solutions that optimize performance, reduce environmental impact, and support ESG goals.</p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary">ASSESS YOUR FACILITY IMPACT</button>
+                <button class="btn btn-secondary" onclick="location.href='facilities-management-learn-more.html'">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stats-boxes">
+                <div class="stat-box">
+                    <div class="stat-number">40%</div>
+                    <div class="stat-text">Buildings account for 40% of global energy consumption—highlighting urgent sustainability opportunities.</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">36%</div>
+                    <div class="stat-text">Buildings contribute 36% of global CO₂ emissions—underscoring the need for smarter management.</div>
+                </div>
+            </div>
+            <div class="chart-container">
+                <div class="donut-chart">
+                    <svg viewBox="0 0 200 200" class="donut-svg">
+                        <!-- Blue segment (36%) -->
+                        <circle cx="100" cy="100" r="70" fill="none" stroke="#2596be" stroke-width="40"
+                                stroke-dasharray="160 286" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
+                        <!-- Gray segment (64%) -->
+                        <circle cx="100" cy="100" r="70" fill="none" stroke="#d0d0d0" stroke-width="40"
+                                stroke-dasharray="126 286" stroke-dashoffset="-160" transform="rotate(-90 100 100)"/>
+                    </svg>
+                </div>
+                <div class="chart-caption">
+                    <strong>36% Buildings</strong><br>
+                    Buildings are the single largest contributor to global emissions—making facilities sustainability critical.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenge Section -->
+    <section class="challenge-section">
+        <div class="section-container">
+            <h2 class="section-title">The Challenge of Sustainable Facilities Management</h2>
+            <p class="section-subtitle">Facilities managers face growing pressure to reduce energy use, minimize waste, and optimize building performance—all while maintaining occupant comfort and operational efficiency.</p>
+            <div class="challenge-card">
+                <h3>Environmental Impact of Building Operations</h3>
+                <p>From HVAC and lighting to water management and waste generation, every part of facilities operations impacts building sustainability. SustainZone offers comprehensive monitoring, tracking, and optimization.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demand Section -->
+    <section class="demand-section">
+        <div class="section-container">
+            <h2 class="section-title">Growing Demand for Sustainable Facilities and ESG Compliance</h2>
+            <p class="section-subtitle">Building owners, tenants, regulators, and investors demand sustainable, energy-efficient facilities that lower operational costs, minimize environmental impact, and meet ESG expectations.</p>
+            <div class="three-columns">
+                <div class="card">
+                    <h3>Building Regulations</h3>
+                    <p>New energy-efficiency standards, mandatory carbon disclosure, and green building certifications like LEED and BREEAM now mandate sustainable facilities operations.</p>
+                </div>
+                <div class="card">
+                    <h3>Tenant Expectations</h3>
+                    <p>Occupants expect healthy, efficient buildings with smart technologies, sustainable operations, and transparent environmental-performance reporting.</p>
+                </div>
+                <div class="card">
+                    <h3>Cost Optimization</h3>
+                    <p>Rising energy prices and operational costs drive demand for facilities management solutions that deliver measurable cost savings through efficiency and automation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="vision-section">
+        <div class="section-container">
+            <h2 class="section-title">Our Vision: Intelligent, Sustainable, Data-Driven Facilities</h2>
+            <p class="section-subtitle">SustainZone empowers facilities managers to build intelligent, energy-efficient buildings that reduce environmental impact, enhance occupant well-being, and deliver data-driven sustainability outcomes.</p>
+            <div class="journey-flow">
+                <div class="journey-title">Smart Facilities Sustainability Journey with SustainZone:</div>
+                <div class="journey-steps">
+                    <div class="journey-step">Sustainability Assessment</div>
+                    <div class="journey-arrow">→</div>
+                    <div class="journey-step">Real-Time Monitoring</div>
+                    <div class="journey-arrow">→</div>
+                    <div class="journey-step">Energy Optimization</div>
+                    <div class="journey-arrow">→</div>
+                    <div class="journey-step">Intelligent Automation</div>
+                    <div class="journey-arrow">→</div>
+                    <div class="journey-step">Net-Zero Transformation</div>
+                </div>
+                <div class="journey-description">This holistic approach turns traditional building operations into intelligent, sustainable, high-performance facilities that deliver measurable environmental and efficiency outcomes.</div>
+            </div>
+            <div class="vision-cta">
+                <button class="btn btn-primary">ASSESS YOUR FACILITY IMPACT</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="section-container">
+            <h2 class="section-title">How SustainZone Enables Sustainable, Smart Facilities Management</h2>
+            <p class="section-subtitle">SustainZone provides comprehensive facilities management solutions for energy optimization, building automation, sustainability reporting, and operational efficiency across all building types.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Energy Management</h3>
+                    <p>Real-time energy monitoring, HVAC optimization, smart lighting controls, and automated systems that can reduce energy use by up to 30%.</p>
+                </div>
+                <div class="service-card">
+                    <h3>IoT Integration</h3>
+                    <p>IoT-enabled sensors, automated building systems, and predictive analytics that optimize operations and prevent equipment failures—boosting uptime and efficiency.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Performance Analytics</h3>
+                    <p>Comprehensive dashboards for energy efficiency, carbon tracking, waste and resource management, ESG reporting, and regulatory compliance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action Section -->
+    <section class="action-section">
+        <div class="section-container">
+            <h2 class="section-title">SustainZone in Action: Facilities Transformation</h2>
+            <p class="section-subtitle">Facilities using SustainZone achieve significant energy savings, lower operational costs, enhanced building performance, and improved occupant satisfaction.</p>
+
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>METRIC</th>
+                            <th>TRADITIONAL FACILITIES</th>
+                            <th class="sustainzone-header">SUSTAINZONE ENHANCED</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="feature-name">Energy Monitoring</td>
+                            <td>Manual tracking</td>
+                            <td class="sustainzone-value">Real-time IoT energy tracking</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">HVAC Efficiency</td>
+                            <td>Standard climate control</td>
+                            <td class="sustainzone-value">AI-optimized climate management</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Waste Management</td>
+                            <td>Basic waste disposal</td>
+                            <td class="sustainzone-value">Comprehensive waste analytics</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Building Performance</td>
+                            <td>Reactive maintenance</td>
+                            <td class="sustainzone-value">Predictive optimization</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Sustainability Reporting</td>
+                            <td>Manual reporting</td>
+                            <td class="sustainzone-value">Automated ESG dashboards</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="metrics-section">
+                <h3 class="metrics-title">Energy Reduction by Building System</h3>
+                <p class="metrics-subtitle">Smart facilities management can reduce building energy consumption by 25–40%, providing substantial sustainability and cost-saving benefits.</p>
+                <div class="chart-placeholder">[Energy Reduction Chart Visualization]</div>
+            </div>
+
+            <div class="metrics-section">
+                <h3 class="metrics-title">Cost Savings Through Optimization</h3>
+                <p class="metrics-subtitle">Operational efficiency improvements deliver significant cost savings across building systems—and support long-term sustainable operations.</p>
+                <div class="chart-placeholder">[Cost Savings Chart Visualization]</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="section-container">
+            <h2 class="section-title">Why Sustainable Facilities Management Matters Now</h2>
+            <p class="section-subtitle">Sustainable facilities management reduces operational costs, improves building value, enhances occupant health, and demonstrates environmental leadership in today's ESG-focused market.</p>
+            <div class="four-columns">
+                <div class="benefit-card">
+                    <h3>Cost Reduction</h3>
+                    <p>Energy efficiency and automation enable 20–30% operational cost savings through optimized building systems—delivering both financial and environmental value.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Asset Value</h3>
+                    <p>Green buildings command higher rent, lower vacancy rates, and increased property values—enhancing investment and market competitiveness.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Occupant Wellness</h3>
+                    <p>Healthy building environments boost productivity, reduce absenteeism, and strengthen tenant satisfaction and retention—creating wellness-focused facilities.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Regulatory Compliance</h3>
+                    <p>Stay ahead of evolving building codes, energy-efficiency standards, and carbon disclosure mandates—ensuring regulatory compliance and sustainability alignment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Section -->
+    <section class="future-section">
+        <div class="section-container">
+            <h2 class="section-title">Building the Future of Intelligent Sustainable Facilities</h2>
+            <p class="section-subtitle">Transform your buildings into intelligent, sustainable facilities that optimize performance, reduce operational costs, foster occupant well-being, and minimize environmental impact.</p>
+            <div class="segments-grid">
+                <div class="segment-card">
+                    <h3>Smart Facilities for Offices</h3>
+                    <p>Smart office environments that optimize energy use and enhance tenant experiences—with a focus on productivity and sustainability.</p>
+                </div>
+                <div class="segment-card">
+                    <h3>Industrial Sites</h3>
+                    <p>Manufacturing and warehouse operations with efficient systems, sustainability tracking, and emissions reporting.</p>
+                </div>
+                <div class="segment-card">
+                    <h3>Retail & Hospitality</h3>
+                    <p>Retail and hospitality facilities that demonstrate environmental responsibility, operational excellence, and elevated guest wellbeing.</p>
+                </div>
+                <div class="segment-card">
+                    <h3>Education & Public Sector</h3>
+                    <p>Educational and public buildings—such as schools, universities, and government facilities—that lead in sustainability and community well-being.</p>
+                </div>
+            </div>
+            <div class="future-cta">
+                <a href="#">CONTACT US TO LEARN MORE <span class="arrow-icon">→</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-container">
+            <h2 class="newsletter-title">Become part of our sustainability network</h2>
+            <p class="newsletter-subtitle">Get exclusive access to insights, trends, and expert opinions by subscribing to our community</p>
+            <form>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company Name</label>
+                    <input type="text" id="company" name="company" placeholder="Your company">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your sustainability goals..."></textarea>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="privacy" name="privacy" required>
+                    <label for="privacy">I agree to the privacy policy and terms of service</label>
+                </div>
+                <button type="submit" class="form-button">Join for Free</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-text">Contact Us</div>
+        </div>
+    </footer>
+</body>
+</html>

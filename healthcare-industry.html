@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SustainZone - Healthcare Industry Sustainability Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-s {
+            color: #8b5a3c;
+        }
+
+        .logo-rest {
+            color: #1a1a2e;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            color: #2c3e50;
+        }
+
+        .globe-icon {
+            width: 20px;
+            height: 20px;
+            fill: #1a8a7d;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #ffffff 0%, #f0fdfb 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            color: #1a1a2e;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: #1a8a7d;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #157469;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 138, 125, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: #1a8a7d;
+            border: 2px solid #1a8a7d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f0fdfb;
+            transform: translateY(-2px);
+        }
+
+        /* Stat Box */
+        .stat-box {
+            background: white;
+            border: 2px solid #f0f0f0;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 3rem auto;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            color: #c0392b;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .stat-text {
+            font-size: 1rem;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        /* Pie Chart Section */
+        .chart-section {
+            background: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .chart-container {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .pie-chart {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: conic-gradient(#1a8a7d 0deg 15.84deg, #e8f5f3 15.84deg 360deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .pie-chart::after {
+            content: 'Healthcare\A4.4%';
+            white-space: pre;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .chart-legend {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .legend-item {
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .legend-color {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+            margin-right: 0.75rem;
+            vertical-align: middle;
+        }
+
+        .healthcare-color {
+            background-color: #1a8a7d;
+        }
+
+        .other-color {
+            background-color: #e8f5f3;
+        }
+
+        .chart-caption {
+            font-size: 1rem;
+            color: #2c3e50;
+            margin-top: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        section p {
+            font-size: 1rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .teal-text {
+            color: #1a8a7d;
+            font-weight: 600;
+        }
+
+        .orange-text {
+            color: #e67e22;
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 1.75rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .green-border-card {
+            border: 2px solid #1a8a7d;
+        }
+
+        /* Journey Flow */
+        .journey-section {
+            background: white;
+            padding: 3rem 2rem;
+        }
+
+        .journey-title {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #1a8a7d;
+            margin: 2rem 0;
+            font-weight: 600;
+        }
+
+        .journey-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 2rem 0;
+            gap: 1rem;
+        }
+
+        .journey-step {
+            background: white;
+            border: 2px solid #1a8a7d;
+            border-radius: 6px;
+            padding: 1.25rem 2rem;
+            font-weight: 600;
+            color: #1a8a7d;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+        }
+
+        .journey-arrow {
+            font-size: 1.5rem;
+            color: #1a8a7d;
+            margin: 0.5rem 0;
+        }
+
+        .journey-step:last-child .journey-arrow {
+            display: none;
+        }
+
+        .journey-description {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 0 1rem;
+            color: #2c3e50;
+            line-height: 1.7;
+        }
+
+        /* Comparison Table */
+        .table-section {
+            background: white;
+            padding: 3rem 2rem;
+            overflow-x: auto;
+        }
+
+        .table-title {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #1a8a7d;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #1a8a7d;
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 600;
+            color: #1a1a2e;
+            font-size: 0.95rem;
+        }
+
+        td {
+            padding: 1.2rem;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.95rem;
+            color: #2c3e50;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .sustainzone-value {
+            color: #1a8a7d;
+            font-weight: 600;
+        }
+
+        /* Bar Chart */
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            max-width: 600px;
+        }
+
+        .bar-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .bar-label {
+            min-width: 150px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        .bar-container {
+            flex: 1;
+            background-color: #e8f5f3;
+            border-radius: 4px;
+            overflow: hidden;
+            height: 30px;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background-color: #1a8a7d;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Donut Chart */
+        .donut-chart {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #1a8a7d 0deg 144deg,
+                #2596be 144deg 234deg,
+                #e67e22 234deg 306deg,
+                #f39c12 306deg 342deg,
+                #c0392b 342deg 360deg
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin: 2rem auto;
+        }
+
+        .donut-center {
+            width: 150px;
+            height: 150px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .donut-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .donut-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .donut-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 2rem auto;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 0.5rem;
+        }
+
+        .required {
+            color: #c0392b;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1a8a7d;
+            box-shadow: 0 0 0 3px rgba(26, 138, 125, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .checkbox-group input {
+            width: auto;
+            margin-top: 0.25rem;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+        }
+
+        .privacy-link {
+            color: #e67e22;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .privacy-link:hover {
+            text-decoration: underline;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 0.9rem;
+            background-color: #1a8a7d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #157469;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 138, 125, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f0f0f0;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            color: #2c3e50;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Target Segments */
+        .segments-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .segment {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .segment h4 {
+            color: #1a8a7d;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .segment p {
+            color: #2c3e50;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Link */
+        .contact-link {
+            color: #1a8a7d;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            gap: 1rem;
+        }
+
+        .arrow {
+            display: inline-block;
+            color: #e67e22;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .chart-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 0.8rem;
+            }
+
+            .journey-flow {
+                gap: 0.75rem;
+            }
+
+            .journey-step {
+                min-width: 160px;
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+
+            nav {
+                padding: 1rem;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <span class="logo-s">S</span><span class="logo-rest">ustainZone</span>
+        </div>
+        <div class="nav-right">
+            <svg class="globe-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <span>Global</span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Advancing Sustainable Healthcare & ESG Excellence</h1>
+        <p>Healthcare contributes 4.4% of global emissions while serving humanity's most critical needs. Transform your healthcare operations with data-driven sustainability solutions that reduce environmental impact and support ESG goals.</p>
+        <div class="hero-cta">
+            <button class="btn btn-primary">ASSESS YOUR HEALTHCARE IMPACT</button>
+            <a href="healthcare-industry-learn-more.html" class="btn btn-secondary">Learn More</a>
+        </div>
+    </section>
+
+    <!-- Stat Box -->
+    <div class="stat-box">
+        <div class="stat-number">4.4%</div>
+        <div class="stat-text">Healthcare accounts for 4.4% of global greenhouse gas emissions — underscoring urgent sustainability action.</div>
+    </div>
+
+    <!-- Pie Chart Section -->
+    <section class="chart-section">
+        <h2>Healthcare's Critical Role in Global Emissions</h2>
+        <div class="chart-container">
+            <div class="pie-chart"></div>
+            <div class="chart-legend">
+                <div class="legend-item">
+                    <span class="legend-color healthcare-color"></span>
+                    <strong>Healthcare:</strong> 4.4%
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color other-color"></span>
+                    <strong>Other Sectors:</strong> 95.6%
+                </div>
+            </div>
+        </div>
+        <p class="chart-caption">The healthcare sector's carbon footprint exceeds that of aviation and shipping combined — demanding immediate climate action.</p>
+    </section>
+
+    <!-- The Sustainability Imperative Section -->
+    <section>
+        <h2>The Sustainability Imperative for Healthcare</h2>
+        <p>The healthcare sector faces the paradox of healing people while harming the planet. Increasing carbon emissions, medical waste, and resource overconsumption highlight the urgent need for sustainable healthcare transformation.</p>
+
+        <div class="card green-border-card">
+            <h3>Environmental Impact of the Global Healthcare Industry</h3>
+            <p>From energy use to medical waste and pharmaceutical emissions, the global healthcare industry's environmental impact spans its entire value chain. SustainZone provides tools to track, reduce, and optimize every element for sustainability.</p>
+        </div>
+    </section>
+
+    <!-- Global Pressure Section -->
+    <section>
+        <h2>Increasing Global Pressure for Sustainable Healthcare Practices</h2>
+        <p>Regulatory agencies, patients, investors, and healthcare professionals are calling for sustainable healthcare practices and transparent ESG-aligned environmental reporting across the industry.</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Regulatory Authorities in Healthcare Sustainability</h3>
+                <p>The FDA, EMA, and other national health authorities increasingly require environmental impact assessments, sustainable packaging, and eco-friendly product design for pharmaceuticals and medical devices.</p>
+            </div>
+            <div class="card">
+                <h3>Healthcare Professionals Driving Sustainability</h3>
+                <p>Medical professionals advocate for climate-conscious healthcare, recognizing how environmental degradation impacts patient health outcomes and public well-being.</p>
+            </div>
+            <div class="card">
+                <h3>Patients and Communities Supporting Sustainable Healthcare</h3>
+                <p>Patients increasingly expect healthcare providers to prioritize environmental health, with 78% supporting hospitals and clinics that show clear, measurable sustainability commitments.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section>
+        <h2>Our Vision: Transforming Healthcare for Sustainability</h2>
+        <p>SustainZone enables healthcare organizations to reduce environmental impact while maintaining the highest standards of patient care through comprehensive sustainability tracking and optimization.</p>
+
+        <div class="journey-section">
+            <p class="journey-title">The Healthcare Sustainability Journey with SustainZone:</p>
+            <div class="journey-flow">
+                <div class="journey-step">Assessment</div>
+                <div class="journey-arrow">↓</div>
+                <div class="journey-step">Tracking</div>
+                <div class="journey-arrow">↓</div>
+                <div class="journey-step">Optimization</div>
+                <div class="journey-arrow">↓</div>
+                <div class="journey-step">ESG Reporting</div>
+                <div class="journey-arrow">↓</div>
+                <div class="journey-step">Net-Zero Goals</div>
+            </div>
+            <p class="journey-description">This proven approach helps healthcare organizations reduce their carbon footprint, enhance patient outcomes, and boost operational efficiency while meeting ESG benchmarks.</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+            <button class="btn btn-primary">ASSESS YOUR HEALTHCARE IMPACT</button>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section>
+        <h2>How SustainZone Enables Sustainable Healthcare</h2>
+        <p>SustainZone delivers healthcare-specific solutions for carbon tracking, medical waste reduction, sustainable supply chains, and full regulatory compliance across hospitals, pharmaceutical manufacturers, and medical device companies.</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Comprehensive Carbon Accounting for Healthcare</h3>
+                <p>Full tracking of Scope 1, 2, and 3 emissions, covering energy use, medical waste, pharmaceutical supply chains, transportation, and patient travel — enabling precise healthcare carbon accounting.</p>
+            </div>
+            <div class="card">
+                <h3>Optimizing Medical Waste for Sustainability</h3>
+                <p>Advanced analytics for reducing medical waste, implementing sustainable packaging solutions, and integrating circular economy practices in healthcare facilities.</p>
+            </div>
+            <div class="card">
+                <h3>Ensuring Regulatory Compliance in Healthcare Sustainability</h3>
+                <p>Automated ESG reporting for healthcare sustainability regulations, disclosure requirements, and alignment with Science-Based Targets for hospitals, clinics, and health systems.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SustainZone in Action Section -->
+    <section>
+        <h2>SustainZone in Action: Transforming Healthcare Sustainability</h2>
+        <p>Healthcare organizations leveraging SustainZone achieve measurable carbon emissions reductions, cost savings, and higher patient satisfaction through sustainable operations and ESG reporting.</p>
+
+        <!-- Comparison Table -->
+        <div class="table-section">
+            <p class="table-title">Traditional Healthcare vs. SustainZone-Enabled Sustainable Operations</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>METRIC</th>
+                        <th>TRADITIONAL HEALTHCARE</th>
+                        <th>SUSTAINZONE ENHANCED</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Carbon Footprint Tracking</td>
+                        <td>Annual estimates</td>
+                        <td class="sustainzone-value">Real-time monitoring</td>
+                    </tr>
+                    <tr>
+                        <td>Medical Waste Management</td>
+                        <td>Basic disposal compliance</td>
+                        <td class="sustainzone-value">Optimized reduction & recycling</td>
+                    </tr>
+                    <tr>
+                        <td>Supply Chain Visibility</td>
+                        <td>Limited pharmaceutical tracking</td>
+                        <td class="sustainzone-value">End-to-end sustainability</td>
+                    </tr>
+                    <tr>
+                        <td>Energy Efficiency</td>
+                        <td>Standard hospital operations</td>
+                        <td class="sustainzone-value">AI-optimized consumption</td>
+                    </tr>
+                    <tr>
+                        <td>Sustainability Reporting</td>
+                        <td>Basic compliance</td>
+                        <td class="sustainzone-value">Comprehensive ESG metrics</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Healthcare Emissions Reduction Potential -->
+        <div style="margin: 3rem 0; padding: 2rem; background: white; border-radius: 6px;">
+            <h3 style="text-align: center; color: #1a1a2e; margin-bottom: 0.5rem;">Healthcare Emissions Reduction Potential</h3>
+            <p style="text-align: center; color: #2c3e50; margin-bottom: 2rem;">Systematic sustainability approaches can reduce healthcare emissions by 30-50%.</p>
+
+            <div class="bar-chart">
+                <div class="bar-item">
+                    <div class="bar-label">Current Emissions</div>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="width: 100%;">100%</div>
+                    </div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">Energy Efficiency</div>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="width: 85%;">-15%</div>
+                    </div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">Waste Reduction</div>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="width: 70%;">-30%</div>
+                    </div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">Supply Chain</div>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="width: 55%;">-45%</div>
+                    </div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">Renewable Energy</div>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="width: 40%;">-50%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medical Waste Reduction -->
+        <div style="margin: 3rem 0; padding: 2rem; background: white; border-radius: 6px; text-align: center;">
+            <h3 style="color: #1a1a2e; margin-bottom: 0.5rem;">Medical Waste Reduction by Category</h3>
+            <p style="color: #2c3e50; margin-bottom: 2rem;">Strategic waste management reduces disposal costs and environmental impact.</p>
+
+            <div class="donut-chart"></div>
+
+            <div class="donut-legend">
+                <div class="donut-item">
+                    <div class="donut-color" style="background-color: #1a8a7d;"></div>
+                    <span><strong>Infectious:</strong> 40%</span>
+                </div>
+                <div class="donut-item">
+                    <div class="donut-color" style="background-color: #2596be;"></div>
+                    <span><strong>General:</strong> 25%</span>
+                </div>
+                <div class="donut-item">
+                    <div class="donut-color" style="background-color: #e67e22;"></div>
+                    <span><strong>Pharmaceutical:</strong> 20%</span>
+                </div>
+                <div class="donut-item">
+                    <div class="donut-color" style="background-color: #f39c12;"></div>
+                    <span><strong>Sharps:</strong> 10%</span>
+                </div>
+                <div class="donut-item">
+                    <div class="donut-color" style="background-color: #c0392b;"></div>
+                    <span><strong>Pathological:</strong> 5%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Sustainable Healthcare Matters Section -->
+    <section>
+        <h2>Why Sustainable Healthcare Matters Now</h2>
+        <p>Healthcare organizations that prioritize sustainability improve patient outcomes, reduce costs, and demonstrate leadership in addressing climate health impacts.</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Patient Health & Safety</h3>
+                <p>Healthy, sustainable environments lead to better patient health outcomes, improved recovery rates, and fewer healthcare-associated infections.</p>
+            </div>
+            <div class="card">
+                <h3>Cost Reduction</h3>
+                <p>Energy efficiency, waste reduction, and sustainable supply chains generate substantial cost savings and operational efficiency for healthcare systems.</p>
+            </div>
+            <div class="card">
+                <h3>Regulatory Preparedness</h3>
+                <p>Stay ahead of evolving healthcare sustainability regulations, ESG reporting requirements, and industry compliance standards.</p>
+            </div>
+            <div class="card">
+                <h3>Professional Leadership</h3>
+                <p>Attract top talent and showcase commitment to the healthcare mission of 'do no harm' — for both people and the planet.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Solutions Section -->
+    <section>
+        <h2>Healing People and the Planet: Sustainable Healthcare Solutions</h2>
+        <p>'First, do no harm' extends to our planet. SustainZone delivers complete sustainability solutions for healthcare organizations committed to environmental stewardship, including:</p>
+
+        <div class="segments-container">
+            <div class="segment">
+                <h4>Hospitals & Health Systems</h4>
+                <p>Comprehensive facility emissions tracking and operational optimization.</p>
+            </div>
+            <div class="segment">
+                <h4>Pharmaceutical Companies</h4>
+                <p>Drug development and manufacturing sustainability across the value chain.</p>
+            </div>
+            <div class="segment">
+                <h4>Medical Device Manufacturers</h4>
+                <p>Product lifecycle assessment and sustainable device design optimization.</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="#contact" class="contact-link">CONTACT US TO LEARN MORE <span class="arrow">→</span></a>
+        </div>
+    </section>
+
+    <!-- CTA/Newsletter Section -->
+    <section class="cta-section" id="contact">
+        <h2>Become part of our sustainability network</h2>
+        <p>Get exclusive access to insights, trends, and expert opinions by subscribing to our community</p>
+
+        <form class="form-container" onsubmit="event.preventDefault(); alert('Thank you for joining! We will be in touch soon.');">
+            <div class="form-group">
+                <label for="email">Enter email address <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="company">Enter company name</label>
+                <input type="text" id="company" name="company">
+            </div>
+
+            <div class="form-group">
+                <label for="message">Enter your message</label>
+                <textarea id="message" name="message"></textarea>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="privacy" name="privacy" required>
+                <label for="privacy">By signing up you accept our <a href="#" class="privacy-link">Privacy Policy</a></label>
+            </div>
+
+            <button type="submit" class="btn-submit">Join for Free</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        Contact Us
+    </footer>
+</body>
+</html>

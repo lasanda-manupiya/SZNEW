@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Industry Solutions - SustainZone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f8f9fa;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-s {
+            color: #8b6f47;
+        }
+
+        .logo-zone {
+            color: #1a1a2e;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            color: #1a1a2e;
+        }
+
+        .globe-icon {
+            width: 18px;
+            height: 18px;
+            margin-right: 0.3rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .hero h1 .highlight {
+            color: #8b6f47;
+            display: block;
+            font-size: 3.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: #e67e22;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #d66d0f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #1a8a7d;
+            border: 2px solid #1a8a7d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #1a8a7d;
+            color: white;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 2rem;
+        }
+
+        section.alt {
+            background-color: white;
+        }
+
+        section.light {
+            background-color: #f8f9fa;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+            text-align: center;
+        }
+
+        section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        section p {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #e67e22;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #2c3e50;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Waste Chart */
+        .waste-chart {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e0e0e0;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .pie-placeholder {
+            width: 300px;
+            height: 300px;
+            margin: 2rem auto;
+            background: conic-gradient(#e74c3c 0deg 216deg, #95a5a6 216deg 360deg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .waste-label {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Feature Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: #2c3e50;
+            font-size: 0.95rem;
+        }
+
+        .card.teal-border {
+            border-color: #1a8a7d;
+            border-width: 2px;
+        }
+
+        /* Section Subtitle */
+        .section-intro {
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #2c3e50;
+            line-height: 1.8;
+        }
+
+        /* Journey Flow */
+        .journey-flow {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            border: 2px solid #1a8a7d;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .flow-steps {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .flow-step {
+            flex: 1;
+            min-width: 120px;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 0.5rem;
+            color: #1a1a2e;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .flow-arrow {
+            color: #1a8a7d;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            background: white;
+            border-radius: 0.75rem;
+            border: 1px solid #e0e0e0;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .table-title {
+            background: #1a8a7d;
+            color: white;
+            padding: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        td {
+            color: #2c3e50;
+        }
+
+        /* Bar Chart Placeholder */
+        .chart-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e0e0e0;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 200px;
+            margin: 2rem 0;
+        }
+
+        .bar {
+            width: 100px;
+            background: #1a8a7d;
+            border-radius: 0.25rem 0.25rem 0 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding-bottom: 1rem;
+        }
+
+        .bar.tall {
+            height: 80%;
+        }
+
+        .bar.short {
+            height: 30%;
+        }
+
+        /* Segment Cards Grid */
+        .segments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .segment-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid #1a8a7d;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .segment-card h4 {
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .segment-card p {
+            color: #2c3e50;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1a8a7d 0%, #2596be 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 0.75rem;
+            margin: 4rem 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Newsletter Form */
+        .newsletter-form {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 0.75rem;
+            max-width: 600px;
+            margin: 3rem auto;
+        }
+
+        .newsletter-form h3 {
+            text-align: center;
+            color: #1a1a2e;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #1a1a2e;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #1a8a7d;
+            box-shadow: 0 0 0 3px rgba(26, 138, 125, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .contact-bar {
+            background: #1a8a7d;
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 0.75rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .contact-bar h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-bar p {
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 1rem;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            opacity: 0.8;
+        }
+
+        .footer-bottom {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero h1 .highlight {
+                font-size: 2rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .flow-steps {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                display: none;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <span class="logo-s">S</span><span class="logo-zone">ustainZone</span>
+        </div>
+        <div class="nav-right">
+            <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            Global
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                Rethinking Fashion
+                <span class="highlight">From Fast to Circular Economy</span>
+            </h1>
+            <p class="hero-subtitle">
+                The fashion industry's linear model is collapsing under environmental and economic pressures. A circular fashion economy isn't optional—it's essential for sustainability and resilience.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">Explore Solutions</button>
+                <a href="fashion-industry-learn-more.html" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="alt">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">100B+</div>
+                    <div class="stat-label">Over 100 billion garments are produced annually worldwide — driving urgent need for circular solutions.</div>
+                </div>
+            </div>
+
+            <div class="waste-chart">
+                <h3>Waste Management Fate</h3>
+                <p style="color: #2c3e50; margin-bottom: 1rem;">Fast fashion fallout: 60% of garments are discarded within a year — fueling waste and environmental damage.</p>
+                <div class="pie-placeholder">60% Discarded</div>
+                <div class="waste-label">Landfill / Incinerated vs Other Fates</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Environmental Footprint -->
+    <section class="light">
+        <div class="container">
+            <h2>Fashion's Hidden Environmental Footprint</h2>
+            <p class="section-intro">
+                Every outfit has an environmental shadow. The true cost of fast fashion extends far beyond the price tag — leaving behind toxic wastewater, rising carbon emissions, and pervasive microplastic pollution. It's a global sustainability crisis stitched into every seam.
+            </p>
+
+            <div class="card teal-border">
+                <h3>Global Fashion Industry's Annual Environmental Burden</h3>
+                <p>
+                    The fashion industry's contribution to global emissions, water pollution, and textile waste is unsustainable. SustainZone delivers data-driven tools to measure, monitor, and mitigate these impacts effectively.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stakeholder Demand -->
+    <section class="alt">
+        <div class="container">
+            <h2>Sky-High Demand for Sustainable Fashion Change</h2>
+            <p class="section-intro">
+                Stakeholders across the fashion value chain are rejecting opacity. Demand for transparency, traceability, and sustainable practices is accelerating across the industry.
+            </p>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Regulators</h3>
+                    <p>Recent EU Extended Producer Responsibility (EPR) rules and CSRD mandates require comprehensive environmental reporting, traceability, and accountability across every stage of the product lifecycle.</p>
+                </div>
+                <div class="card">
+                    <h3>Consumers</h3>
+                    <p>70% of Gen Z consumers prefer sustainable fashion brands, fueling demand for ethically sourced apparel and full transparency across a garment's lifecycle.</p>
+                </div>
+                <div class="card">
+                    <h3>Investors</h3>
+                    <p>In 2023, $50B was divested from unsustainable fashion. Investors now prioritize ESG-aligned companies and scrutinize fashion supply chains for environmental and social impact.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transparency Section -->
+    <section class="light">
+        <div class="container">
+            <h3 style="text-align: center; margin-bottom: 2rem;">Transparency & Accountability Landscape</h3>
+            <p class="section-intro">
+                The global fashion industry is becoming increasingly transparent, with leading sustainable fashion brands setting the pace. The gap between leaders and the global average highlights the competitive advantage of transparency and accountability.
+            </p>
+            <div class="chart-container">
+                <p style="margin-bottom: 2rem; color: #2c3e50;">Leading brands vs. Global average in sustainability transparency</p>
+                <div class="bar-chart">
+                    <div>
+                        <div class="bar tall" style="height: 85%;"></div>
+                        <p style="margin-top: 1rem; font-size: 0.85rem;">Leaders</p>
+                    </div>
+                    <div>
+                        <div class="bar short" style="height: 35%;"></div>
+                        <p style="margin-top: 1rem; font-size: 0.85rem;">Global Avg</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Circular Journey -->
+    <section class="alt">
+        <div class="container">
+            <h2>A Garment's Traceable Sustainability Journey</h2>
+            <p class="section-intro">
+                Traditional fashion ends at purchase. Through reuse, resale, and recycling, garments can enjoy multiple lives — reducing environmental impact and creating measurable business value.
+            </p>
+
+            <div class="journey-flow">
+                <h3 style="color: #1a8a7d; margin-bottom: 1.5rem;">Your Garment's Circular Journey: From Wear to Worth with SustainZone</h3>
+                <div class="flow-steps">
+                    <div class="flow-step">Production</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-step">Consumer</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-step">Resale</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-step">Reuse</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-step">Recycling</div>
+                </div>
+                <p style="color: #2c3e50; margin-top: 2rem;">
+                    Every piece of clothing holds potential beyond its first wear. SustainZone makes that journey fully transparent — tracking environmental impact from production to reuse, resale, and recycling.
+                </p>
+                <button class="btn btn-primary" style="margin-top: 1.5rem;">ENVISION YOUR GARMENT'S STORY</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="light">
+        <div class="container">
+            <h2>From Fashion Data to Decarbonization</h2>
+            <p class="section-intro">
+                SustainZone empowers fashion brands and manufacturers with data-driven tools to track, measure, and improve sustainability performance across the garment lifecycle.
+            </p>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Post-Purchase Garment Tracking</h3>
+                    <p>Tracking each garment's post-purchase journey — including resale, repairs, and donations — to reveal its true lifecycle, usage patterns, and environmental impact.</p>
+                </div>
+                <div class="card">
+                    <h3>LCA & Environmental Impact Modelling for Fashion</h3>
+                    <p>Calculating per-garment Carbon Footprint (CO₂e), Water Scarcity (AWARE), Cumulative Energy Demand (CED), and Fossil Energy (FE) to support circular fashion strategies.</p>
+                </div>
+                <div class="card">
+                    <h3>SBTi & ESG Alignment for Fashion Industry</h3>
+                    <p>Enabling reporting against Science-Based Targets and ensuring compliance with GRI, SASB, and CSRD disclosures — all powered by real-time garment-level impact scores.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="alt">
+        <div class="container">
+            <h2>SustainZone in Action: Driving Real Fashion Impact with Real Data</h2>
+            <p class="section-intro">
+                Transitioning to a circular fashion model with SustainZone delivers measurable sustainability benefits, transforming industry metrics and unlocking new value.
+            </p>
+
+            <div class="comparison-table">
+                <div class="table-title">Traditional Model vs. SustainZone-enabled Circular Model</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Traditional Model</th>
+                            <th>SustainZone Circular Model</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Average Wears Per Garment (Longevity Impact)</td>
+                            <td>7 wears</td>
+                            <td>30–40 wears</td>
+                        </tr>
+                        <tr>
+                            <td>Visibility of Scope 3 Impact (Fashion Supply Chain)</td>
+                            <td>Largely untracked/estimated</td>
+                            <td>Tracked, verified, reported</td>
+                        </tr>
+                        <tr>
+                            <td>Carbon Emission per Garment (kg CO₂e)</td>
+                            <td>~6–10 kg CO₂e unaccounted</td>
+                            <td>~3–6 kg CO₂e saved (reuse)</td>
+                        </tr>
+                        <tr>
+                            <td>Consumer Engagement (Sustainable Fashion)</td>
+                            <td>One-time purchase + discard</td>
+                            <td>Story-based reuse, loyalty, impact</td>
+                        </tr>
+                        <tr>
+                            <td>Brand Reporting Capability (Circular Metrics)</td>
+                            <td>Basic or aggregated</td>
+                            <td>Product-level, circular ESG reports</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="chart-container">
+                <h3 style="color: #1a1a2e; margin-bottom: 1rem;">Average Wears Per Garment</h3>
+                <p style="color: #2c3e50; margin-bottom: 2rem;">Extending garment longevity is essential for reducing overproduction, textile waste, and environmental impact.</p>
+                <div class="bar-chart">
+                    <div>
+                        <div class="bar" style="height: 25%;"></div>
+                        <p style="margin-top: 1rem; font-size: 0.85rem;">Traditional<br>7 wears</p>
+                    </div>
+                    <div>
+                        <div class="bar tall" style="height: 90%;"></div>
+                        <p style="margin-top: 1rem; font-size: 0.85rem;">Circular Model<br>30-40 wears</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why It Matters -->
+    <section class="light">
+        <div class="container">
+            <h2>Why This Matters: The Imperative for Sustainable Fashion Change</h2>
+            <p class="section-intro">
+                Sustainable fashion is no longer a niche trend—it's a fundamental requirement for survival and success in the modern market.
+            </p>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Avoid Regulatory Penalties</h3>
+                    <p>Mitigate risks of regulatory non-compliance.</p>
+                </div>
+                <div class="card">
+                    <h3>Gain a Competitive ESG Advantage</h3>
+                    <p>Attract investors and differentiate your brand.</p>
+                </div>
+                <div class="card">
+                    <h3>Build Consumer Loyalty</h3>
+                    <p>Build loyalty with conscious consumers.</p>
+                </div>
+                <div class="card">
+                    <h3>Unlock New Revenue from Circular Fashion Models</h3>
+                    <p>Via recommerce and repair services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="alt">
+        <div class="container">
+            <h2>Let's Build a Regenerative, Circular Fashion Economy</h2>
+            <p class="section-intro">
+                Every garment has a story. Let's make it one of accountability, value, and sustainability — not waste. SustainZone offers plug-and-play infrastructure for the fashion industry to:
+            </p>
+
+            <div class="segments-grid">
+                <div class="segment-card">
+                    <h4>Manufacturers</h4>
+                    <p>Verify lifecycle environmental impact of materials and manufacturing processes.</p>
+                </div>
+                <div class="segment-card">
+                    <h4>Brands</h4>
+                    <p>Build circularity and sustainability into fashion product lines from day one.</p>
+                </div>
+                <div class="segment-card">
+                    <h4>Retailers & Wholesalers</h4>
+                    <p>Differentiate with fully traceable, low-impact, sustainable fashion collections.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="btn btn-primary">CONTACT US TO LEARN MORE →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Form -->
+    <section class="light">
+        <div class="newsletter-form">
+            <h3>Become part of our sustainability network</h3>
+            <form>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="contact-bar">
+            <h3>Contact Us</h3>
+            <p>Ready to transform your fashion sustainability strategy?</p>
+            <div class="contact-links">
+                <a href="mailto:info@sustainzone.com">Email Us</a>
+                <a href="#">Schedule a Demo</a>
+                <a href="#">Call +1 (555) 123-4567</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SustainZone. All rights reserved. | <a href="#" style="color: #7f8c8d; text-decoration: none;">Privacy Policy</a> | <a href="#" style="color: #7f8c8d; text-decoration: none;">Terms of Service</a></p>
+        </div>
+    </footer>
+</body>
+</html>

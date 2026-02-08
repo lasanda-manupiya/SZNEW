@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SustainZone - Sustainable Aviation Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --white: #FFFFFF;
+            --light-gray: #F8FAFB;
+            --gray-200: #E8ECEF;
+            --gray-300: #D1D5DB;
+            --gray-500: #6B7280;
+            --gray-700: #374151;
+            --dark-gray: #2c3e50;
+            --navy: #1a1a2e;
+            --teal: #1a8a7d;
+            --dark-teal: #0d7377;
+            --green: #2ecc71;
+            --dark-green: #27ae60;
+            --orange: #e67e22;
+            --coral-red: #ff6b6b;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--gray-700);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        p {
+            color: var(--gray-700);
+        }
+
+        a {
+            color: var(--teal);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--dark-teal);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: var(--shadow-md);
+            background-color: var(--white);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--teal);
+        }
+
+        .nav-global {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray-700);
+            font-weight: 500;
+        }
+
+        .nav-global i {
+            font-size: 1.2rem;
+            color: var(--teal);
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+            padding: 3rem 2rem;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--navy);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--gray-700);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .stat-highlight {
+            background: #fff4f4;
+            border-left: 4px solid var(--coral-red);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border-radius: 0.5rem;
+            display: inline-block;
+        }
+
+        .stat-highlight strong {
+            color: var(--coral-red);
+            font-size: 1.1rem;
+        }
+
+        /* Pie Chart */
+        .pie-chart-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .pie-chart {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: conic-gradient(
+                var(--orange) 0deg 9deg,
+                var(--teal) 9deg 360deg
+            );
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pie-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .legend-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+        }
+
+        .color-orange {
+            background-color: var(--orange);
+        }
+
+        .color-teal {
+            background-color: var(--teal);
+        }
+
+        .legend-text strong {
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        section.light-bg {
+            background-color: var(--light-gray);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--gray-700);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--teal);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .card-green-border {
+            border-left: 4px solid var(--dark-green);
+        }
+
+        .card-teal-border {
+            border-left: 4px solid var(--teal);
+        }
+
+        /* Grid Styles */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Environmental Impact Section */
+        .impact-description {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: var(--gray-700);
+        }
+
+        /* Bar Chart */
+        .chart-container {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: 0.75rem;
+        }
+
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .bar-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-end;
+        }
+
+        .bar-label {
+            width: 200px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--navy);
+            padding-top: 0.5rem;
+            text-align: right;
+        }
+
+        .bar-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: flex-end;
+            height: 40px;
+            background: var(--gray-200);
+            border-radius: 0.25rem;
+            overflow: hidden;
+        }
+
+        .bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--teal), var(--dark-teal));
+            transition: all 0.3s ease;
+        }
+
+        .bar-value {
+            font-weight: 600;
+            color: var(--navy);
+            margin-left: 1rem;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        /* Stakeholder Cards */
+        .stakeholder-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .stakeholder-card:hover {
+            border-color: var(--teal);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .stakeholder-card h3 {
+            color: var(--teal);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .stakeholder-card p {
+            color: var(--gray-700);
+            line-height: 1.7;
+        }
+
+        /* Journey Flow */
+        .journey {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .journey-step {
+            flex: 1;
+            min-width: 120px;
+            padding: 1.5rem;
+            background: var(--light-gray);
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+            color: var(--navy);
+            font-size: 0.95rem;
+        }
+
+        .journey-arrow {
+            color: var(--teal);
+            font-size: 1.5rem;
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .journey-arrow {
+                display: block;
+            }
+        }
+
+        /* Service Cards */
+        .service-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: var(--teal);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .service-card h3 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .service-card p {
+            color: var(--gray-700);
+            line-height: 1.7;
+        }
+
+        /* Comparison Table */
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+        }
+
+        th {
+            background: var(--navy);
+            color: var(--white);
+            padding: 1.25rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        td {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--gray-200);
+            color: var(--gray-700);
+        }
+
+        tr:hover {
+            background: var(--light-gray);
+        }
+
+        .enhanced {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        /* Donut Chart */
+        .donut-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .donut-chart {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #FFB366 0deg 126deg,
+                #FF8533 126deg 180deg,
+                #4ECDC4 180deg 216deg,
+                #FFE66D 216deg 252deg,
+                #95E1D3 252deg 360deg
+            );
+            position: relative;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .donut-chart::after {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: var(--white);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .donut-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .donut-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .donut-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+        }
+
+        .color-light-orange {
+            background-color: #FFB366;
+        }
+
+        .color-dark-orange {
+            background-color: #FF8533;
+        }
+
+        .color-teal-light {
+            background-color: #4ECDC4;
+        }
+
+        .color-yellow {
+            background-color: #FFE66D;
+        }
+
+        .color-mint {
+            background-color: #95E1D3;
+        }
+
+        /* Benefit Cards */
+        .benefit-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            border-color: var(--teal);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .benefit-card h3 {
+            color: var(--navy);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card p {
+            color: var(--gray-700);
+            line-height: 1.6;
+        }
+
+        /* Target Segments */
+        .segment-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .segment-card:hover {
+            border-color: var(--teal);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .segment-card h3 {
+            color: var(--teal);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .segment-card p {
+            color: var(--gray-700);
+            line-height: 1.7;
+        }
+
+        /* Contact Us Bar */
+        .contact-bar {
+            background: linear-gradient(90deg, var(--teal), var(--dark-teal));
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .contact-bar h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .contact-bar a {
+            color: var(--orange);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .contact-bar a:hover {
+            color: var(--white);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--light-gray);
+            border-radius: 0.75rem;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            margin-bottom: 2rem;
+            color: var(--gray-700);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        input, textarea {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 0.5rem;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--navy);
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(26, 138, 125, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            cursor: pointer;
+            color: var(--gray-700);
+            font-size: 0.9rem;
+        }
+
+        .cta-btn {
+            background: linear-gradient(90deg, var(--teal), var(--dark-teal));
+            color: var(--white);
+            padding: 0.85rem 2rem;
+            border-radius: 0.5rem;
+            border: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .cta-btn:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .cta-btn-orange {
+            background: var(--orange);
+        }
+
+        .cta-btn-orange:hover {
+            background: #d35e0f;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 3rem 2rem 1.5rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section ul a {
+            color: var(--gray-300);
+        }
+
+        .footer-section ul a:hover {
+            color: var(--white);
+        }
+
+        .footer-contact {
+            color: var(--gray-300);
+            line-height: 1.8;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--gray-300);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            .hero {
+                min-height: calc(100vh - 70px);
+                margin-top: 70px;
+                padding: 2rem 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .pie-chart-container,
+            .donut-container {
+                gap: 1.5rem;
+            }
+
+            .journey {
+                gap: 0.5rem;
+            }
+
+            .journey-step {
+                min-width: 90px;
+                font-size: 0.8rem;
+                padding: 1rem;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 0.75rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <a href="https://sustainzone.earth/" class="logo">
+                Sustain<span>Z</span>one
+            </a>
+            <div class="nav-global">
+                <i class="fas fa-globe"></i>
+                Global
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Navigating Aviation's Sustainable Future & ESG Excellence</h1>
+            <p>Aviation accounts for 2-3% of global CO₂ emissions and growing. Transform your aviation operations with data-driven sustainability solutions that reduce environmental impact, meet CORSIA requirements, and support ESG goals.</p>
+
+            <div class="stat-highlight">
+                <strong>2.5%</strong> Aviation accounts for 2.5% of global CO₂ emissions — with non-CO₂ effects roughly doubling the warming impact.
+            </div>
+
+            <div class="pie-chart-container">
+                <div class="pie-chart"></div>
+                <div class="pie-legend">
+                    <div class="legend-item">
+                        <div class="legend-color color-orange"></div>
+                        <div><strong>Aviation:</strong> 2.5%</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color color-teal"></div>
+                        <div><strong>Other Sectors:</strong> 97.5%</div>
+                    </div>
+                    <div style="margin-top: 1rem; color: var(--gray-700); font-size: 0.9rem;">
+                        Aviation's total climate impact, including contrails and NOx, makes it one of the fastest-growing contributors to global warming — demanding immediate action.
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="#contact" class="cta-btn">Get Started</a>
+                <a href="aviation-industry-learn-more.html" class="cta-btn" style="background: var(--gray-200); color: var(--navy);">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Sustainability Imperative -->
+    <section class="light-bg">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Sustainability Imperative for Aviation</h2>
+            </div>
+            <div class="card card-green-border">
+                <p class="impact-description">
+                    The aviation industry faces mounting pressure to decarbonize while meeting surging global travel demand. Carbon emissions, fuel dependency, and regulatory scrutiny highlight the urgent need for sustainable aviation transformation. From jet fuel combustion to ground operations and supply chains, the aviation industry's environmental footprint spans its entire value chain. SustainZone provides tools to track, reduce, and optimize every element for sustainability.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Environmental Impact Card -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>Environmental Impact of the Global Aviation Industry</h2>
+            </div>
+            <div class="card card-teal-border">
+                <p class="impact-description">
+                    From jet fuel combustion to ground operations and supply chains, the aviation industry's environmental footprint spans its entire value chain. SustainZone provides tools to track, reduce, and optimize every element for sustainability.
+                </p>
+
+                <div class="chart-container">
+                    <h3 style="color: var(--navy); margin-bottom: 1.5rem;">Aviation Emissions by Source</h3>
+                    <div class="bar-chart">
+                        <div class="bar-item">
+                            <div class="bar-label">Jet Fuel Combustion (Cruise)</div>
+                            <div class="bar-wrapper">
+                                <div class="bar" style="width: 70%;"></div>
+                            </div>
+                            <div class="bar-value">70%</div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Takeoff & Climb</div>
+                            <div class="bar-wrapper">
+                                <div class="bar" style="width: 15%;"></div>
+                            </div>
+                            <div class="bar-value">15%</div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Descent & Landing</div>
+                            <div class="bar-wrapper">
+                                <div class="bar" style="width: 10%;"></div>
+                            </div>
+                            <div class="bar-value">10%</div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Ground Operations</div>
+                            <div class="bar-wrapper">
+                                <div class="bar" style="width: 5%;"></div>
+                            </div>
+                            <div class="bar-value">5%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Global Pressure -->
+    <section class="light-bg">
+        <div class="container">
+            <div class="section-header">
+                <h2>Increasing Global Pressure for Sustainable Aviation</h2>
+                <p>Regulators, passengers, investors, and industry bodies are calling for sustainable aviation practices and transparent ESG-aligned environmental reporting across the sector.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="stakeholder-card">
+                    <h3>Regulatory Authorities in Aviation Sustainability</h3>
+                    <p>ICAO's CORSIA scheme, the EU ETS, and the UK Jet Zero Strategy increasingly require airlines and airports to monitor, report, and reduce their carbon emissions.</p>
+                </div>
+                <div class="stakeholder-card">
+                    <h3>Aviation Professionals Driving Sustainability</h3>
+                    <p>Industry leaders and aviation professionals are championing sustainable aviation fuel (SAF), operational efficiency, and next-generation technology to reduce the sector's climate impact.</p>
+                </div>
+                <div class="stakeholder-card">
+                    <h3>Passengers and Communities Demanding Change</h3>
+                    <p>73% of air travelers express concern about aviation's environmental impact, with growing demand for carbon-transparent booking and sustainable flight options.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Vision -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Vision: Transforming Aviation for Sustainability</h2>
+                <p>SustainZone enables aviation organizations to reduce environmental impact while maintaining operational excellence through comprehensive sustainability tracking and optimization.</p>
+            </div>
+
+            <div style="margin: 3rem 0;">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <h3 style="color: var(--teal); font-size: 1.2rem; margin-bottom: 1rem;">The Aviation Sustainability Journey with SustainZone:</h3>
+                </div>
+                <div class="journey">
+                    <div class="journey-step">Assessment</div>
+                    <div class="journey-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="journey-step">Monitoring</div>
+                    <div class="journey-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="journey-step">Optimization</div>
+                    <div class="journey-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="journey-step">ESG Reporting</div>
+                    <div class="journey-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="journey-step">Net-Zero Goals</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 2rem 0;">
+                <p style="font-size: 1.05rem; color: var(--gray-700); margin-bottom: 2rem;">This proven approach helps aviation organizations reduce their carbon footprint, meet CORSIA compliance, and boost operational efficiency while meeting ESG benchmarks.</p>
+                <a href="#contact" class="cta-btn">ASSESS YOUR AVIATION IMPACT</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: How SustainZone Enables -->
+    <section class="light-bg">
+        <div class="container">
+            <div class="section-header">
+                <h2>How SustainZone Enables Sustainable Aviation</h2>
+                <p>SustainZone delivers aviation-specific solutions for carbon tracking, fuel optimization, SAF integration, and full regulatory compliance across airlines, airports, and aviation service providers.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="service-card">
+                    <h3>Comprehensive Carbon Accounting for Aviation</h3>
+                    <p>Full tracking of Scope 1, 2, and 3 emissions, covering fuel combustion, ground operations, supply chains, and passenger travel — enabling precise aviation carbon accounting.</p>
+                </div>
+                <div class="service-card">
+                    <h3>SAF Strategy & Fuel Optimization</h3>
+                    <p>Advanced analytics for sustainable aviation fuel procurement, blending optimization, and lifecycle emissions tracking to accelerate the transition from conventional jet fuel.</p>
+                </div>
+                <div class="service-card">
+                    <h3>CORSIA & Regulatory Compliance</h3>
+                    <p>Automated ESG reporting for aviation sustainability regulations, CORSIA obligations, EU ETS requirements, and alignment with Science-Based Targets for airlines and airports.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: SustainZone in Action -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>SustainZone in Action: Transforming Aviation Sustainability</h2>
+                <p>Aviation organizations leveraging SustainZone achieve measurable carbon emissions reductions, cost savings, and stronger ESG performance through sustainable operations and reporting.</p>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Traditional Aviation</th>
+                            <th>SustainZone Enhanced</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Carbon Footprint Tracking</strong></td>
+                            <td>Annual estimates</td>
+                            <td><span class="enhanced">Real-time monitoring</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fuel Efficiency Management</strong></td>
+                            <td>Basic fleet averages</td>
+                            <td><span class="enhanced">Route-optimized analytics</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Supply Chain Visibility</strong></td>
+                            <td>Limited ground ops tracking</td>
+                            <td><span class="enhanced">End-to-end sustainability</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>SAF Integration</strong></td>
+                            <td>Ad hoc procurement</td>
+                            <td><span class="enhanced">Strategic SAF optimization</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sustainability Reporting</strong></td>
+                            <td>Basic CORSIA compliance</td>
+                            <td><span class="enhanced">Comprehensive ESG metrics</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3 style="color: var(--navy); text-align: center; margin-bottom: 2rem;">Aviation Emissions Reduction Potential</h3>
+                <p style="text-align: center; color: var(--gray-700); margin-bottom: 2rem;">Strategic sustainability approaches can reduce aviation operational emissions by 20-35%.</p>
+                <div class="chart-container">
+                    <div class="bar-chart">
+                        <div class="bar-item">
+                            <div class="bar-label">Current Emissions</div>
+                            <div class="bar-wrapper">
+                                <div class="bar" style="width: 100%;"></div>
+                            </div>
+                            <div class="bar-value">100%</div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">After Route Optimization</div>
+                            <div class="bar-wrapper">
+                                <div class="bar" style="width: 92%;"></div>
+                            </div>
+                            <div class="bar-value">92%</div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">After Fleet Modernization</div>
+                            <div class="bar-wrapper">
+                                <div class="bar" style="width: 80%;"></div>
+                            </div>
+                            <div class="bar-value">80%</div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">After SAF Integration</div>
+                            <div class="bar-wrapper">
+                                <div class="bar" style="width: 65%;"></div>
+                            </div>
+                            <div class="bar-value">65%</div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Target Emissions (20-35% reduction)</div>
+                            <div class="bar-wrapper">
+                                <div class="bar" style="width: 72%;"></div>
+                            </div>
+                            <div class="bar-value">72%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3 style="color: var(--navy); text-align: center; margin-bottom: 2rem;">Emissions by Flight Phase</h3>
+                <p style="text-align: center; color: var(--gray-700); margin-bottom: 2rem;">Understanding where emissions occur enables targeted reduction strategies.</p>
+                <div class="donut-container">
+                    <div class="donut-chart"></div>
+                    <div class="donut-legend">
+                        <div class="donut-item">
+                            <div class="donut-color color-light-orange"></div>
+                            <div><strong>Cruise:</strong> 70%</div>
+                        </div>
+                        <div class="donut-item">
+                            <div class="donut-color color-dark-orange"></div>
+                            <div><strong>Takeoff/Climb:</strong> 15%</div>
+                        </div>
+                        <div class="donut-item">
+                            <div class="donut-color color-teal-light"></div>
+                            <div><strong>Descent/Landing:</strong> 10%</div>
+                        </div>
+                        <div class="donut-item">
+                            <div class="donut-color color-yellow"></div>
+                            <div><strong>Ground Ops:</strong> 5%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Why Sustainable Aviation Matters -->
+    <section class="light-bg">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Sustainable Aviation Matters Now</h2>
+            </div>
+
+            <div class="grid-4">
+                <div class="benefit-card">
+                    <h3>Regulatory Compliance</h3>
+                    <p>Meet CORSIA, EU ETS, and Jet Zero requirements while staying ahead of evolving aviation sustainability regulations.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Cost Optimization</h3>
+                    <p>Fuel efficiency, SAF strategy, and operational improvements generate substantial cost savings for aviation operators.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Competitive Advantage</h3>
+                    <p>Airlines and airports with strong ESG credentials attract environmentally conscious travelers and premium partnerships.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Industry Leadership</h3>
+                    <p>Demonstrate commitment to aviation's net-zero 2050 target and position your organization as a sustainability leader.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Aviation Solutions -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>Charting the Course: Sustainable Aviation Solutions</h2>
+            </div>
+
+            <div style="background: var(--light-gray); padding: 2rem; border-radius: 0.75rem; margin-bottom: 3rem;">
+                <p style="font-size: 1.05rem; color: var(--gray-700); line-height: 1.8;">
+                    From carbon-neutral flights to sustainable ground operations. SustainZone delivers complete sustainability solutions for aviation organizations committed to environmental stewardship, including:
+                </p>
+            </div>
+
+            <div class="grid-3">
+                <div class="segment-card">
+                    <h3>Airlines & Carriers</h3>
+                    <p>Comprehensive fleet emissions tracking, SAF integration, and CORSIA compliance.</p>
+                </div>
+                <div class="segment-card">
+                    <h3>Airports & Ground Handlers</h3>
+                    <p>Facility energy optimization, ground operations sustainability, and Scope 1-3 reporting.</p>
+                </div>
+                <div class="segment-card">
+                    <h3>Aviation Service Providers</h3>
+                    <p>Supply chain sustainability assessment and lifecycle emissions management.</p>
+                </div>
+            </div>
+
+            <div class="contact-bar">
+                <h3>Ready to Transform Your Aviation Sustainability?</h3>
+                <a href="#contact">CONTACT US TO LEARN MORE →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="light-bg" id="contact">
+        <div class="container">
+            <div class="cta-section">
+                <h2>Become part of our sustainability network</h2>
+                <p>Get exclusive access to insights, trends, and expert opinions by subscribing to our community</p>
+
+                <form onsubmit="event.preventDefault();">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <input type="email" placeholder="Enter email address *" required>
+                            <input type="text" placeholder="Enter company name">
+                        </div>
+                        <textarea placeholder="Enter your message"></textarea>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="privacy-check">
+                        <label for="privacy-check">By signing up you accept our <a href="#" style="color: var(--teal);">Privacy Policy</a></label>
+                    </div>
+
+                    <button type="submit" class="cta-btn cta-btn-orange">Join for Free</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="contact-bar" style="background: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 2rem; margin-bottom: 2rem;">
+                <h3 style="margin-bottom: 0.5rem;">Contact Us</h3>
+                <p style="color: var(--gray-300);">Get in touch with our sustainability experts</p>
+            </div>
+
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>SustainZone</h4>
+                    <div class="footer-contact">
+                        <p style="margin-bottom: 1rem;">71-75 Shelton Street<br>Covent Garden<br>London, WC2H 9JQ</p>
+                        <p><a href="mailto:hello@sustainzone.earth">hello@sustainzone.earth</a></p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Industries</h4>
+                    <ul>
+                        <li><a href="aviation-industry.html">Aviation</a></li>
+                        <li><a href="facilities-management.html">Facilities Management</a></li>
+                        <li><a href="fashion-industry.html">Fashion</a></li>
+                        <li><a href="healthcare-industry.html">Healthcare</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Learn More</h4>
+                    <ul>
+                        <li><a href="aviation-industry-learn-more.html">Aviation Sustainability Guide</a></li>
+                        <li><a href="#">ESG Reporting</a></li>
+                        <li><a href="#">Carbon Accounting</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024-2026 SustainZone Ltd. All rights reserved. | Sustainable aviation through innovation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviation Sustainability: The Complete Guide - SustainZone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: #1a1a2e;
+            background-color: #f8f9fa;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-logo-s {
+            color: #8b6f47;
+        }
+
+        .nav-logo-zone {
+            color: #1a1a2e;
+        }
+
+        .nav-right {
+            color: #2c3e50;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-right:hover {
+            color: #1a8a7d;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #eef3f2 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid #e5e8eb;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: #1a8a7d;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #0d5c54;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Two Column Layout */
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            height: fit-content;
+            position: sticky;
+            top: 80px;
+        }
+
+        .sidebar h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #1a8a7d;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 0.75rem;
+        }
+
+        .sidebar a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: block;
+            padding: 0.5rem 0;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+            padding-left: 0.75rem;
+        }
+
+        .sidebar a:hover {
+            color: #1a8a7d;
+            border-left-color: #1a8a7d;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .section {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-number {
+            display: inline-flex;
+            width: 36px;
+            height: 36px;
+            align-items: center;
+            justify-content: center;
+            background-color: #1a8a7d;
+            color: white;
+            border-radius: 50%;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .section h3 {
+            font-size: 1.2rem;
+            color: #1a1a2e;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .section p {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .section ul, .section ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section li {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+
+        /* Highlight Box */
+        .highlight {
+            background-color: #f0faf8;
+            border-left: 4px solid #1a8a7d;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .highlight strong {
+            color: #1a8a7d;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat-card {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid #e5e8eb;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            color: #1a8a7d;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #2c3e50;
+            font-size: 0.95rem;
+        }
+
+        /* Case Study */
+        .case-study {
+            background: linear-gradient(135deg, #f0faf8 0%, #e8f7f5 100%);
+            border-left: 4px solid #e67e22;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .case-study h3 {
+            color: #e67e22;
+            margin-top: 0;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin-top: 1.5rem;
+        }
+
+        .accordion-item {
+            border: 1px solid #e5e8eb;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .accordion-header {
+            background-color: #f8f9fa;
+            padding: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #1a1a2e;
+            transition: all 0.3s;
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .accordion-header:hover {
+            background-color: #f0f2f5;
+        }
+
+        .accordion-header.active {
+            background-color: #eef3f2;
+            color: #1a8a7d;
+        }
+
+        .accordion-toggle {
+            color: #1a8a7d;
+            font-size: 1.25rem;
+            transition: transform 0.3s;
+        }
+
+        .accordion-header.active .accordion-toggle {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 1.25rem;
+            background-color: white;
+            color: #2c3e50;
+            line-height: 1.8;
+            border-top: 1px solid #e5e8eb;
+        }
+
+        .accordion-content.active {
+            display: block;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1a8a7d 0%, #0d5c54 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .cta-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background-color: white;
+            color: #1a1a2e;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: #e67e22;
+            color: white;
+            padding: 0.85rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1rem;
+        }
+
+        .submit-btn:hover {
+            background-color: #d97e1a;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a2e;
+            color: white;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: #1a8a7d;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .section h2 {
+                font-size: 1.4rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-logo">
+            <span class="nav-logo-s">S</span><span class="nav-logo-zone">ustainZone</span>
+        </div>
+        <a href="aviation-industry.html" class="nav-right">← Aviation Industry</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <a href="aviation-industry.html" class="back-link">← Back to Aviation Industry</a>
+        <h1>Aviation Sustainability: The Complete Guide</h1>
+        <p>Understanding the environmental impact of aviation and the path to net-zero flight</p>
+    </section>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="content-wrapper">
+            <!-- Sidebar Table of Contents -->
+            <aside class="sidebar">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li><a href="#impact">Environmental Impact</a></li>
+                    <li><a href="#emissions">Carbon Emissions</a></li>
+                    <li><a href="#regulations">Regulations</a></li>
+                    <li><a href="#saf">Sustainable Fuel</a></li>
+                    <li><a href="#technology">Technology</a></li>
+                    <li><a href="#sustainzone">SustainZone Solutions</a></li>
+                    <li><a href="#case-study">Case Study</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Section 1: Scale of Environmental Impact -->
+                <section class="section" id="impact">
+                    <h2>
+                        <span class="section-number">1</span>
+                        Scale of Aviation's Environmental Impact
+                    </h2>
+
+                    <p>Aviation represents one of the fastest-growing sources of greenhouse gas emissions globally. While often overshadowed by larger industries, aviation's climate impact is profound and accelerating.</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">2.5%</div>
+                            <div class="stat-label">Global CO₂ Emissions from Aviation</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">2x</div>
+                            <div class="stat-label">Total Warming Effect (including non-CO₂)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">4-5%</div>
+                            <div class="stat-label">Expected by 2050 (BAU scenario)</div>
+                        </div>
+                    </div>
+
+                    <h3>Key Environmental Impacts</h3>
+                    <ul>
+                        <li><strong>CO₂ Emissions:</strong> Direct carbon dioxide from jet fuel combustion, currently responsible for approximately 900 megatons annually</li>
+                        <li><strong>Non-CO₂ Effects:</strong> NOx emissions, contrails, and cirrus cloud formation create additional warming effects that roughly double the climate impact</li>
+                        <li><strong>Growth Trajectory:</strong> Aviation traffic is expected to triple by 2050, threatening to offset gains made in other sectors</li>
+                        <li><strong>Radiative Forcing Index (RFI):</strong> Aviation's total warming effect is 3-5 times higher than CO₂ alone when accounting for all atmospheric impacts</li>
+                    </ul>
+
+                    <div class="highlight">
+                        <strong>Critical Challenge:</strong> While aviation comprises only 2-3% of global emissions today, its rapid growth trajectory combined with non-CO₂ effects means it could consume a significant portion of global carbon budgets needed to limit warming to 1.5°C.
+                    </div>
+                </section>
+
+                <!-- Section 2: Understanding Aviation Carbon Emissions -->
+                <section class="section" id="emissions">
+                    <h2>
+                        <span class="section-number">2</span>
+                        Understanding Aviation Carbon Emissions
+                    </h2>
+
+                    <p>Aviation emissions extend beyond simple fuel combustion. Understanding the complete emissions picture requires examining Scope 1, 2, and 3 categories.</p>
+
+                    <h3>Emissions Breakdown</h3>
+
+                    <h4 style="color: #1a1a2e; margin-top: 1.25rem; margin-bottom: 0.5rem;">Scope 1: Direct Flight Operations</h4>
+                    <ul>
+                        <li>Jet fuel combustion during flight operations</li>
+                        <li>Primary source, representing ~90% of aviation emissions</li>
+                        <li>Direct responsibility of airlines and operators</li>
+                    </ul>
+
+                    <h4 style="color: #1a1a2e; margin-top: 1.25rem; margin-bottom: 0.5rem;">Scope 2: Indirect Energy</h4>
+                    <ul>
+                        <li>Ground operations (lighting, heating, cooling at terminals and maintenance facilities)</li>
+                        <li>Aircraft manufacturing energy</li>
+                        <li>Smaller but measurable contributor</li>
+                    </ul>
+
+                    <h4 style="color: #1a1a2e; margin-top: 1.25rem; margin-bottom: 0.5rem;">Scope 3: Upstream & Downstream</h4>
+                    <ul>
+                        <li>Fuel supply chain and extraction</li>
+                        <li>Airport infrastructure and services</li>
+                        <li>Passenger and cargo ground transportation</li>
+                        <li>Can represent 15-25% of total aviation sector emissions</li>
+                    </ul>
+
+                    <div class="highlight">
+                        <strong>Industry Standard:</strong> Most aviation sustainability initiatives focus on Scope 1 emissions through fuel efficiency and sustainable alternatives, while progressively incorporating Scope 2 and 3 into comprehensive carbon accounting.
+                    </div>
+
+                    <h3>Factors Affecting Emissions</h3>
+                    <ul>
+                        <li><strong>Aircraft Type:</strong> Newer aircraft are 20-30% more efficient than models from 20 years ago</li>
+                        <li><strong>Flight Distance:</strong> Longer flights achieve better fuel efficiency per kilometer due to cruise optimization</li>
+                        <li><strong>Load Factor:</strong> Passenger and cargo capacity utilization significantly affects per-person emissions</li>
+                        <li><strong>Operational Efficiency:</strong> Flight planning, air traffic control optimization, and ground operations improvements yield 1-3% annual gains</li>
+                    </ul>
+                </section>
+
+                <!-- Section 3: Regulatory Landscape -->
+                <section class="section" id="regulations">
+                    <h2>
+                        <span class="section-number">3</span>
+                        Regulatory Landscape
+                    </h2>
+
+                    <p>Global, regional, and national regulations are rapidly evolving to address aviation's environmental impact. Understanding this complex landscape is critical for compliance and strategic planning.</p>
+
+                    <h3>International Frameworks</h3>
+
+                    <h4 style="color: #1a1a2e; margin-top: 1.25rem; margin-bottom: 0.5rem;">CORSIA (Carbon Offsetting and Reduction Scheme for International Aviation)</h4>
+                    <ul>
+                        <li>ICAO's global mechanism established in 2016</li>
+                        <li>Covers international flights for airlines with >10,000 tonnes CO₂ annually</li>
+                        <li>Baseline set at 2020 average emissions with growth capped at that level</li>
+                        <li>Mandatory from 2027 (piloting from 2021-2026)</li>
+                        <li>Requires carbon offsets or credits for emissions growth beyond baseline</li>
+                    </ul>
+
+                    <h4 style="color: #1a1a2e; margin-top: 1.25rem; margin-bottom: 0.5rem;">EU ETS (Emissions Trading System)</h4>
+                    <ul>
+                        <li>Applies to all flights within EU airspace</li>
+                        <li>Annual allowance reduction of 2.2% from 2021 onwards</li>
+                        <li>More stringent than CORSIA; covers domestic flights</li>
+                        <li>Integration with EU Green Deal targets</li>
+                    </ul>
+
+                    <h4 style="color: #1a1a2e; margin-top: 1.25rem; margin-bottom: 0.5rem;">UK Jet Zero</h4>
+                    <ul>
+                        <li>Post-Brexit framework requiring 10% SAF blending by 2030</li>
+                        <li>Net-zero aviation by 2050 target</li>
+                        <li>Potential future scope expansion to all UK aviation emissions</li>
+                    </ul>
+
+                    <h4 style="color: #1a1a2e; margin-top: 1.25rem; margin-bottom: 0.5rem;">SAF Mandates</h4>
+                    <ul>
+                        <li>EU: 2% SAF by 2025, 6% by 2030, 70% by 2050</li>
+                        <li>US: 10 billion gallons annually by 2030 (from Inflation Reduction Act)</li>
+                        <li>UK: 10% by 2030</li>
+                        <li>Growing momentum for global SAF adoption standards</li>
+                    </ul>
+
+                    <div class="highlight">
+                        <strong>Key Takeaway:</strong> Regulatory requirements are becoming stricter and converging globally. Airlines must prepare for mandatory compliance with multiple overlapping schemes and increasingly ambitious SAF blending targets.
+                    </div>
+                </section>
+
+                <!-- Section 4: Sustainable Aviation Fuel -->
+                <section class="section" id="saf">
+                    <h2>
+                        <span class="section-number">4</span>
+                        Sustainable Aviation Fuel (SAF)
+                    </h2>
+
+                    <p>SAF is currently the most viable technology for reducing aviation emissions at scale. Drop-in replacements for conventional jet fuel, SAF can reduce lifecycle emissions by 50-80% depending on feedstock and production method.</p>
+
+                    <h3>SAF Pathways</h3>
+
+                    <h4 style="color: #1a1a2e; margin-top: 1.25rem; margin-bottom: 0.5rem;">Feedstock Categories</h4>
+                    <ul>
+                        <li><strong>Biomass:</strong> Used cooking oil, animal fat, agricultural waste (HEFA process) - mature technology, 50-80% reduction</li>
+                        <li><strong>Synthetic:</strong> Power-to-liquid (PtL) from renewable electricity and CO₂ - emerging, 70-100% reduction potential</li>
+                        <li><strong>Algae:</strong> Fast-growing feedstock with minimal land use - early stage, promising scalability</li>
+                        <li><strong>Waste & Residue:</strong> Municipal waste, forestry residue - high sustainability profile</li>
+                    </ul>
+
+                    <h3>Economic Factors</h3>
+                    <ul>
+                        <li><strong>Cost Premium:</strong> Currently 2-4x cost of conventional jet fuel</li>
+                        <li><strong>Trajectory:</strong> Expected to reach price parity by 2035-2040 with scale and carbon pricing</li>
+                        <li><strong>Blending Limits:</strong> Current certification allows up to 50% SAF blending; pathway to 100% pure SAF underway</li>
+                        <li><strong>Supply Constraints:</strong> Global SAF production currently ~100 million gallons annually; need 70+ billion gallons by 2050</li>
+                    </ul>
+
+                    <h3>Lifecycle Emissions</h3>
+                    <ul>
+                        <li>HEFA SAF: ~50-80% reduction vs conventional jet (depending on feedstock)</li>
+                        <li>Synthetic SAF (PtL): ~70-100% reduction if powered by renewable electricity</li>
+                        <li>Must account for land use change, production energy, and transportation</li>
+                        <li>Certification requires rigorous lifecycle assessment (LCA) validation</li>
+                    </ul>
+
+                    <div class="highlight">
+                        <strong>Scalability Challenge:</strong> Achieving the required 2-3 billion gallons of SAF by 2030 requires massive capital investment in production facilities, sustainable feedstock sourcing, and supply chain development. Current production falls 95% short of 2030 targets.
+                    </div>
+                </section>
+
+                <!-- Section 5: Technology & Innovation -->
+                <section class="section" id="technology">
+                    <h2>
+                        <span class="section-number">5</span>
+                        Technology & Innovation
+                    </h2>
+
+                    <p>Beyond fuel alternatives, breakthrough technologies offer long-term pathways to deeply decarbonize aviation. These span aircraft design, propulsion systems, and operational improvements.</p>
+
+                    <h3>Emerging Aircraft Technologies</h3>
+
+                    <h4 style="color: #1a1a2e; margin-top: 1.25rem; margin-bottom: 0.5rem;">Electric Aircraft</h4>
+                    <ul>
+                        <li><strong>Status:</strong> Viable for regional flights (<1000 km) with current battery technology</li>
+                        <li><strong>Timeline:</strong> First commercial operations expected 2026-2030</li>
+                        <li><strong>Benefits:</strong> Zero in-flight emissions, lower operating costs, quieter operations</li>
+                        <li><strong>Limitations:</strong> Battery energy density limits range and payload; infrastructure development needed</li>
+                    </ul>
+
+                    <h4 style="color: #1a1a2e; margin-top: 1.25rem; margin-bottom: 0.5rem;">Hydrogen Aircraft</h4>
+                    <ul>
+                        <li><strong>Status:</strong> Research and development phase; fuel cell demonstrations underway</li>
+                        <li><strong>Timeline:</strong> Potential for medium-haul by 2035-2040</li>
+                        <li><strong>Benefits:</strong> High energy density, zero carbon emissions at point of use</li>
+                        <li><strong>Challenges:</strong> Hydrogen production, storage, distribution infrastructure required; aircraft redesign needed</li>
+                    </ul>
+
+                    <h3>Operational Efficiency Improvements</h3>
+                    <ul>
+                        <li><strong>Continuous Descent Approaches:</strong> Reduce fuel burn by 4% on approach</li>
+                        <li><strong>Air Traffic Management:</strong> Optimized routing and sequencing can achieve 2-5% fuel savings</li>
+                        <li><strong>Aircraft Weight Reduction:</strong> Lightweight materials and design improvements yield 10-15% efficiency gains</li>
+                        <li><strong>Engine Technology:</strong> High-bypass-ratio engines, open rotors, and hybrid-electric propulsion offer 15-30% improvements</li>
+                    </ul>
+
+                    <h3>Digital & AI Solutions</h3>
+                    <ul>
+                        <li>Predictive maintenance reducing unscheduled downtime and associated emissions</li>
+                        <li>Machine learning for optimal flight planning and fuel management</li>
+                        <li>Real-time emissions monitoring and reporting systems</li>
+                        <li>Digital twins for aircraft performance optimization</li>
+                    </ul>
+
+                    <div class="highlight">
+                        <strong>Realistic Assessment:</strong> Near-term (2030): SAF and operational efficiency. Medium-term (2030-2050): Electric for regional, SAF for long-haul. Long-term (post-2050): Hydrogen for all segments as production scales. A mixed fleet approach will be necessary.
+                    </div>
+                </section>
+
+                <!-- Section 6: How SustainZone Helps -->
+                <section class="section" id="sustainzone">
+                    <h2>
+                        <span class="section-number">6</span>
+                        How SustainZone Helps Aviation Companies
+                    </h2>
+
+                    <p>SustainZone provides integrated solutions designed specifically for aviation operators to measure, reduce, and report on their environmental impact while navigating complex regulatory requirements.</p>
+
+                    <h3>Core Solutions</h3>
+
+                    <h4 style="color: #1a1a2e; margin-top: 1.25rem; margin-bottom: 0.5rem;">Comprehensive Carbon Tracking</h4>
+                    <ul>
+                        <li>Real-time flight-level emissions calculation using ICAO standards</li>
+                        <li>Automated data collection from flight operations systems</li>
+                        <li>Scope 1, 2, and 3 emissions mapping and reporting</li>
+                        <li>Baseline establishment for emissions reduction targets</li>
+                        <li>Year-over-year emissions trend analysis and forecasting</li>
+                    </ul>
+
+                    <h4 style="color: #1a1a2e; margin-top: 1.25rem; margin-bottom: 0.5rem;">CORSIA & EU ETS Compliance</h4>
+                    <ul>
+                        <li>Automated CORSIA baseline calculation and monitoring</li>
+                        <li>EU ETS reporting preparation and allowance allocation optimization</li>
+                        <li>Offset and credit management system</li>
+                        <li>Regulatory update monitoring and compliance alerts</li>
+                        <li>Multi-jurisdiction compliance support (CORSIA, EU ETS, UK Jet Zero)</li>
+                    </ul>
+
+                    <h4 style="color: #1a1a2e; margin-top: 1.25rem; margin-bottom: 0.5rem;">SAF Strategy & Management</h4>
+                    <ul>
+                        <li>Blending target analysis and optimization</li>
+                        <li>Supply chain visibility for SAF sourcing</li>
+                        <li>Lifecycle emissions verification</li>
+                        <li>Cost-benefit analysis for SAF investment</li>
+                        <li>Supplier risk assessment and diversification planning</li>
+                    </ul>
+
+                    <h4 style="color: #1a1a2e; margin-top: 1.25rem; margin-bottom: 0.5rem;">ESG Reporting & Disclosure</h4>
+                    <ul>
+                        <li>Automated TCFD, SASB, and GRI reporting generation</li>
+                        <li>Science-based targets (SBTi) pathway development</li>
+                        <li>Stakeholder communication templates and strategy</li>
+                        <li>Investor relations support materials</li>
+                        <li>Third-party assurance preparation</li>
+                    </ul>
+
+                    <h3>Operational Impact</h3>
+                    <ul>
+                        <li>Identifies quick wins for emissions reduction (typically 2-5% in year 1)</li>
+                        <li>Prioritizes high-impact operational changes</li>
+                        <li>Tracks progress against internal targets and industry benchmarks</li>
+                        <li>Enables evidence-based decision-making for fleet modernization</li>
+                    </ul>
+
+                    <div class="highlight">
+                        <strong>Value Proposition:</strong> SustainZone helps aviation operators move from reactive compliance to proactive sustainability leadership, improving financial performance through operational efficiency while building investor and stakeholder confidence.
+                    </div>
+                </section>
+
+                <!-- Section 7: Case Study -->
+                <section class="section" id="case-study">
+                    <h2>
+                        <span class="section-number">7</span>
+                        Case Study: Regional European Airline Success
+                    </h2>
+
+                    <div class="case-study">
+                        <h3>35% Emissions Reduction in 18 Months</h3>
+                        <p><strong>Airline Profile:</strong> Mid-size European regional carrier operating 35 aircraft across 120 routes, primarily <1000 km distances, with ~2 million annual passengers.</p>
+
+                        <h4 style="color: #1a1a2e;">Challenges</h4>
+                        <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                            <li>No integrated emissions tracking system; manual reporting process</li>
+                            <li>Approaching CORSIA compliance deadline with uncertain baseline</li>
+                            <li>Investor pressure for ESG targets; no clear decarbonization strategy</li>
+                            <li>Aging fleet with maintenance inefficiencies</li>
+                        </ul>
+
+                        <h4 style="color: #1a1a2e;">SustainZone Implementation</h4>
+                        <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                            <li><strong>Month 1-2:</strong> System integration with flight operations and maintenance data sources</li>
+                            <li><strong>Month 2-3:</strong> Baseline establishment, CORSIA calculation, ESG reporting framework</li>
+                            <li><strong>Month 3-6:</strong> Operational efficiency analysis identifying 12 optimization opportunities</li>
+                            <li><strong>Month 6-18:</strong> Phased implementation of selected initiatives</li>
+                        </ul>
+
+                        <h4 style="color: #1a1a2e;">Results</h4>
+                        <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                            <li><strong>Emissions:</strong> 35% absolute reduction in CO₂ per ASK (available seat kilometers)</li>
+                            <li><strong>Operational:</strong> 18% improvement in fuel burn per flight through continuous descent approaches and optimized routing</li>
+                            <li><strong>Compliance:</strong> Fully prepared for CORSIA obligations with 3-year offset demand forecast</li>
+                            <li><strong>Financial:</strong> €4.2M annual fuel savings offsetting sustainability investments</li>
+                            <li><strong>Strategic:</strong> Path to net-zero by 2050 with credible 2030 interim target (50% reduction)</li>
+                        </ul>
+
+                        <h4 style="color: #1a1a2e;">Key Success Factors</h4>
+                        <ul style="margin-left: 1.5rem; margin-bottom: 0;">
+                            <li>Executive commitment and resource allocation</li>
+                            <li>Data-driven decision making enabled by comprehensive tracking</li>
+                            <li>Focus on quick wins to build organizational momentum</li>
+                            <li>Integration of ESG goals with operational and financial objectives</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Section 8: FAQ -->
+                <section class="section" id="faq">
+                    <h2>
+                        <span class="section-number">8</span>
+                        Frequently Asked Questions
+                    </h2>
+
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion(event)">
+                                What is the difference between CORSIA and EU ETS?
+                                <span class="accordion-toggle">▼</span>
+                            </button>
+                            <div class="accordion-content">
+                                CORSIA is a global ICAO scheme that applies to international aviation growth above 2020 baseline levels, while EU ETS is a regional cap-and-trade system applying to all flights within EU airspace regardless of growth. EU ETS is generally stricter with annual allowance reductions, while CORSIA uses a growth-only mechanism. Airlines operating in Europe must comply with EU ETS; CORSIA applies to international routes outside EU airspace.
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion(event)">
+                                Can aircraft fly on 100% sustainable aviation fuel today?
+                                <span class="accordion-toggle">▼</span>
+                            </button>
+                            <div class="accordion-content">
+                                Current certification allows up to 50% SAF blending with conventional jet fuel. Full certification for 100% SAF is progressing but not yet operational. The industry expects 100% SAF certification by 2030-2035. Until then, blending is the primary pathway, with growing mandates requiring higher percentages (2% EU by 2025, 6% by 2030).
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion(event)">
+                                How much does SAF cost compared to conventional jet fuel?
+                                <span class="accordion-toggle">▼</span>
+                            </button>
+                            <div class="accordion-content">
+                                SAF currently costs 2-4 times more than conventional jet fuel, depending on feedstock and production method. HEFA-based SAF (from used cooking oil and waste fats) is at the lower end (~2-3x), while synthetic PtL SAF is currently the most expensive. The cost premium is expected to narrow toward price parity by 2035-2040 with scale and increased carbon pricing on fossil fuels.
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion(event)">
+                                What percentage of an airline's emissions come from flying versus ground operations?
+                                <span class="accordion-toggle">▼</span>
+                            </button>
+                            <div class="accordion-content">
+                                Approximately 90% of airline Scope 1 emissions come from flight operations (jet fuel combustion), while about 10% come from ground operations and auxiliary power units. Scope 2 (energy consumption) and Scope 3 (supply chain) represent additional 15-25% when calculated comprehensively. This makes reducing fuel consumption through operational efficiency and SAF the highest-impact area.
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion(event)">
+                                Are contrails and non-CO₂ effects really as significant as CO₂?
+                                <span class="accordion-toggle">▼</span>
+                            </button>
+                            <div class="accordion-content">
+                                Yes, non-CO₂ effects including NOx emissions, contrails, and cirrus cloud formation roughly double aviation's total warming effect. While CO₂ represents direct long-term warming, these non-CO₂ effects create immediate warming through radiative forcing. The combined effect means aviation's climate impact is 2-3 times higher than CO₂ alone, making operational efficiency and flight timing optimization important beyond just fuel reduction.
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion(event)">
+                                When will electric aircraft become commercially viable?
+                                <span class="accordion-toggle">▼</span>
+                            </button>
+                            <div class="accordion-content">
+                                Electric aircraft are expected to become commercially viable for regional flights (<1000 km) starting 2026-2030 as battery technology improves. However, long-haul electrification faces fundamental physics limitations with current battery energy density. Hydrogen fuel cells offer better long-term potential for larger aircraft, with viability expected around 2035-2040. SAF remains the near-term solution for all aircraft types.
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion(event)">
+                                What is meant by "net-zero by 2050" if aviation is still growing?
+                                <span class="accordion-toggle">▼</span>
+                            </button>
+                            <div class="accordion-content">
+                                Net-zero by 2050 means that remaining emissions (likely 10-20% of current levels through operational efficiency and technology improvements) will be offset through carbon removal technologies, offsets, or achieved through sustainable fuels and alternative energies. It doesn't mean zero growth, but rather decoupling emissions growth from traffic growth through efficiency and alternative fuels, with residual emissions addressed through carbon removal.
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion(event)">
+                                How can small regional airlines afford SAF and compliance investments?
+                                <span class="accordion-toggle">▼</span>
+                            </button>
+                            <div class="accordion-content">
+                                Regional airlines can leverage blending mandates (which spread costs across industry), government incentives and subsidies, carbon pricing mechanisms, and operational efficiency improvements (which provide financial returns). Collaborative purchasing through airline alliances can improve SAF economics. SustainZone and similar platforms help identify the quickest financial returns from efficiency improvements, reducing net compliance costs.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CTA Section -->
+                <section class="cta-section">
+                    <h2>Become Part of Our Sustainability Network</h2>
+                    <p>Join leading aviation operators transforming the industry. Get started with a personalized sustainability assessment and roadmap.</p>
+
+                    <form class="cta-form" onsubmit="handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label for="company">Company Name</label>
+                            <input type="text" id="company" name="company" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="role">Your Role</label>
+                            <input type="text" id="role" name="role" placeholder="e.g., Sustainability Manager" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Tell us about your sustainability goals</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Get in Touch</button>
+                    </form>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div style="margin-bottom: 1rem;">
+            <strong>Contact Us</strong>
+        </div>
+        <div>
+            <a href="mailto:contact@sustainzone.com">contact@sustainzone.com</a> |
+            <a href="tel:+1-800-SUSTAIN">+1-800-SUSTAIN</a> |
+            <a href="#">LinkedIn</a> |
+            <a href="#">Twitter</a>
+        </div>
+        <div style="margin-top: 1.5rem; font-size: 0.9rem; color: rgba(255, 255, 255, 0.7);">
+            © 2024 SustainZone. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        function toggleAccordion(event) {
+            const header = event.currentTarget;
+            const content = header.nextElementSibling;
+
+            // Close other open items
+            document.querySelectorAll('.accordion-content.active').forEach(item => {
+                if (item !== content) {
+                    item.classList.remove('active');
+                    item.previousElementSibling.classList.remove('active');
+                }
+            });
+
+            // Toggle current item
+            header.classList.toggle('active');
+            content.classList.toggle('active');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = {
+                company: formData.get('company'),
+                email: formData.get('email'),
+                role: formData.get('role'),
+                message: formData.get('message'),
+                timestamp: new Date().toISOString()
+            };
+
+            console.log('Form submitted:', data);
+            alert('Thank you! We will be in touch shortly with your personalized sustainability assessment.');
+            event.target.reset();
+        }
+
+        // Smooth scroll for sidebar links
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

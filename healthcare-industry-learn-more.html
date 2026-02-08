@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Sustainability: The Complete Guide | SustainZone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --border-gray: #e8eaed;
+            --dark-navy: #1a1a2e;
+            --secondary-navy: #2c3e50;
+            --teal: #1a8a7d;
+            --teal-light: #e8f5f3;
+            --orange: #e67e22;
+            --orange-light: #fdf0e5;
+            --rust: #8b4513;
+            --text-light: #666666;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--light-gray);
+            color: var(--secondary-navy);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-gray);
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-navy);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--rust);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.95rem;
+            color: var(--secondary-navy);
+            text-decoration: none;
+        }
+
+        .nav-right svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.3rem;
+        }
+
+        /* Back Link */
+        .back-link {
+            padding: 2rem 0 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .back-link a {
+            color: var(--teal);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .back-link a:hover {
+            color: var(--secondary-navy);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+            padding: 3rem 2rem;
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        .hero .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--dark-navy);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+        }
+
+        /* Main Content Layout */
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 3rem;
+        }
+
+        /* Sidebar - Table of Contents */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .toc {
+            background-color: var(--white);
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .toc h3 {
+            color: var(--dark-navy);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin-bottom: 0.8rem;
+        }
+
+        .toc a {
+            color: var(--secondary-navy);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: block;
+            padding: 0.5rem 0;
+            border-left: 3px solid transparent;
+            padding-left: 0.8rem;
+        }
+
+        .toc a:hover {
+            color: var(--teal);
+            border-left-color: var(--teal);
+        }
+
+        /* Main Content */
+        .main-content {
+            min-width: 0;
+        }
+
+        section {
+            background-color: var(--white);
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            scroll-margin-top: 100px;
+        }
+
+        section h2 {
+            color: var(--dark-navy);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        section h2::before {
+            content: '';
+            width: 4px;
+            height: 2rem;
+            background-color: var(--teal);
+            border-radius: 2px;
+        }
+
+        section h3 {
+            color: var(--teal);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        section p {
+            color: var(--secondary-navy);
+            margin-bottom: 1rem;
+        }
+
+        section ul, section ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        section li {
+            margin-bottom: 0.8rem;
+            color: var(--secondary-navy);
+        }
+
+        /* Statistics Table */
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        .stats-table th {
+            background-color: var(--teal-light);
+            color: var(--dark-navy);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--teal);
+        }
+
+        .stats-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-gray);
+            color: var(--secondary-navy);
+        }
+
+        .stats-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .stats-table tr:hover {
+            background-color: var(--light-gray);
+        }
+
+        .stat-number {
+            color: var(--teal);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Visual Breakdown - Pie Chart Style */
+        .emissions-breakdown {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+            align-items: center;
+        }
+
+        .emissions-chart {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: conic-gradient(
+                var(--teal) 0deg 288deg,
+                var(--orange) 288deg 360deg
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .emissions-center {
+            width: 180px;
+            height: 180px;
+            background-color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .emissions-center p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        .emissions-center strong {
+            font-size: 1.3rem;
+            color: var(--teal);
+            display: block;
+        }
+
+        .emissions-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .legend-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 3px;
+        }
+
+        .legend-text strong {
+            display: block;
+            color: var(--dark-navy);
+            margin-bottom: 0.2rem;
+        }
+
+        .legend-text span {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Regulatory Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+            margin: 2rem 0;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 60px;
+            top: 40px;
+            width: 2px;
+            height: calc(100% + 2rem);
+            background-color: var(--teal);
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: var(--teal);
+            position: relative;
+            padding-top: 0.5rem;
+        }
+
+        .timeline-date::before {
+            content: '';
+            position: absolute;
+            left: -75px;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background-color: var(--teal);
+            border: 3px solid var(--white);
+            border-radius: 50%;
+            box-shadow: 0 0 0 1px var(--teal);
+        }
+
+        .timeline-content h4 {
+            color: var(--dark-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Case Study */
+        .case-study {
+            background: linear-gradient(135deg, var(--teal-light) 0%, var(--light-gray) 100%);
+            border-left: 4px solid var(--teal);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .case-study h3 {
+            color: var(--dark-navy);
+            margin-top: 0;
+        }
+
+        .case-results {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .result-card {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .result-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--teal);
+            margin-bottom: 0.5rem;
+        }
+
+        .result-label {
+            font-size: 0.9rem;
+            color: var(--secondary-navy);
+            font-weight: 500;
+        }
+
+        /* FAQ - Accordion */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            border: 1px solid var(--border-gray);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background-color: var(--light-gray);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: var(--dark-navy);
+            transition: all 0.3s;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background-color: var(--teal-light);
+            color: var(--teal);
+        }
+
+        .faq-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-content {
+            padding: 1.5rem;
+            color: var(--secondary-navy);
+            background-color: var(--white);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--secondary-navy) 100%);
+            color: var(--white);
+            padding: 3rem 2rem;
+            margin: 3rem 0 0;
+        }
+
+        .cta-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .cta-content h2 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .cta-content h2::before {
+            background-color: var(--orange);
+        }
+
+        .cta-content p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.8rem;
+            border: none;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background-color: rgba(255, 255, 255, 0.95);
+            color: var(--dark-navy);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background-color: var(--white);
+            box-shadow: 0 0 0 2px var(--orange);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background-color: var(--orange);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #d66a0f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: var(--white);
+            color: var(--teal);
+            font-weight: 600;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--light-gray);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-navy);
+            color: var(--white);
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .contact-bar {
+            background-color: var(--white);
+            padding: 1.5rem 2rem;
+            text-align: center;
+            border-top: 2px solid var(--teal);
+        }
+
+        .contact-bar h3 {
+            color: var(--dark-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-bar p {
+            color: var(--text-light);
+        }
+
+        .contact-bar a {
+            color: var(--teal);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-bar a:hover {
+            text-decoration: underline;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--orange);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .emissions-breakdown {
+                grid-template-columns: 1fr;
+                justify-items: center;
+            }
+
+            .case-results {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section .container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            .timeline-item {
+                grid-template-columns: 60px 1fr;
+                gap: 1rem;
+            }
+
+            .timeline-item::before {
+                left: 30px;
+            }
+
+            .timeline-date::before {
+                left: -36px;
+            }
+
+            nav .container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo"><span>S</span>ustainZone</a>
+            <a href="#" class="nav-right">
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm0 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/>
+                </svg>
+                Global
+            </a>
+        </div>
+    </nav>
+
+    <!-- Back Link -->
+    <div class="back-link">
+        <a href="healthcare-industry.html">← Back to Healthcare Overview</a>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="container">
+            <h1>Healthcare Sustainability: The Complete Guide</h1>
+            <p>Understanding the environmental impact of healthcare and the path to net-zero operations</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <!-- Sidebar - Table of Contents -->
+        <aside class="sidebar">
+            <div class="toc">
+                <h3>Contents</h3>
+                <ul>
+                    <li><a href="#footprint">Healthcare's Footprint</a></li>
+                    <li><a href="#emissions">Carbon Emissions</a></li>
+                    <li><a href="#regulatory">Regulatory Landscape</a></li>
+                    <li><a href="#operations">Greening Operations</a></li>
+                    <li><a href="#sustainzone">SustainZone Solution</a></li>
+                    <li><a href="#case-study">Case Study</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Section 1: Healthcare's Environmental Footprint -->
+            <section id="footprint">
+                <h2>Healthcare's Environmental Footprint</h2>
+                <p>The healthcare sector is one of the world's largest contributors to climate change, yet this critical industry remains underrepresented in global sustainability discussions. Understanding the scale of healthcare's environmental impact is the first step toward meaningful change.</p>
+
+                <h3>Key Statistics</h3>
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Impact</th>
+                            <th>Context</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Global GHG Emissions</td>
+                            <td><span class="stat-number">4.4%</span></td>
+                            <td>Healthcare sector's contribution to global emissions</td>
+                        </tr>
+                        <tr>
+                            <td>UK Healthcare Emissions</td>
+                            <td><span class="stat-number">25 Million Tonnes CO₂e</span></td>
+                            <td>Equivalent to 2.6 million vehicles annually</td>
+                        </tr>
+                        <tr>
+                            <td>Sector Comparison</td>
+                            <td><span class="stat-number">2x Aviation & Shipping</span></td>
+                            <td>Healthcare exceeds combined aviation and shipping sectors</td>
+                        </tr>
+                        <tr>
+                            <td>Hospital Energy Use</td>
+                            <td><span class="stat-number">20-30% Higher</span></td>
+                            <td>Compared to similar commercial buildings</td>
+                        </tr>
+                        <tr>
+                            <td>Medical Waste Growth</td>
+                            <td><span class="stat-number">8% Annually</span></td>
+                            <td>Growing faster than waste in other sectors</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Why Healthcare is Energy-Intensive</h3>
+                <ul>
+                    <li><strong>24/7 Operations:</strong> Hospitals operate continuously with no seasonal variations, requiring constant heating, cooling, and lighting</li>
+                    <li><strong>Sterile Environments:</strong> Maintaining infection control standards demands significant energy investment in air handling systems</li>
+                    <li><strong>Medical Equipment:</strong> Diagnostic machines, imaging systems, and monitoring devices consume substantial electricity</li>
+                    <li><strong>Facility Requirements:</strong> Multiple operating theaters, labs, and patient areas create complex HVAC demands</li>
+                </ul>
+
+                <h3>Medical Waste Concerns</h3>
+                <p>Healthcare generates approximately 5.9 million tonnes of waste annually across the UK and Europe. Key challenges include:</p>
+                <ul>
+                    <li>Hazardous waste incineration producing toxic emissions</li>
+                    <li>Single-use medical devices contributing to landfill burden</li>
+                    <li>Pharmaceutical waste contaminating water systems</li>
+                    <li>Limited recycling infrastructure for complex medical materials</li>
+                </ul>
+            </section>
+
+            <!-- Section 2: Understanding Healthcare Carbon Emissions -->
+            <section id="emissions">
+                <h2>Understanding Healthcare Carbon Emissions</h2>
+                <p>Healthcare organizations typically categorize their emissions into three "scopes" as defined by the Greenhouse Gas Protocol. This framework helps identify where interventions are most effective.</p>
+
+                <h3>The Three Scopes of Emissions</h3>
+                <div class="emissions-breakdown">
+                    <div>
+                        <div class="emissions-chart">
+                            <div class="emissions-center">
+                                <p>Scope 3</p>
+                                <strong>~80%</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="emissions-legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: var(--teal);"></div>
+                            <div class="legend-text">
+                                <strong>Scope 1 & 2: 20%</strong>
+                                <span>Direct operations & purchased energy</span>
+                            </div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: var(--orange);"></div>
+                            <div class="legend-text">
+                                <strong>Scope 3: 80%</strong>
+                                <span>Supply chain emissions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Scope 1: Direct Emissions</h3>
+                <ul>
+                    <li><strong>Energy Use:</strong> Natural gas for heating and sterilization equipment</li>
+                    <li><strong>Anaesthetic Gases:</strong> Volatile anaesthetics with high global warming potential (up to 1,300x CO₂)</li>
+                    <li><strong>Fleet Vehicles:</strong> Ambulances, maintenance vehicles, and logistics transport</li>
+                    <li><strong>Refrigeration:</strong> Medical storage requiring specialized cooling systems</li>
+                </ul>
+
+                <h3>Scope 2: Indirect Energy Emissions</h3>
+                <ul>
+                    <li><strong>Purchased Electricity:</strong> Most significant component (typically 30-40% of total emissions)</li>
+                    <li><strong>Heating & Cooling:</strong> District heating and purchased steam for facility management</li>
+                    <li><strong>Water Systems:</strong> Pumping, treatment, and hot water distribution</li>
+                </ul>
+
+                <h3>Scope 3: Supply Chain Emissions (The Hidden Giant)</h3>
+                <p>Supply chain emissions represent the largest opportunity for healthcare decarbonization, yet remain largely untracked:</p>
+                <ul>
+                    <li><strong>Pharmaceuticals:</strong> 15-20% of total emissions - manufacturing, packaging, distribution</li>
+                    <li><strong>Medical Devices:</strong> Surgical instruments, diagnostic equipment, consumables</li>
+                    <li><strong>Food & Catering:</strong> Hospital meal procurement and waste</li>
+                    <li><strong>Construction Materials:</strong> Building maintenance, renovations, new facilities</li>
+                    <li><strong>Waste Management:</strong> Transportation and disposal of clinical waste</li>
+                    <li><strong>Professional Services:</strong> Laundry, cleaning, and external contractors</li>
+                </ul>
+            </section>
+
+            <!-- Section 3: Regulatory Landscape -->
+            <section id="regulatory">
+                <h2>Regulatory Landscape</h2>
+                <p>Healthcare organizations face an increasingly stringent regulatory environment. Sustainability is no longer optional—it's mandated by law, professional standards, and accreditation bodies.</p>
+
+                <h3>Key Regulations & Targets</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2020</div>
+                        <div class="timeline-content">
+                            <h4>NHS Net Zero Target</h4>
+                            <p>NHS England committed to achieving net-zero carbon emissions by 2040 for direct emissions and 2050 for supply chain emissions.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">2008</div>
+                        <div class="timeline-content">
+                            <h4>UK Climate Change Act</h4>
+                            <p>Establishes binding legal requirements for emissions reductions. Healthcare organizations must contribute to national carbon budgets.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">2022</div>
+                        <div class="timeline-content">
+                            <h4>EU Sustainability Directive</h4>
+                            <p>Requires comprehensive ESG reporting for larger healthcare operators, including environmental impact and supply chain transparency.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">2023</div>
+                        <div class="timeline-content">
+                            <h4>WHO Guidance on Sustainable Healthcare</h4>
+                            <p>World Health Organization released comprehensive sustainability guidelines for health systems, emphasizing climate action and green procurement.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">Ongoing</div>
+                        <div class="timeline-content">
+                            <h4>Science-Based Targets Initiative (SBTi)</h4>
+                            <p>Healthcare organizations increasingly validate emissions reduction targets against climate science. 50+ healthcare companies have SBTi-approved targets.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Compliance Implications</h3>
+                <p><strong>Non-compliance carries real consequences:</strong></p>
+                <ul>
+                    <li>Loss of government contracts and preferential purchasing arrangements</li>
+                    <li>Regulatory fines under Climate Change Act provisions</li>
+                    <li>Reduced access to sustainable financing and green bonds</li>
+                    <li>Reputational damage affecting staff recruitment and patient trust</li>
+                    <li>Loss of accreditation and certifications</li>
+                </ul>
+            </section>
+
+            <!-- Section 4: Greening Clinical Operations -->
+            <section id="operations">
+                <h2>Greening Clinical Operations</h2>
+                <p>Decarbonizing healthcare requires simultaneous action across multiple fronts. The most effective organizations implement comprehensive operational changes.</p>
+
+                <h3>Medical Waste Reduction Strategies</h3>
+                <ul>
+                    <li><strong>Segregation Excellence:</strong> Rigorous sorting at point-of-use reduces infectious waste by 30-40%, enabling safer disposal methods</li>
+                    <li><strong>Incineration Alternatives:</strong> Plasma gasification and autoclaving technologies reduce emissions by 80% vs traditional methods</li>
+                    <li><strong>Reusable Systems:</strong> Transitioning from single-use to reusable surgical kits reduces waste volumes by 60% while lowering costs</li>
+                    <li><strong>Pharmaceutical Returns:</strong> Implementing take-back programs prevents water contamination and enables safe disposal</li>
+                </ul>
+
+                <h3>Sustainable Procurement</h3>
+                <p>Supply chain emissions represent 80% of healthcare's carbon footprint. Strategic procurement drives meaningful change:</p>
+                <ul>
+                    <li><strong>Supplier Engagement:</strong> Require science-based emissions targets from pharmaceutical and device manufacturers</li>
+                    <li><strong>Local Sourcing:</strong> Reduce transportation emissions by prioritizing regional suppliers for non-specialized items</li>
+                    <li><strong>Lifecycle Assessment:</strong> Evaluate full environmental impact, not just price—reusable equipment often outperforms disposables</li>
+                    <li><strong>Green Certifications:</strong> Source from ISO 14001 and B-Corp certified suppliers with verified environmental commitments</li>
+                </ul>
+
+                <h3>Telemedicine Carbon Savings</h3>
+                <p>Digital health interventions significantly reduce environmental impact:</p>
+                <ul>
+                    <li><strong>Patient Travel Reduction:</strong> Remote consultations eliminate 0.5-1kg CO₂ per appointment vs in-person visits</li>
+                    <li><strong>Facility Burden:</strong> Reduces facility occupancy by 20-30%, lowering energy consumption</li>
+                    <li><strong>Clinical Efficiency:</strong> Faster appointment scheduling reduces duplicate tests and unnecessary procedures</li>
+                    <li><strong>Scalability:</strong> Digital diagnostics enable home monitoring, reducing hospital admissions by 15%</li>
+                </ul>
+
+                <h3>Reusable vs Disposable Equipment Analysis</h3>
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>Factor</th>
+                            <th>Reusable Systems</th>
+                            <th>Single-Use</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Emissions per use (100 uses)</td>
+                            <td><span class="stat-number">0.15kg CO₂</span></td>
+                            <td><span class="stat-number">3.2kg CO₂</span></td>
+                        </tr>
+                        <tr>
+                            <td>5-year cost per item</td>
+                            <td><span class="stat-number">£8-12</span></td>
+                            <td><span class="stat-number">£50-75</span></td>
+                        </tr>
+                        <tr>
+                            <td>Waste generated annually</td>
+                            <td><span class="stat-number">0.8 tonnes</span></td>
+                            <td><span class="stat-number">18 tonnes</span></td>
+                        </tr>
+                        <tr>
+                            <td>Infection rates</td>
+                            <td><span class="stat-number">0.8%</span></td>
+                            <td><span class="stat-number">0.9%</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Section 5: How SustainZone Helps -->
+            <section id="sustainzone">
+                <h2>How SustainZone Helps Healthcare Organizations</h2>
+                <p>SustainZone provides healthcare organizations with enterprise-grade tools to measure, track, and reduce their environmental footprint across all three scopes of emissions.</p>
+
+                <h3>Carbon Footprint Measurement</h3>
+                <ul>
+                    <li><strong>Comprehensive Baseline:</strong> Establish accurate emissions baselines using validated methodology and industry benchmarks</li>
+                    <li><strong>Automated Data Integration:</strong> Connect to facility management systems, billing records, and utilities for real-time emissions tracking</li>
+                    <li><strong>Scope 3 Visibility:</strong> Advanced algorithms map supply chain emissions from spending data—finally make the hidden 80% visible</li>
+                    <li><strong>Scenario Modeling:</strong> Model the impact of proposed changes before implementation</li>
+                </ul>
+
+                <h3>Supply Chain Mapping</h3>
+                <ul>
+                    <li><strong>Supplier Intelligence:</strong> Access our database of 50,000+ healthcare suppliers with verified emissions profiles</li>
+                    <li><strong>Spend Analysis:</strong> Identify the highest-impact procurement categories and lowest-carbon alternatives</li>
+                    <li><strong>Engagement Tools:</strong> Collaborate with suppliers to set joint reduction targets and track progress</li>
+                    <li><strong>Compliance Tracking:</strong> Monitor suppliers' SBTi compliance and certifications in real-time</li>
+                </ul>
+
+                <h3>ESG Reporting Automation</h3>
+                <ul>
+                    <li><strong>Regulatory Compliance:</strong> Automated reporting for NHS targets, Climate Change Act requirements, and EU directives</li>
+                    <li><strong>Standardized Frameworks:</strong> Pre-built templates for GRI, SASB, and TCFD reporting</li>
+                    <li><strong>Stakeholder Dashboard:</strong> Real-time visibility for board members, regulators, and sustainability teams</li>
+                    <li><strong>Audit-Ready Documentation:</strong> Complete audit trail and evidence packages for third-party verification</li>
+                </ul>
+
+                <h3>Proven Impact</h3>
+                <p>Healthcare organizations using SustainZone achieve:</p>
+                <ul>
+                    <li><strong>70% Reduction in Carbon Management Costs:</strong> Automation eliminates manual tracking and spreadsheet management</li>
+                    <li><strong>30% Average Emissions Reduction:</strong> Within 18-24 months through data-driven interventions and supplier engagement</li>
+                    <li><strong>3x Faster Decarbonization:</strong> Compared to manual approaches by identifying high-impact opportunities immediately</li>
+                    <li><strong>Enhanced Competitive Advantage:</strong> Preferential procurement status and access to green funding opportunities</li>
+                </ul>
+            </section>
+
+            <!-- Section 6: Case Study -->
+            <section id="case-study">
+                <h2>Case Study: NHS Trust Achieves 42% Carbon Reduction</h2>
+                <p>A 500-bed NHS Trust serving 400,000+ patients implemented a comprehensive sustainability program with SustainZone's support, achieving remarkable results in just 24 months.</p>
+
+                <div class="case-study">
+                    <h3 style="margin-top: 0; color: var(--dark-navy);">The Challenge</h3>
+                    <p>The Trust faced multiple pressures: NHS Net Zero mandates, rising energy costs, aging infrastructure, and limited visibility into their sprawling supply chain. Energy bills consumed 15% of the operating budget, and the organization had no baseline understanding of Scope 3 emissions.</p>
+
+                    <h3 style="color: var(--dark-navy);">The Approach</h3>
+                    <ul style="margin-bottom: 1.5rem;">
+                        <li>Conducted comprehensive carbon footprint assessment (Scopes 1, 2, and 3)</li>
+                        <li>Mapped 450+ suppliers and their emissions profiles</li>
+                        <li>Implemented building energy management system upgrades (LED lighting, smart HVAC controls)</li>
+                        <li>Transitioned 80% of surgical procedures from single-use to reusable instruments</li>
+                        <li>Launched anaesthetic gas scavenging program (80% emission reduction)</li>
+                        <li>Established supplier sustainability requirements for top 50 vendors</li>
+                        <li>Deployed telemedicine for 30% of follow-up consultations</li>
+                    </ul>
+
+                    <h3 style="color: var(--dark-navy);">The Results</h3>
+                </div>
+
+                <div class="case-results">
+                    <div class="result-card">
+                        <div class="result-number">42%</div>
+                        <div class="result-label">Total Carbon Reduction</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-number">£2.3M</div>
+                        <div class="result-label">Annual Cost Savings</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-number">18,000</div>
+                        <div class="result-label">Tonnes CO₂e Avoided</div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 1.5rem;"><strong>Additional Benefits:</strong></p>
+                <ul>
+                    <li>Staff satisfaction increased by 25% (pride in sustainability leadership)</li>
+                    <li>Patient satisfaction improved due to better facility conditions (temperature control, air quality)</li>
+                    <li>Secured £5M in green finance at 2% lower interest rate</li>
+                    <li>Became anchor organization for regional supplier sustainability network</li>
+                    <li>Achieved NHS recognition as sustainability leader, improving recruitment capabilities</li>
+                </ul>
+
+                <p><em>"SustainZone gave us the visibility and tools to move from good intentions to real results. We could suddenly see where our emissions actually came from and prioritize accordingly. The supplier engagement features transformed our procurement conversations." — Director of Sustainability, NHS Trust</em></p>
+            </section>
+
+            <!-- Section 7: FAQ -->
+            <section id="faq">
+                <h2>Frequently Asked Questions</h2>
+
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How can a hospital reduce emissions without compromising patient care?</span>
+                            <div class="faq-icon">▼</div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-content">
+                                <p>Healthcare sustainability improvements actually enhance patient care by creating better clinical environments. LED lighting improves visibility in operating theaters, better HVAC control reduces infection rates, and reusable surgical instruments have equivalent or lower infection rates than single-use alternatives. Digital health tools reduce patient wait times and improve access. Sustainability and quality care are complementary, not conflicting goals.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What is the cost of implementing a sustainability program?</span>
+                            <div class="faq-icon">▼</div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-content">
+                                <p>Comprehensive sustainability programs typically cost 2-5% of operating budgets to implement, but generate cost savings of 8-15% through energy efficiency, waste reduction, and procurement optimization. Most healthcare organizations achieve 3-5 year payback periods on their sustainability investments. SustainZone specifically reduces implementation costs by 60-70% through automation and best practice templates.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How do we track Scope 3 emissions when we don't control our suppliers?</span>
+                            <div class="faq-icon">▼</div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-content">
+                                <p>Healthcare organizations can estimate Scope 3 emissions using spend-based methodology (spending multiplied by industry average emission factors) and then engage suppliers to refine these estimates. SustainZone combines spend data with our supplier database of 50,000+ verified emissions profiles to generate accurate estimates. As suppliers improve their own sustainability, you can incorporate their verified data. This creates a virtuous cycle of continuous improvement.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Can telemedicine really make a significant environmental difference?</span>
+                            <div class="faq-icon">▼</div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-content">
+                                <p>Yes. Each remote appointment saves 0.5-1kg CO₂ compared to patient travel (average 8 miles round trip). UK healthcare data shows 30-40% of appointments could be delivered remotely. This translates to avoiding 100,000+ tonnes CO₂ annually across the NHS. Additionally, remote monitoring reduces hospital admissions by 15-20%, creating substantial facility burden reductions and associated energy savings.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What are anaesthetic gas emissions and how significant are they?</span>
+                            <div class="faq-icon">▼</div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-content">
+                                <p>Volatile anaesthetics like sevoflurane have global warming potentials 1,300-3,000 times higher than CO₂. A single anesthetic case produces equivalent emissions of a 40-mile car journey. However, solutions exist: scavenging systems capture 95% of released gases, and newer anaesthetic protocols minimize usage. UK hospitals implementing gas scavenging systems reduce anaesthetic emissions by 80% while maintaining identical clinical outcomes.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How does healthcare compare to other sectors in sustainability maturity?</span>
+                            <div class="faq-icon">▼</div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-content">
+                                <p>Healthcare sustainability is 5-10 years behind banking, retail, and manufacturing sectors in maturity. However, this represents enormous opportunity. Healthcare has intrinsic advantages: patient trust drives engagement with sustainability messages, supply chains are increasingly consolidated (easier to influence), and sustainability improvements often lower costs. Organizations implementing comprehensive programs now will become leaders in this rapidly maturing sector.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What is SBTi and why should healthcare organizations pursue it?</span>
+                            <div class="faq-icon">▼</div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-content">
+                                <p>Science-Based Targets initiative (SBTi) provides third-party validation that your emissions reduction targets align with climate science (1.5°C warming limit). SBTi-approved targets improve investor confidence, reduce borrowing costs, enhance staff recruitment, and demonstrate regulatory compliance. Over 50 healthcare organizations have SBTi-approved targets. SustainZone helps organizations design and validate SBTi-aligned targets while automating progress tracking against these commitments.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How do we engage staff in sustainability when they're already overworked?</span>
+                            <div class="faq-icon">▼</div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-content">
+                                <p>Healthcare staff are motivated by mission—connecting sustainability improvements to patient care and organizational values drives engagement. Rather than adding burdens, effective programs often reduce workload (better workflows, eliminated spreadsheets). Successful programs engage clinical champions (respected physicians and nurses) to drive peer influence, implement low-effort changes first (quick wins build momentum), and provide comprehensive training. Many organizations find that visible sustainability leadership improves overall staff morale and retention.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <div class="container">
+                    <div class="cta-content">
+                        <h2>Ready to Transform Your Healthcare Organization?</h2>
+                        <p>Join leading healthcare systems in achieving net-zero emissions. SustainZone provides the measurement, visibility, and engagement tools to drive meaningful decarbonization while reducing costs and improving compliance.</p>
+                    </div>
+                    <form class="cta-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="organization">Organization</label>
+                            <input type="text" id="organization" name="organization" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell us about your sustainability goals..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Get Your Free Assessment</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Contact Bar -->
+    <div class="contact-bar">
+        <h3>Contact Us</h3>
+        <p>Questions about healthcare sustainability? Reach out to our experts at <a href="mailto:hello@sustainzone.com">hello@sustainzone.com</a> or call <a href="tel:+441234567890">+44 (0)123 456 7890</a></p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 SustainZone. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact</a></p>
+    </footer>
+
+    <!-- Smooth Scroll & FAQ Accordion -->
+    <script>
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('.toc a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-item').forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+
+        // Form submission
+        document.querySelector('.cta-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your interest! Our team will contact you shortly.');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
