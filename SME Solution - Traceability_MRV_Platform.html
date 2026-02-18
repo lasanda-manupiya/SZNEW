@@ -1,0 +1,1007 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MRV Intelligence Platform Demo | University of Hertfordshire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #f8f3ea;
+      --ink: #13252d;
+      --muted: #5d6e74;
+      --panel: #fffcf7;
+      --line: #dfd5c4;
+      --accent: #12606f;
+      --accent-2: #2e8f77;
+      --amber: #9b6100;
+      --red: #962b25;
+      --shadow: 0 14px 34px rgba(16, 34, 40, 0.11);
+      --shadow-sm: 0 4px 12px rgba(16, 34, 40, 0.07);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font: 15px/1.5 "IBM Plex Sans", sans-serif;
+      background:
+        radial-gradient(900px 400px at -10% 0%, #d5ece8 0%, transparent 65%),
+        radial-gradient(900px 420px at 110% 110%, #f3dfbf 0%, transparent 63%),
+        var(--bg);
+    }
+    .shell { max-width: 1220px; margin: 0 auto; padding: 20px 18px 40px; }
+
+    /* ── Header ── */
+    .top-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 18px; flex-wrap: wrap; gap: 10px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font: 700 16px "Sora"; letter-spacing: -.02em;
+    }
+    .brand-name { font: 600 17px/1.2 "Sora", sans-serif; }
+    .brand-sub { font-size: 12px; color: var(--muted); }
+
+    /* ── Tabs ── */
+    .tabs {
+      display: flex; gap: 4px; background: #eee8db; border-radius: 12px;
+      padding: 4px; flex-wrap: wrap;
+    }
+    .tab {
+      padding: 8px 14px; border-radius: 9px; font-size: 13px;
+      font-weight: 600; cursor: pointer; border: none; background: transparent;
+      color: var(--muted); transition: all .2s; font-family: inherit;
+      white-space: nowrap;
+    }
+    .tab.active { background: var(--panel); color: var(--ink); box-shadow: var(--shadow-sm); }
+    .tab:hover:not(.active) { color: var(--ink); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── Hero ── */
+    .hero {
+      display: grid; grid-template-columns: 1.4fr .6fr;
+      gap: 14px; margin-bottom: 14px;
+    }
+    .hero-card {
+      background: var(--panel); border: 1px solid var(--line);
+      border-radius: 18px; padding: 20px; box-shadow: var(--shadow);
+    }
+    .eyebrow {
+      display: inline-block; background: #d8eee8; color: #0f5148;
+      border: 1px solid #bcdcd2; border-radius: 999px;
+      padding: 5px 10px; font-size: 11px; font-weight: 600;
+      letter-spacing: .03em; margin-bottom: 10px; text-transform: uppercase;
+    }
+    h1 { margin: 0 0 8px; font: 700 28px/1.12 "Sora", sans-serif; letter-spacing: -.02em; }
+    .sub { color: var(--muted); margin: 0; font-size: 14px; }
+    .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .stat-item { text-align: center; padding: 10px; }
+    .stat-item strong { font: 700 30px/1 "Sora", sans-serif; display: block; }
+    .stat-item span { color: var(--muted); font-size: 12px; }
+
+    /* ── Cards ── */
+    .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .layout-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .card {
+      background: var(--panel); border: 1px solid var(--line);
+      border-radius: 16px; padding: 18px; box-shadow: var(--shadow);
+    }
+    .card.full { grid-column: 1 / -1; }
+    .card h2 { margin: 0 0 12px; font: 700 17px/1.2 "Sora", sans-serif; }
+    .card h3 { margin: 0 0 8px; font: 600 14px/1.2 "Sora", sans-serif; color: #173742; }
+
+    /* ── Timeline ── */
+    .timeline { display: grid; gap: 8px; }
+    .step {
+      border: 1px solid #d4e2de; background: #f5fbf9;
+      border-radius: 12px; padding: 11px; position: relative;
+      padding-left: 42px;
+    }
+    .step-num {
+      position: absolute; left: 11px; top: 11px;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--accent); color: #fff; font: 700 11px "Sora";
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step b { display: block; font-size: 13px; margin-bottom: 2px; }
+    .step p { margin: 0; font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+    /* ── Form ── */
+    .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    label { display: grid; gap: 4px; font-size: 12px; color: #334f58; font-weight: 600; }
+    input, select {
+      width: 100%; border: 1px solid #cad9d6; background: #fff;
+      border-radius: 9px; padding: 9px 10px; font: inherit; color: var(--ink);
+    }
+    input:focus, select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(18,96,111,.12); }
+    .actions { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+    button {
+      border: 0; border-radius: 10px; padding: 10px 14px;
+      font-weight: 600; cursor: pointer; font-family: inherit;
+      font-size: 13px; transition: all .15s;
+    }
+    .primary { color: #fff; background: linear-gradient(96deg, var(--accent), var(--accent-2)); }
+    .primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(18,96,111,.3); }
+    .secondary { color: #1d4954; background: #dfefec; border: 1px solid #c8e2dd; }
+
+    /* ── KPI ── */
+    .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
+    .kpi-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .kpi { border: 1px solid #d8e4e1; border-radius: 11px; background: #f8fbfa; padding: 12px; }
+    .kpi .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+    .kpi .value { font: 700 22px/1.05 "Sora", sans-serif; margin-top: 4px; }
+    .ok { color: #176848; }
+    .warn { color: var(--amber); }
+    .bad { color: var(--red); }
+    .neutral { color: var(--ink); }
+
+    /* ── Table ── */
+    .table-wrap { overflow-x: auto; margin-top: 10px; }
+    table { width: 100%; border-collapse: collapse; min-width: 540px; }
+    th, td { text-align: left; font-size: 13px; border-bottom: 1px solid #e7efec; padding: 9px 7px; white-space: nowrap; }
+    th { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
+    .badge {
+      display: inline-block; padding: 3px 8px; border-radius: 999px;
+      font-size: 11px; font-weight: 700; letter-spacing: .01em;
+    }
+    .badge-high { background: #dcf5e8; color: #186a49; }
+    .badge-mid { background: #ffeecf; color: #8a5a00; }
+    .badge-low { background: #fde2e0; color: #8c2720; }
+    .badge-info { background: #dfe9f5; color: #2a5291; }
+
+    /* ── Event Log ── */
+    .event-log { margin-top: 10px; display: grid; gap: 6px; max-height: 160px; overflow-y: auto; }
+    .event {
+      border: 1px solid #e0ebe8; background: #fbfdfc;
+      border-radius: 10px; padding: 8px 10px; font-size: 13px;
+    }
+    .event time { color: var(--muted); font-size: 11px; margin-right: 8px; font-weight: 500; }
+
+    /* ── Compliance Passport ── */
+    .passport-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .passport-item {
+      border: 1px solid #d8e4e1; border-radius: 12px;
+      padding: 14px; background: #f8fbfa;
+    }
+    .passport-item .jurisdiction {
+      font: 600 13px "Sora"; margin-bottom: 4px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .passport-item .regulation { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+    .passport-item .status-bar {
+      height: 6px; border-radius: 3px; background: #e0e0e0; overflow: hidden;
+    }
+    .passport-item .status-fill { height: 100%; border-radius: 3px; transition: width .6s ease; }
+    .passport-item .status-label { font-size: 11px; margin-top: 4px; font-weight: 600; }
+
+    /* ── Anomaly ── */
+    .anomaly-list { display: grid; gap: 8px; margin-top: 10px; }
+    .anomaly-item {
+      border-radius: 10px; padding: 10px 12px; font-size: 13px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .anomaly-item.flagged { border: 1px solid #f5c6c2; background: #fef5f4; }
+    .anomaly-item.ok { border: 1px solid #c8e2dd; background: #f5fbf9; }
+    .anomaly-icon { font-size: 18px; flex-shrink: 0; }
+    .anomaly-detail { flex: 1; }
+    .anomaly-detail b { font-size: 13px; display: block; }
+    .anomaly-detail span { font-size: 12px; color: var(--muted); }
+
+    /* ── Scenario ── */
+    .scenario-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .scenario-card {
+      border: 1px solid #d8e4e1; border-radius: 12px;
+      padding: 14px; background: #f8fbfa; cursor: pointer;
+      transition: all .2s;
+    }
+    .scenario-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+    .scenario-card.selected { border-color: var(--accent); background: #edf7f5; }
+    .scenario-card h4 { margin: 0 0 4px; font: 600 13px "Sora"; }
+    .scenario-card p { margin: 0; font-size: 12px; color: var(--muted); line-height: 1.4; }
+    .scenario-card .impact {
+      margin-top: 8px; font: 700 20px "Sora"; color: var(--accent-2);
+    }
+
+    /* ── Chart container ── */
+    .chart-container { position: relative; height: 220px; margin-top: 10px; }
+    .chart-container canvas { max-height: 220px; }
+
+    /* ── Benchmark bar ── */
+    .bench-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .bench-label { width: 100px; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+    .bench-bar-track { flex: 1; height: 22px; background: #e8e2d6; border-radius: 6px; position: relative; overflow: hidden; }
+    .bench-bar-fill { height: 100%; border-radius: 6px; transition: width .6s ease; }
+    .bench-bar-marker {
+      position: absolute; top: -4px; width: 3px; height: 30px;
+      background: var(--ink); border-radius: 2px;
+    }
+    .bench-value { width: 60px; font: 600 13px "Sora"; text-align: right; flex-shrink: 0; }
+
+    /* ── Footer ── */
+    .footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--line); }
+
+    @media (max-width: 900px) {
+      .hero, .layout, .layout-3, .passport-grid, .scenario-cards, .kpi-grid-4 { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: 1fr 1fr; }
+      h1 { font-size: 22px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .stat-row { grid-template-columns: 1fr 1fr; }
+      .tabs { overflow-x: auto; flex-wrap: nowrap; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+
+    <!-- ═══════════ TOP BAR ═══════════ -->
+    <header class="top-bar">
+      <div class="brand">
+        <div class="brand-icon">MRV</div>
+        <div>
+          <div class="brand-name">MRV Intelligence Platform</div>
+          <div class="brand-sub">University of Hertfordshire Collaboration</div>
+        </div>
+      </div>
+      <div class="tabs">
+        <button class="tab active" data-tab="lab">Lab Validation</button>
+        <button class="tab" data-tab="anomaly">Anomaly Detection</button>
+        <button class="tab" data-tab="passport">Compliance Passport</button>
+        <button class="tab" data-tab="scenarios">Reduction Scenarios</button>
+        <button class="tab" data-tab="benchmark">Sector Benchmarks</button>
+      </div>
+    </header>
+
+    <!-- ═══════════ TAB 1: LAB VALIDATION (Enhanced Original) ═══════════ -->
+    <div id="panel-lab" class="tab-panel active">
+      <section class="hero">
+        <article class="hero-card">
+          <span class="eyebrow">Core Feature &mdash; UoH Lab Partnership</span>
+          <h1>Lab-Verified MRV for Micro &amp; Small Businesses</h1>
+          <p class="sub">
+            Affordable evidence route: structured sampling, independent lab verification,
+            and direct ingestion into an audit-ready MRV record. No blockchain. No mandatory sensors.
+            Your GHG engine handles the calculations; UoH labs verify the accuracy.
+          </p>
+        </article>
+        <article class="hero-card">
+          <div class="stat-row">
+            <div class="stat-item">
+              <strong class="ok" id="overallReadiness">83%</strong>
+              <span>Compliance Readiness</span>
+            </div>
+            <div class="stat-item">
+              <strong class="accent" id="reportingEffort" style="color:var(--accent)">-31%</strong>
+              <span>Effort vs Spreadsheets</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="layout">
+        <article class="card">
+          <h2>Demo Scenario Builder</h2>
+          <div class="form-grid">
+            <label>Sector
+              <select id="sector">
+                <option value="metals">Metals Fabrication</option>
+                <option value="food">Food Processing</option>
+                <option value="logistics">Regional Logistics</option>
+                <option value="construction">Construction Materials</option>
+              </select>
+            </label>
+            <label>Facility
+              <input id="facility" value="Plant A - Hatfield">
+            </label>
+            <label>Sample Type
+              <select id="sampleType">
+                <option value="fuel">Fuel Sulfur &amp; Energy Content</option>
+                <option value="effluent">Effluent Quality</option>
+                <option value="material">Material Composition</option>
+                <option value="refrigerant">Refrigerant Leak Check</option>
+              </select>
+            </label>
+            <label>Reported Emissions (tCO2e)
+              <input id="reported" type="number" step="0.1" value="128.4">
+            </label>
+            <label>Sensor Estimate (tCO2e, optional)
+              <input id="sensor" type="number" step="0.1" value="121.7">
+            </label>
+            <label>Lab Method
+              <select id="method">
+                <option value="iso17025">ISO/IEC 17025 (UoH Accredited)</option>
+                <option value="internal">Partner Internal Method</option>
+              </select>
+            </label>
+          </div>
+          <div class="actions">
+            <button class="primary" id="runDemo">Run Lab Validation</button>
+            <button class="secondary" id="resetDemo">Reset</button>
+          </div>
+          <div class="kpi-grid">
+            <div class="kpi">
+              <div class="label">Evidence Confidence</div>
+              <div class="value ok" id="confidence">92%</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Variance vs Reported</div>
+              <div class="value warn" id="variance">-2.9%</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Audit Pack Status</div>
+              <div class="value ok" id="auditState">Ready</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>UoH Lab Workflow</h2>
+          <div class="timeline">
+            <div class="step"><span class="step-num">1</span><b>Intake &amp; Sampling Plan</b><p>SME submits activity data via upload or questionnaire; platform generates a low-friction sampling checklist.</p></div>
+            <div class="step"><span class="step-num">2</span><b>Chain of Custody</b><p>Sample ID and handover events recorded with timestamped, cryptographically signed entries.</p></div>
+            <div class="step"><span class="step-num">3</span><b>Independent Lab Analysis</b><p>University of Hertfordshire executes ISO/IEC 17025 method and returns measured values with uncertainty bands.</p></div>
+            <div class="step"><span class="step-num">4</span><b>Certificate Ingestion</b><p>Digital certificate lands in evidence vault and auto-maps to the emission line item in your GHG engine.</p></div>
+            <div class="step"><span class="step-num">5</span><b>Compliance Output</b><p>Report package updates confidence score, flags variance, and generates jurisdiction-specific outputs.</p></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="card" style="margin-top:14px">
+        <h2>Chain of Custody &amp; Result Log</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Sample ID</th><th>Source</th><th>Lab Result</th><th>Uncertainty</th><th>Confidence</th><th>Certificate</th></tr>
+            </thead>
+            <tbody id="resultsRows">
+              <tr>
+                <td>SMP-2026-0218-A1</td><td>Boiler Fuel Batch 7</td>
+                <td>126.2 tCO2e</td><td>&plusmn;1.8%</td>
+                <td><span class="badge badge-high">High</span></td>
+                <td>UOH-LAB-88421.pdf</td>
+              </tr>
+              <tr>
+                <td>SMP-2026-0218-A2</td><td>Grid Import Meter Check</td>
+                <td>39.8 tCO2e</td><td>&plusmn;2.1%</td>
+                <td><span class="badge badge-mid">Medium</span></td>
+                <td>UOH-LAB-88427.pdf</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 style="margin-top:14px">Event Feed</h3>
+        <div id="events" class="event-log">
+          <div class="event"><time>10:12</time>Chain-of-custody signed by Plant A operations lead.</div>
+          <div class="event"><time>13:45</time>Lab certificate UOH-LAB-88421 ingested; mapped to Scope 1 natural gas factor.</div>
+          <div class="event"><time>14:02</time>Anomaly check passed &mdash; result within 2.3&sigma; of sector median.</div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ═══════════ TAB 2: ANOMALY DETECTION ═══════════ -->
+    <div id="panel-anomaly" class="tab-panel">
+      <section class="hero">
+        <article class="hero-card">
+          <span class="eyebrow">AI-Powered &mdash; UoH Simulation Validated</span>
+          <h1>ML Anomaly Detection</h1>
+          <p class="sub">
+            Data quality is the #1 problem in SME carbon accounting. Our anomaly engine &mdash; trained on
+            University of Hertfordshire simulation data &mdash; flags impossible, implausible, or suspicious
+            emission entries before they reach your compliance report.
+          </p>
+        </article>
+        <article class="hero-card">
+          <div class="stat-row">
+            <div class="stat-item">
+              <strong class="ok">94.2%</strong>
+              <span>Detection Accuracy</span>
+            </div>
+            <div class="stat-item">
+              <strong style="color:var(--red)">3</strong>
+              <span>Flags This Period</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="layout">
+        <article class="card">
+          <h2>Emission Data Quality Scan</h2>
+          <div class="chart-container">
+            <canvas id="anomalyChart"></canvas>
+          </div>
+        </article>
+        <article class="card">
+          <h2>Flagged Anomalies</h2>
+          <div class="anomaly-list">
+            <div class="anomaly-item flagged">
+              <div class="anomaly-icon">&#9888;</div>
+              <div class="anomaly-detail">
+                <b>Scope 1 &mdash; Natural Gas: 312 tCO2e</b>
+                <span>Value 2.8&times; above sector median for facility size. Possible meter misread or unit error (MWh vs kWh). Confidence: 96%</span>
+              </div>
+              <span class="badge badge-low">Critical</span>
+            </div>
+            <div class="anomaly-item flagged">
+              <div class="anomaly-icon">&#9888;</div>
+              <div class="anomaly-detail">
+                <b>Scope 2 &mdash; Electricity: 0 tCO2e</b>
+                <span>Zero value for active facility with 14 months of prior data. Missing entry likely. Confidence: 91%</span>
+              </div>
+              <span class="badge badge-mid">Warning</span>
+            </div>
+            <div class="anomaly-item flagged">
+              <div class="anomaly-icon">&#9888;</div>
+              <div class="anomaly-detail">
+                <b>Scope 3 &mdash; Business Travel: 89 tCO2e</b>
+                <span>Seasonal spike 1.9&sigma; above rolling average. May be valid (conference season). Requires review. Confidence: 74%</span>
+              </div>
+              <span class="badge badge-info">Review</span>
+            </div>
+            <div class="anomaly-item ok">
+              <div class="anomaly-icon">&#10003;</div>
+              <div class="anomaly-detail">
+                <b>Scope 1 &mdash; Fleet Diesel: 44.2 tCO2e</b>
+                <span>Within expected range. 0.3&sigma; of 12-month average. Consistent with fleet size.</span>
+              </div>
+              <span class="badge badge-high">Pass</span>
+            </div>
+            <div class="anomaly-item ok">
+              <div class="anomaly-icon">&#10003;</div>
+              <div class="anomaly-detail">
+                <b>Scope 2 &mdash; Grid Electricity: 38.1 tCO2e</b>
+                <span>Aligned with grid emission factor update (DESNZ 2025). 4% decrease expected.</span>
+              </div>
+              <span class="badge badge-high">Pass</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="card" style="margin-top:14px">
+        <h2>How It Works &mdash; UoH Simulation Advantage</h2>
+        <div class="layout" style="border:none;box-shadow:none;padding:0;background:transparent;">
+          <div>
+            <h3>Training Pipeline</h3>
+            <div class="timeline">
+              <div class="step"><span class="step-num">1</span><b>Simulation Data Generation</b><p>UoH labs simulate emission scenarios across sectors, sizes, and regions &mdash; creating diverse, labelled training datasets.</p></div>
+              <div class="step"><span class="step-num">2</span><b>Ensemble ML Training</b><p>Models combine statistical outlier detection, cross-sector benchmarking, and temporal pattern analysis.</p></div>
+              <div class="step"><span class="step-num">3</span><b>Continuous Improvement</b><p>Anonymised customer data feeds back into model refinement (privacy-preserving, aggregated only).</p></div>
+            </div>
+          </div>
+          <div>
+            <h3>Detection Methods</h3>
+            <div class="kpi-grid" style="grid-template-columns:1fr 1fr;margin-top:0;">
+              <div class="kpi"><div class="label">Statistical Outliers</div><div class="value neutral" style="font-size:16px">Z-Score &amp; IQR</div></div>
+              <div class="kpi"><div class="label">Impossible Values</div><div class="value neutral" style="font-size:16px">Physics Bounds</div></div>
+              <div class="kpi"><div class="label">Temporal Drift</div><div class="value neutral" style="font-size:16px">Rolling Avg</div></div>
+              <div class="kpi"><div class="label">Cross-Sector</div><div class="value neutral" style="font-size:16px">Peer Benchmark</div></div>
+            </div>
+            <div class="kpi" style="margin-top:10px">
+              <div class="label">Model Validation</div>
+              <div class="value ok" style="font-size:16px">ISO 14064-3 aligned &bull; UoH peer-reviewed &bull; 94.2% accuracy on holdout set</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ═══════════ TAB 3: COMPLIANCE PASSPORT ═══════════ -->
+    <div id="panel-passport" class="tab-panel">
+      <section class="hero">
+        <article class="hero-card">
+          <span class="eyebrow">Multi-Jurisdiction &mdash; 8 Regulatory Frameworks</span>
+          <h1>Compliance Passport</h1>
+          <p class="sub">
+            One calculation from your GHG engine &rarr; multiple jurisdiction-specific compliance outputs.
+            Your SME customers get a single, shareable document showing their status across every relevant regulation.
+            Enterprise buyers can verify supplier compliance instantly.
+          </p>
+        </article>
+        <article class="hero-card">
+          <div class="stat-row">
+            <div class="stat-item">
+              <strong class="ok">6/8</strong>
+              <span>Jurisdictions Compliant</span>
+            </div>
+            <div class="stat-item">
+              <strong class="warn">2</strong>
+              <span>Actions Required</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="card">
+        <h2>Regulatory Status by Jurisdiction</h2>
+        <div class="passport-grid" id="passportGrid"></div>
+      </section>
+
+      <section class="layout" style="margin-top:14px">
+        <article class="card">
+          <h2>Compliance Timeline</h2>
+          <div class="chart-container" style="height:250px">
+            <canvas id="timelineChart"></canvas>
+          </div>
+        </article>
+        <article class="card">
+          <h2>Required Actions</h2>
+          <div class="anomaly-list">
+            <div class="anomaly-item flagged">
+              <div class="anomaly-icon">&#9888;</div>
+              <div class="anomaly-detail">
+                <b>EU CBAM &mdash; Quarterly Report Due</b>
+                <span>Transitional period report Q1 2026 due by 30 Apr. Embedded emissions data for aluminium imports required. 4 line items pending.</span>
+              </div>
+              <span class="badge badge-low">Urgent</span>
+            </div>
+            <div class="anomaly-item flagged">
+              <div class="anomaly-icon">&#9888;</div>
+              <div class="anomaly-detail">
+                <b>UK SECR &mdash; Scope 3 Gap</b>
+                <span>Streamlined energy reporting requires intensity ratio. Business travel data missing for Q4 2025. Upload required.</span>
+              </div>
+              <span class="badge badge-mid">Action</span>
+            </div>
+            <div class="anomaly-item ok">
+              <div class="anomaly-icon">&#10003;</div>
+              <div class="anomaly-detail">
+                <b>India BRSR &mdash; Value Chain Disclosure</b>
+                <span>Not yet applicable (below threshold). Monitoring for regulatory changes.</span>
+              </div>
+              <span class="badge badge-info">Monitor</span>
+            </div>
+          </div>
+        </article>
+      </section>
+    </div>
+
+    <!-- ═══════════ TAB 4: REDUCTION SCENARIOS ═══════════ -->
+    <div id="panel-scenarios" class="tab-panel">
+      <section class="hero">
+        <article class="hero-card">
+          <span class="eyebrow">UoH Simulation Labs &mdash; Enterprise Insight, SME Pricing</span>
+          <h1>Reduction Scenario Modelling</h1>
+          <p class="sub">
+            What happens to your carbon footprint if you switch energy supplier? Change logistics provider?
+            Retrofit equipment? University of Hertfordshire simulation models power enterprise-grade
+            &ldquo;what-if&rdquo; analysis &mdash; delivered through a simple dashboard at SaaS pricing.
+          </p>
+        </article>
+        <article class="hero-card">
+          <div class="stat-row">
+            <div class="stat-item">
+              <strong class="ok" id="scenarioReduction">-18.4%</strong>
+              <span>Potential Reduction</span>
+            </div>
+            <div class="stat-item">
+              <strong class="neutral" id="scenarioPayback">2.1 yrs</strong>
+              <span>Payback Period</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="card">
+        <h2>Select Reduction Levers</h2>
+        <p style="font-size:13px;color:var(--muted);margin:0 0 12px;">Click scenarios to model their combined impact. Models validated by UoH simulation labs.</p>
+        <div class="scenario-cards" id="scenarioCards">
+          <div class="scenario-card" data-id="energy" data-reduction="12" data-cost="8400" data-payback="1.8">
+            <h4>Switch to Green Tariff</h4>
+            <p>Move grid electricity to 100% renewable tariff. Eliminates Scope 2 market-based emissions.</p>
+            <div class="impact">-12% CO2e</div>
+          </div>
+          <div class="scenario-card" data-id="fleet" data-reduction="8" data-cost="45000" data-payback="3.2">
+            <h4>Fleet Electrification (50%)</h4>
+            <p>Replace half of diesel fleet with EVs. Reduces Scope 1 transport emissions.</p>
+            <div class="impact">-8% CO2e</div>
+          </div>
+          <div class="scenario-card" data-id="heat" data-reduction="15" data-cost="22000" data-payback="2.8">
+            <h4>Heat Pump Retrofit</h4>
+            <p>Replace gas boiler with air-source heat pump. Shifts heating from Scope 1 to Scope 2.</p>
+            <div class="impact">-15% CO2e</div>
+          </div>
+          <div class="scenario-card" data-id="supplier" data-reduction="6" data-cost="0" data-payback="0">
+            <h4>Supplier Switching</h4>
+            <p>Switch top 3 Scope 3 suppliers to lower-carbon alternatives identified via platform benchmarks.</p>
+            <div class="impact">-6% CO2e</div>
+          </div>
+          <div class="scenario-card" data-id="waste" data-reduction="3" data-cost="1200" data-payback="0.4">
+            <h4>Waste Diversion</h4>
+            <p>Divert 80% of waste from landfill to recycling. Reduces Scope 3 waste emissions.</p>
+            <div class="impact">-3% CO2e</div>
+          </div>
+          <div class="scenario-card" data-id="solar" data-reduction="10" data-cost="35000" data-payback="4.5">
+            <h4>Rooftop Solar (50kW)</h4>
+            <p>On-site generation reduces grid dependence. Scope 2 reduction + resilience benefit.</p>
+            <div class="impact">-10% CO2e</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="layout" style="margin-top:14px">
+        <article class="card">
+          <h2>Projected Emission Trajectory</h2>
+          <div class="chart-container" style="height:250px">
+            <canvas id="scenarioChart"></canvas>
+          </div>
+        </article>
+        <article class="card">
+          <h2>Selected Scenario Summary</h2>
+          <div class="kpi-grid" style="grid-template-columns:1fr 1fr;">
+            <div class="kpi"><div class="label">Combined Reduction</div><div class="value ok" id="combinedReduction">0%</div></div>
+            <div class="kpi"><div class="label">Total Investment</div><div class="value neutral" id="totalInvestment">&pound;0</div></div>
+            <div class="kpi"><div class="label">Avg Payback</div><div class="value neutral" id="avgPayback">-</div></div>
+            <div class="kpi"><div class="label">SBTi Alignment</div><div class="value warn" id="sbtiStatus">Select scenarios</div></div>
+          </div>
+          <div style="margin-top:12px;padding:10px;border-radius:10px;background:#f5fbf9;border:1px solid #d4e2de;font-size:12px;color:var(--muted);">
+            <strong style="color:var(--ink);">UoH Validation:</strong> All reduction percentages are modelled using University of Hertfordshire
+            simulation environments and validated against ISO 14064 methodology. Results account for UK grid emission
+            factors (DESNZ 2025), regional climate data, and sector-specific operating patterns.
+          </div>
+        </article>
+      </section>
+    </div>
+
+    <!-- ═══════════ TAB 5: SECTOR BENCHMARKS ═══════════ -->
+    <div id="panel-benchmark" class="tab-panel">
+      <section class="hero">
+        <article class="hero-card">
+          <span class="eyebrow">Anonymised &amp; Privacy-Preserving</span>
+          <h1>Sector Benchmarking</h1>
+          <p class="sub">
+            See how your emissions compare to anonymised peers in your sector and size band.
+            Benchmarks improve with every customer &mdash; creating a network-effect moat.
+            All data is aggregated and privacy-preserving (GDPR compliant).
+          </p>
+        </article>
+        <article class="hero-card">
+          <div class="stat-row">
+            <div class="stat-item">
+              <strong class="warn">+23%</strong>
+              <span>vs Sector Median</span>
+            </div>
+            <div class="stat-item">
+              <strong class="ok">142</strong>
+              <span>Peers in Dataset</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="layout">
+        <article class="card">
+          <h2>Your Position vs Sector</h2>
+          <div class="chart-container" style="height:260px">
+            <canvas id="benchChart"></canvas>
+          </div>
+        </article>
+        <article class="card">
+          <h2>Emission Intensity Comparison</h2>
+          <p style="font-size:12px;color:var(--muted);margin:0 0 14px">tCO2e per &pound;1M revenue &mdash; Food Processing, 10-49 employees</p>
+          <div id="benchBars"></div>
+          <div style="margin-top:14px;padding:10px;border-radius:10px;background:#f5fbf9;border:1px solid #d4e2de;font-size:12px;color:var(--muted);">
+            <strong style="color:var(--ink);">Data Source:</strong> Anonymised, aggregated data from platform users.
+            Supplemented with UoH research datasets and public benchmarks (DESNZ, BEIS).
+            Individual companies are never identifiable. Minimum 5 companies per benchmark cohort.
+          </div>
+        </article>
+      </section>
+
+      <section class="card" style="margin-top:14px">
+        <h2>Benchmark Insights</h2>
+        <div class="layout-3" style="border:none;box-shadow:none;padding:0;background:transparent;">
+          <div class="kpi">
+            <div class="label">Scope 1 Position</div>
+            <div class="value warn">68th percentile</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:4px">Above median. Heating and fleet are primary drivers. Heat pump retrofit would move you to 42nd percentile.</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Scope 2 Position</div>
+            <div class="value ok">31st percentile</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:4px">Below median (good). Green tariff already reducing market-based emissions. On-site solar would reach top quartile.</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Scope 3 Position</div>
+            <div class="value bad">82nd percentile</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:4px">Significantly above median. Supply chain emissions dominate. Supplier switching programme recommended as priority action.</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      MRV Intelligence Platform &mdash; University of Hertfordshire Academic&ndash;Industry Collaboration &bull; February 2026 &bull; Confidential Demo
+    </footer>
+  </div>
+
+  <script>
+    // ═══ Tab Navigation ═══
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        // Initialize charts when tab becomes visible
+        if (tab.dataset.tab === 'anomaly') initAnomalyChart();
+        if (tab.dataset.tab === 'passport') { initPassport(); initTimelineChart(); }
+        if (tab.dataset.tab === 'scenarios') initScenarioChart();
+        if (tab.dataset.tab === 'benchmark') { initBenchChart(); initBenchBars(); }
+      });
+    });
+
+    // ═══ TAB 1: Lab Validation (enhanced original) ═══
+    const el = {
+      sector: document.getElementById("sector"),
+      facility: document.getElementById("facility"),
+      sampleType: document.getElementById("sampleType"),
+      reported: document.getElementById("reported"),
+      sensor: document.getElementById("sensor"),
+      method: document.getElementById("method"),
+      confidence: document.getElementById("confidence"),
+      variance: document.getElementById("variance"),
+      auditState: document.getElementById("auditState"),
+      overallReadiness: document.getElementById("overallReadiness"),
+      reportingEffort: document.getElementById("reportingEffort"),
+      events: document.getElementById("events"),
+      resultsRows: document.getElementById("resultsRows"),
+    };
+
+    function computeScenario() {
+      const reported = Number(el.reported.value || 0);
+      const sensor = Number(el.sensor.value || 0);
+      const methodBonus = el.method.value === "iso17025" ? 16 : 8;
+      const sectorBonus = ({ metals: 6, food: 5, logistics: 4, construction: 3 })[el.sector.value] || 3;
+      const hasSensor = sensor > 0;
+      const baseline = 68 + methodBonus + sectorBonus;
+      const varianceValue = reported === 0 ? 0 : ((reported - (hasSensor ? sensor : reported * 0.98)) / reported) * 100;
+      const absVariance = Math.abs(varianceValue);
+      const confidence = Math.max(58, Math.min(98, Math.round(baseline - absVariance)));
+      const readiness = Math.max(70, Math.min(97, confidence - (absVariance > 8 ? 10 : 4)));
+      const effortReduction = Math.max(12, Math.min(44, Math.round(confidence / 3)));
+      const auditState = absVariance <= 6 ? "Ready" : "Review";
+
+      el.confidence.textContent = confidence + "%";
+      el.confidence.className = "value " + (confidence >= 90 ? "ok" : confidence >= 78 ? "warn" : "bad");
+      el.variance.textContent = varianceValue.toFixed(1) + "%";
+      el.variance.className = "value " + (absVariance <= 3 ? "ok" : absVariance <= 8 ? "warn" : "bad");
+      el.auditState.textContent = auditState;
+      el.auditState.className = "value " + (auditState === "Ready" ? "ok" : "warn");
+      el.overallReadiness.textContent = readiness + "%";
+      el.reportingEffort.textContent = "-" + effortReduction + "%";
+
+      const now = new Date();
+      const hh = String(now.getHours()).padStart(2, "0");
+      const mm = String(now.getMinutes()).padStart(2, "0");
+      const sampleId = "SMP-" + now.getFullYear() + "-" + String(now.getMonth()+1).padStart(2,"0") + String(now.getDate()).padStart(2,"0") + "-N" + (el.resultsRows.children.length + 1);
+      const certId = "UOH-LAB-" + Math.floor(82000 + Math.random() * 9000);
+      const resultValue = (reported * (1 - varianceValue / 100)).toFixed(1);
+      const badgeClass = confidence >= 90 ? "badge-high" : "badge-mid";
+      const badgeLabel = confidence >= 90 ? "High" : "Medium";
+      const row = document.createElement("tr");
+      row.innerHTML = '<td>' + sampleId + '</td><td>' + el.sampleType.options[el.sampleType.selectedIndex].text + '</td><td>' + resultValue + ' tCO2e</td><td>&plusmn;' + (1.6 + Math.random() * 1.2).toFixed(1) + '%</td><td><span class="badge ' + badgeClass + '">' + badgeLabel + '</span></td><td>' + certId + '.pdf</td>';
+      el.resultsRows.prepend(row);
+      const event = document.createElement("div");
+      event.className = "event";
+      event.innerHTML = '<time>' + hh + ':' + mm + '</time>' + certId + ' ingested for ' + el.facility.value + '; variance ' + varianceValue.toFixed(1) + '%, audit ' + auditState + '.';
+      el.events.prepend(event);
+    }
+
+    function resetScenario() {
+      el.sector.value = "metals"; el.facility.value = "Plant A - Hatfield";
+      el.sampleType.value = "fuel"; el.reported.value = 128.4;
+      el.sensor.value = 121.7; el.method.value = "iso17025";
+      el.confidence.textContent = "92%"; el.confidence.className = "value ok";
+      el.variance.textContent = "-2.9%"; el.variance.className = "value warn";
+      el.auditState.textContent = "Ready"; el.auditState.className = "value ok";
+      el.overallReadiness.textContent = "83%"; el.reportingEffort.textContent = "-31%";
+    }
+
+    document.getElementById("runDemo").addEventListener("click", computeScenario);
+    document.getElementById("resetDemo").addEventListener("click", resetScenario);
+
+    // ═══ TAB 2: Anomaly Detection Chart ═══
+    let anomalyChartInstance = null;
+    function initAnomalyChart() {
+      if (anomalyChartInstance) return;
+      const ctx = document.getElementById('anomalyChart').getContext('2d');
+      const months = ['Sep','Oct','Nov','Dec','Jan','Feb'];
+      const reported = [142, 138, 145, 151, 148, 312]; // Feb is anomaly
+      const expected = [140, 139, 143, 147, 146, 148];
+      const upperBound = expected.map(v => v * 1.15);
+      const lowerBound = expected.map(v => v * 0.85);
+      anomalyChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: months,
+          datasets: [
+            { label: 'Reported', data: reported, borderColor: '#12606f', backgroundColor: 'rgba(18,96,111,0.1)', borderWidth: 2.5, pointRadius: [4,4,4,4,4,8], pointBackgroundColor: ['#12606f','#12606f','#12606f','#12606f','#12606f','#962b25'], fill: false, tension: 0.3 },
+            { label: 'Expected', data: expected, borderColor: '#2e8f77', borderWidth: 1.5, borderDash: [5,3], pointRadius: 0, fill: false, tension: 0.3 },
+            { label: 'Upper Bound', data: upperBound, borderColor: 'transparent', backgroundColor: 'rgba(46,143,119,0.08)', fill: '+1', pointRadius: 0 },
+            { label: 'Lower Bound', data: lowerBound, borderColor: 'transparent', backgroundColor: 'rgba(46,143,119,0.08)', fill: '-1', pointRadius: 0 },
+          ]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { display: true, position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, font: { size: 11 } } } },
+          scales: { y: { beginAtZero: false, title: { display: true, text: 'tCO2e', font: { size: 11 } }, grid: { color: '#eee8db' } }, x: { grid: { display: false } } }
+        }
+      });
+    }
+
+    // ═══ TAB 3: Compliance Passport ═══
+    function initPassport() {
+      const grid = document.getElementById('passportGrid');
+      if (grid.children.length > 0) return;
+      const jurisdictions = [
+        { flag: '🇬🇧', name: 'United Kingdom', reg: 'UK ETS, SECR, ISSB S2', pct: 92, status: 'Compliant', color: '#176848' },
+        { flag: '🇪🇺', name: 'European Union', reg: 'EU ETS, CBAM, CSRD/ESRS', pct: 78, status: 'Action Required', color: '#9b6100' },
+        { flag: '🇺🇸', name: 'United States', reg: 'EPA GHGRP, CA SB 253, IRA', pct: 85, status: 'Compliant', color: '#176848' },
+        { flag: '🇮🇳', name: 'India', reg: 'BEE PAT, BRSR, SEBI', pct: 70, status: 'Monitoring', color: '#2a5291' },
+        { flag: '🇧🇷', name: 'Brazil', reg: 'SBCE, Law 15.042, EUDR-linked', pct: 60, status: 'Monitoring', color: '#2a5291' },
+        { flag: '🇿🇦', name: 'South Africa', reg: 'Carbon Tax, DFFE, JSE/ESG', pct: 88, status: 'Compliant', color: '#176848' },
+        { flag: '🇨🇳', name: 'China', reg: 'China ETS, CCER, MEE', pct: 65, status: 'Monitoring', color: '#2a5291' },
+        { flag: '🇷🇺', name: 'Russia', reg: 'Sakhalin Pilot (limited)', pct: 30, status: 'Deferred', color: '#5d6e74' },
+      ];
+      jurisdictions.forEach(j => {
+        const fillColor = j.pct >= 85 ? '#2e8f77' : j.pct >= 70 ? '#d4a017' : j.pct >= 50 ? '#c87820' : '#aaa';
+        const badgeClass = j.pct >= 85 ? 'badge-high' : j.pct >= 70 ? 'badge-mid' : j.pct >= 50 ? 'badge-info' : 'badge-info';
+        const div = document.createElement('div');
+        div.className = 'passport-item';
+        div.innerHTML = '<div class="jurisdiction">' + j.flag + ' ' + j.name + ' <span class="badge ' + badgeClass + '">' + j.status + '</span></div><div class="regulation">' + j.reg + '</div><div class="status-bar"><div class="status-fill" style="width:' + j.pct + '%;background:' + fillColor + '"></div></div><div class="status-label" style="color:' + j.color + '">' + j.pct + '% Complete</div>';
+        grid.appendChild(div);
+      });
+    }
+
+    let timelineChartInstance = null;
+    function initTimelineChart() {
+      if (timelineChartInstance) return;
+      const ctx = document.getElementById('timelineChart').getContext('2d');
+      timelineChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Q1 2026', 'Q2 2026', 'Q3 2026', 'Q4 2026', 'Q1 2027', 'Q2 2027'],
+          datasets: [
+            { label: 'UK Deadlines', data: [1, 0, 1, 1, 1, 0], backgroundColor: '#12606f', borderRadius: 4 },
+            { label: 'EU Deadlines', data: [1, 2, 1, 1, 1, 2], backgroundColor: '#2e8f77', borderRadius: 4 },
+            { label: 'Other', data: [0, 1, 0, 1, 0, 1], backgroundColor: '#d4a017', borderRadius: 4 },
+          ]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, font: { size: 11 } } } },
+          scales: { y: { beginAtZero: true, ticks: { stepSize: 1 }, title: { display: true, text: 'Filings Due', font: { size: 11 } }, grid: { color: '#eee8db' } }, x: { grid: { display: false } } },
+          barPercentage: 0.7
+        }
+      });
+    }
+
+    // ═══ TAB 4: Reduction Scenarios ═══
+    let scenarioChartInstance = null;
+    const selectedScenarios = new Set();
+
+    function initScenarioChart() {
+      if (scenarioChartInstance) return;
+      const ctx = document.getElementById('scenarioChart').getContext('2d');
+      scenarioChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['2025', '2026', '2027', '2028', '2029', '2030'],
+          datasets: [
+            { label: 'Baseline (No Action)', data: [480, 492, 505, 518, 532, 546], borderColor: '#ccc', borderWidth: 1.5, borderDash: [4,3], pointRadius: 0, fill: false, tension: 0.3 },
+            { label: 'With Selected Actions', data: [480, 480, 480, 480, 480, 480], borderColor: '#2e8f77', backgroundColor: 'rgba(46,143,119,0.1)', borderWidth: 2.5, pointRadius: 3, fill: true, tension: 0.3 },
+            { label: 'SBTi 1.5°C Pathway', data: [480, 456, 433, 412, 391, 372], borderColor: '#12606f', borderWidth: 1.5, borderDash: [6,4], pointRadius: 0, fill: false, tension: 0.3 },
+          ]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, font: { size: 11 } } } },
+          scales: { y: { title: { display: true, text: 'tCO2e/year', font: { size: 11 } }, grid: { color: '#eee8db' } }, x: { grid: { display: false } } }
+        }
+      });
+    }
+
+    function updateScenarioChart() {
+      if (!scenarioChartInstance) return;
+      let totalReduction = 0, totalCost = 0, paybacks = [];
+      selectedScenarios.forEach(id => {
+        const card = document.querySelector('[data-id="' + id + '"]');
+        totalReduction += parseFloat(card.dataset.reduction);
+        totalCost += parseFloat(card.dataset.cost);
+        if (parseFloat(card.dataset.payback) > 0) paybacks.push(parseFloat(card.dataset.payback));
+      });
+      const base = 480;
+      const factor = 1 - totalReduction / 100;
+      const projected = [base];
+      for (let i = 1; i <= 5; i++) {
+        const yearReduction = base * (1 - Math.pow(factor, i / 3));
+        projected.push(Math.round(base - yearReduction));
+      }
+      scenarioChartInstance.data.datasets[1].data = projected;
+      scenarioChartInstance.update();
+
+      document.getElementById('combinedReduction').textContent = totalReduction > 0 ? '-' + totalReduction + '%' : '0%';
+      document.getElementById('totalInvestment').textContent = '\u00A3' + totalCost.toLocaleString();
+      document.getElementById('avgPayback').textContent = paybacks.length > 0 ? (paybacks.reduce((a,b) => a+b, 0) / paybacks.length).toFixed(1) + ' yrs' : 'Free';
+
+      const sbtiEl = document.getElementById('sbtiStatus');
+      if (totalReduction >= 25) { sbtiEl.textContent = 'On Track'; sbtiEl.className = 'value ok'; }
+      else if (totalReduction >= 15) { sbtiEl.textContent = 'Near Target'; sbtiEl.className = 'value warn'; }
+      else if (totalReduction > 0) { sbtiEl.textContent = 'Below Target'; sbtiEl.className = 'value bad'; }
+      else { sbtiEl.textContent = 'Select scenarios'; sbtiEl.className = 'value warn'; }
+
+      document.getElementById('scenarioReduction').textContent = totalReduction > 0 ? '-' + totalReduction + '%' : '0%';
+      document.getElementById('scenarioPayback').textContent = paybacks.length > 0 ? (paybacks.reduce((a,b) => a+b, 0) / paybacks.length).toFixed(1) + ' yrs' : '-';
+    }
+
+    document.querySelectorAll('.scenario-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const id = card.dataset.id;
+        if (selectedScenarios.has(id)) { selectedScenarios.delete(id); card.classList.remove('selected'); }
+        else { selectedScenarios.add(id); card.classList.add('selected'); }
+        updateScenarioChart();
+      });
+    });
+
+    // ═══ TAB 5: Benchmarking ═══
+    let benchChartInstance = null;
+    function initBenchChart() {
+      if (benchChartInstance) return;
+      const ctx = document.getElementById('benchChart').getContext('2d');
+      // Simulated distribution of peers
+      const labels = ['<100', '100-150', '150-200', '200-250', '250-300', '300-350', '350-400', '400+'];
+      const peerCounts = [8, 22, 38, 35, 21, 10, 5, 3];
+      const colors = labels.map((_, i) => i === 3 ? '#12606f' : '#d5ece8');
+      benchChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Number of Peers',
+            data: peerCounts,
+            backgroundColor: colors,
+            borderRadius: 6,
+            borderSkipped: false,
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            annotation: {}
+          },
+          scales: {
+            y: { beginAtZero: true, title: { display: true, text: 'Companies', font: { size: 11 } }, grid: { color: '#eee8db' } },
+            x: { title: { display: true, text: 'tCO2e / £1M Revenue', font: { size: 11 } }, grid: { display: false } }
+          }
+        }
+      });
+    }
+
+    function initBenchBars() {
+      const container = document.getElementById('benchBars');
+      if (container.children.length > 0) return;
+      const data = [
+        { label: 'Your Business', value: 248, max: 400, pct: 62, color: '#12606f' },
+        { label: 'Sector Median', value: 202, max: 400, pct: 50.5, color: '#2e8f77' },
+        { label: 'Top Quartile', value: 138, max: 400, pct: 34.5, color: '#176848' },
+        { label: 'Bottom Qrtl', value: 328, max: 400, pct: 82, color: '#c87820' },
+      ];
+      data.forEach(d => {
+        const row = document.createElement('div');
+        row.className = 'bench-row';
+        row.innerHTML = '<div class="bench-label">' + d.label + '</div><div class="bench-bar-track"><div class="bench-bar-fill" style="width:' + d.pct + '%;background:' + d.color + '"></div></div><div class="bench-value" style="color:' + d.color + '">' + d.value + '</div>';
+        container.appendChild(row);
+      });
+    }
+  </script>
+</body>
+</html>
