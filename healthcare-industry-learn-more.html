@@ -13,26 +13,58 @@
 
         :root {
             --white: #ffffff;
-            --light-gray: #f8f9fa;
-            --border-gray: #e8eaed;
-            --dark-navy: #1a1a2e;
-            --secondary-navy: #2c3e50;
+            --bg: #f8fafb;
+            --light-gray: #f3f6f7;
+            --border-gray: #e6eaee;
+
+            --dark-navy: #111827;
+            --secondary-navy: #1f2937;
+            --text-light: #6b7280;
+
+            /* Brand (logo-based) */
             --teal: #1a8a7d;
+            --teal-dark: #146c63;
             --teal-light: #e8f5f3;
-            --orange: #e67e22;
-            --orange-light: #fdf0e5;
-            --rust: #8b4513;
-            --text-light: #666666;
+
+            --orange: #f28c38;
+            --orange-dark: #d97325;
+            --orange-light: #fff3e8;
+
+            /* For cards mesure,reduce,report */
+            --measure: #1a8a7d;
+            --reduce: #2ecc71;
+            --report: #f28c38;
+
+
+            /* Logo highlight color for the "S" */
+            --rust: #f28c38;
+
             --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.10);
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: var(--light-gray);
+            background-color: var(--bg);
             color: var(--secondary-navy);
             line-height: 1.6;
         }
+
+         a {
+            color: var(--teal);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--teal-dark);
+        }
+
+        ::selection {
+            background: var(--teal);
+            color: var(--white);
+        }
+
+
 
         /* Navigation */
         nav {
@@ -105,7 +137,7 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+            background: linear-gradient(135deg, var(--white) 0%, var(--teal-light) 100%);
             padding: 3rem 2rem;
             border-bottom: 1px solid var(--border-gray);
         }
@@ -113,6 +145,7 @@
         .hero .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 2rem; /*to align the nav with cards verticaly */
         }
 
         .hero h1 {
@@ -151,6 +184,7 @@
             border-radius: 8px;
             padding: 1.5rem;
             box-shadow: var(--shadow);
+            backdrop-filter: blur(6px);  /* to highlight the seleceted one */
         }
 
         .toc h3 {
@@ -166,7 +200,7 @@
         }
 
         .toc li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.35rem;
         }
 
         .toc a {
@@ -183,6 +217,13 @@
         .toc a:hover {
             color: var(--teal);
             border-left-color: var(--teal);
+        }
+
+        .toc a.active {
+            background-color: var(--teal-light);
+            border-left-color: var(--teal);
+            color: var(--teal-dark);
+            font-weight: 700;
         }
 
         /* Main Content */
@@ -238,28 +279,378 @@
             margin-bottom: 0.8rem;
             color: var(--secondary-navy);
         }
+  
+
+       /* KPI Cards (Footprint section) */
+        .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+        margin: 1.25rem 0 1.75rem;
+        }
+        
+        .kpi-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, var(--teal-light) 160%);
+            border: 1px solid var(--border-gray);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: var(--shadow);
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /*  key */
+            min-height: 150px; /*  keeps all cards equal */
+            }
+
+        /* Alternating themed backgrounds */
+            .kpi-grid .kpi-card:nth-child(odd) {
+            background: linear-gradient(135deg, rgba(255,255,255,0.96) 0%, var(--teal-light) 170%);
+            border-color: #cfeee8;
+            }
+
+            .kpi-grid .kpi-card:nth-child(even) {
+            background: linear-gradient(135deg, rgba(255,255,255,0.96) 0%, var(--orange-light) 170%);
+            border-color: #f6d7bf;
+            }    
+
+        .kpi-label {
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--text-light);
+        font-weight: 700;
+        margin-bottom: 0.35rem;
+
+         min-height: 44px;         
+         display: flex;
+         align-items: flex-end;  
+
+        }
+
+        .kpi-value {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--dark-navy);
+        line-height: 1.1;
+        margin: 0.3rem 0; 
+        }
+
+        .kpi-note {
+        margin-top: 0.35rem;
+        font-size: 0.92rem;
+        color: var(--secondary-navy);
+        opacity: 0.9;
+        }
+
+        /* Tooltip */
+        .tooltip {
+        position: relative;
+        cursor: pointer;
+        }
+
+        .tooltip::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: 120%;
+        left: 50%;
+        transform: translateX(-50%);
+        
+        background: var(--dark-navy);
+        color: white;
+        padding: 0.5rem 0.7rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        white-space: nowrap;
+
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+
+        box-shadow: var(--shadow-lg);
+        }
+
+        .tooltip:hover::after {
+        opacity: 1;
+        }
+
+        /* Responsive KPI cards */
+        @media (max-width: 992px) {
+        .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 520px) {
+        .kpi-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Feature cards (Energy-Intensive section) */
+        .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+        }
+
+        .feature-card {
+        background: rgba(255,255,255,0.95);
+        border: 1px solid var(--border-gray);
+        border-radius: 12px;
+        padding: 1.2rem;
+        box-shadow: var(--shadow);
+        transition: all 0.2s ease;
+        }
+
+        .feature-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-lg);
+        border-color: #cfeee8;
+        }
+
+        .feature-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        background: var(--teal-light);
+        color: var(--teal-dark);
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+        }
+
+        .feature-title {
+        font-weight: 800;
+        color: var(--dark-navy);
+        margin-bottom: 0.35rem;
+        font-size: 1.05rem;
+        }
+
+        .feature-text {
+        color: var(--text-light);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+        .feature-grid {
+            grid-template-columns: 1fr;
+        }
+        }
+
+        /* Medical Waste cards */
+        .waste-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+        }
+        
+        /* Simple Greening Operations Boxes */
+        .ops-grid-simple {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .ops-box {
+            background: rgba(255,255,255,0.96);
+            border: 1px solid var(--border-gray);
+            border-radius: 12px;
+            padding: 1.2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.2s ease;
+            border-left: 4px solid var(--teal);
+        }
+
+        .ops-box:nth-child(even) {
+            border-left-color: var(--orange);
+        }
+
+        .ops-box:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .ops-box h4 {
+            margin-bottom: 0.4rem;
+            color: var(--dark-navy);
+            font-weight: 800;
+        }
+
+        .ops-box p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .ops-grid-simple {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+
+        .waste-card {
+        background: rgba(255,255,255,0.95);
+        border: 1px solid var(--border-gray);
+        border-radius: 12px;
+        padding: 1.2rem;
+        box-shadow: var(--shadow);
+        transition: all 0.2s ease;
+        }
+
+        .waste-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-lg);
+        }
+
+        .waste-title {
+        font-weight: 800;
+        color: var(--dark-navy);
+        margin-bottom: 0.4rem;
+        font-size: 1.05rem;
+        }
+
+        .waste-text {
+        color: var(--text-light);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        }
+
+        /* Alternating colors */
+        .waste-grid .waste-card:nth-child(odd) {
+        border-left: 4px solid var(--teal);
+        }
+
+        .waste-grid .waste-card:nth-child(even) {
+        border-left: 4px solid var(--orange);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+        .waste-grid {
+            grid-template-columns: 1fr;
+        }
+        }
+
+        /* SustainZone Section */
+.sz-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.sz-box {
+    background: rgba(255,255,255,0.96);
+    border: 1px solid var(--border-gray);
+    border-radius: 12px;
+    padding: 1.2rem;
+    box-shadow: var(--shadow);
+    transition: all 0.2s ease;
+    border-top: 4px solid var(--teal);
+}
+
+.sz-box:nth-child(even) {
+    border-top-color: var(--orange);
+}
+
+.sz-box:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.sz-box h4 {
+    margin-bottom: 0.4rem;
+    color: var(--dark-navy);
+    font-weight: 800;
+}
+
+.sz-box p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+/* Impact strip */
+.sz-impact {
+    margin-top: 2.5rem;
+    background: linear-gradient(135deg, var(--teal-light) 0%, var(--light-gray) 100%);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.sz-impact-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    .sz-impact-box {
+        text-align: center;
+        background: white;
+        padding: 1.2rem;
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+    }
+
+    .sz-impact-number {
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: var(--teal);
+        margin-bottom: 0.3rem;
+    }
+
+    .sz-impact-label {
+        font-size: 0.9rem;
+        color: var(--secondary-navy);
+    }
+
+    @media (max-width: 768px) {
+        .sz-grid {
+            grid-template-columns: 1fr;
+        }
+        .sz-impact-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
 
         /* Statistics Table */
         .stats-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
+        width: 100%;
+        border-collapse: separate;   /*  for rounded corners */
+        border-spacing: 0;
+        margin: 1.25rem 0 0.5rem;
+        overflow: hidden;
+        border: 1px solid var(--border-gray);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
         }
 
         .stats-table th {
-            background-color: var(--teal-light);
-            color: var(--dark-navy);
-            padding: 1rem;
-            text-align: left;
-            font-weight: 600;
-            border-bottom: 2px solid var(--teal);
+        background: linear-gradient(135deg, var(--teal-light) 0%, rgba(255,255,255,0.85) 140%);
+        color: var(--dark-navy);
+        padding: 0.95rem 1rem;
+        text-align: left;
+        font-weight: 800;
+        font-size: 0.9rem;
+        border-bottom: 1px solid var(--border-gray);
         }
 
         .stats-table td {
-            padding: 1rem;
-            border-bottom: 1px solid var(--border-gray);
-            color: var(--secondary-navy);
+        padding: 0.95rem 1rem;
+        border-bottom: 1px solid var(--border-gray);
+        color: var(--secondary-navy);
+        vertical-align: top;
+        background: var(--white);
         }
+
+        .stats-table tbody tr:nth-child(even) td {
+            background: rgba(232, 245, 243, 0.65);  /* teal - lighjt tint */
+            }
+
+
 
         .stats-table tr:last-child td {
             border-bottom: none;
@@ -274,6 +665,7 @@
             font-weight: 600;
             font-size: 1.1rem;
         }
+        
 
         /* Visual Breakdown - Pie Chart Style */
         .emissions-breakdown {
@@ -284,19 +676,37 @@
             align-items: center;
         }
 
-        .emissions-chart {
+            .emissions-chart {
             width: 250px;
             height: 250px;
             border-radius: 50%;
-            background: conic-gradient(
-                var(--teal) 0deg 288deg,
-                var(--orange) 288deg 360deg
-            );
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: var(--shadow-lg);
-        }
+
+            /* Start as empty/neutral ring */
+            background: conic-gradient(rgba(230,234,238,0.55) 0deg 360deg);
+            }
+
+          
+
+            /* Subtle shine ring */
+            .emissions-chart::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            box-shadow: inset 0 0 0 1px rgba(17,24,39,0.06);
+            pointer-events: none;
+            }
+
+            /* Animation drives --p from 0 to 1 */
+            @keyframes donutFill {
+            from { --p: 0; transform: scale(0.98); opacity: 0.6; }
+            to   { --p: 1; transform: scale(1); opacity: 1; }
+            }
 
         .emissions-center {
             width: 180px;
@@ -351,60 +761,84 @@
             color: var(--text-light);
         }
 
-        /* Regulatory Timeline */
-        .timeline {
+        /* Regulatory Timeline (clean cards + vertical line) */
+            .timeline {
             position: relative;
-            padding: 2rem 0;
-            margin: 2rem 0;
-        }
+            margin: 1.5rem 0 0;
+            padding-left: 3.2rem; /* space for line + dots */
+            }
 
-        .timeline-item {
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        .timeline-item:not(:last-child)::after {
-            content: '';
+            .timeline::before {
+            content: "";
             position: absolute;
-            left: 60px;
-            top: 40px;
+            left: 18px;
+            top: 8px;
+            bottom: 8px;
             width: 2px;
-            height: calc(100% + 2rem);
-            background-color: var(--teal);
-        }
+            background: var(--teal);
+            border-radius: 2px;
+            opacity: 0.7;
+            }
 
-        .timeline-date {
-            font-weight: 600;
-            color: var(--teal);
+            .timeline-item {
+            display: grid;
+            grid-template-columns: 90px 1fr;
+            gap: 1.25rem;
+            align-items: start;
             position: relative;
-            padding-top: 0.5rem;
-        }
+            padding: 0.85rem 0;
+            }
 
-        .timeline-date::before {
-            content: '';
+            .timeline-date {
+            font-weight: 800;
+            color: var(--teal);
+            font-size: 1rem;
+            line-height: 1.2;
+            padding-top: 0.15rem;
+            }
+
+            /* dot */
+            .timeline-item::before {
+            content: "";
             position: absolute;
-            left: -75px;
-            top: 0.5rem;
-            width: 12px;
-            height: 12px;
-            background-color: var(--teal);
-            border: 3px solid var(--white);
+            left: -33px;            /* centers dot on the vertical line */
+            top: 1.15rem;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
-            box-shadow: 0 0 0 1px var(--teal);
-        }
+            background: var(--teal);
+            box-shadow: 0 0 0 4px var(--white), 0 0 0 5px rgba(26, 138, 125, 0.25);
+            }
 
-        .timeline-content h4 {
+            /* card */
+            .timeline-content {
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid var(--border-gray);
+            border-radius: 12px;
+            padding: 1.1rem 1.2rem;
+            box-shadow: var(--shadow);
+            }
+
+            .timeline-content h4 {
             color: var(--dark-navy);
-            margin-bottom: 0.5rem;
-        }
+            margin: 0 0 0.35rem;
+            font-size: 1.05rem;
+            font-weight: 900;
+            }
 
-        .timeline-content p {
+            .timeline-content p {
             color: var(--text-light);
+            margin: 0;
             font-size: 0.95rem;
-        }
+            line-height: 1.65;
+            }
+
+            @media (max-width: 768px) {
+            .timeline { padding-left: 1.8rem; }
+            .timeline-item { grid-template-columns: 70px 1fr; gap: 0.9rem; }
+            .timeline::before { left: 14px; }
+            .timeline-item::before { left: 6px; }
+            }
 
         /* Case Study */
         .case-study {
@@ -571,7 +1005,7 @@
         .form-group textarea:focus {
             outline: none;
             background-color: var(--white);
-            box-shadow: 0 0 0 2px var(--orange);
+            box-shadow: 0 0 0 2px var(--teal);
         }
 
         .form-group textarea {
@@ -595,19 +1029,21 @@
         }
 
         .btn-primary:hover {
-            background-color: #d66a0f;
+            background-color: var(--orange-dark);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
         }
 
         .btn-secondary {
-            background-color: var(--white);
+            background-color: transparent;
             color: var(--teal);
-            font-weight: 600;
+            border: 2px solid var(--teal);
+            font-weight: 700;
         }
 
         .btn-secondary:hover {
-            background-color: var(--light-gray);
+            background-color: var(--teal);
+            color: var(--white);
         }
 
         /* Footer */
@@ -711,6 +1147,181 @@
                 text-align: center;
             }
         }
+
+
+
+
+        /* Hero enhancements */
+        .hero-badge {
+        display: inline-block;
+        background: var(--teal-light);
+        color: var(--teal);
+        border: 1px solid #cfeee8;
+        padding: 0.4rem 0.8rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+        max-width: 720px;
+        color: var(--text-light);
+        font-size: 1.05rem;
+        margin-top: 0.75rem;
+        }
+
+        .hero-actions {
+        display: flex;
+        gap: 0.1rem;
+        flex-wrap: wrap;
+        margin-top: 1.25rem;
+        margin-bottom: 1.5rem;
+        }
+
+        .hero-points {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 2rem; /* to  increase the  space between crds */
+        margin-top: 3rem;
+        }
+
+        .hero-point {
+        background: white;
+        border-radius: 12px;
+        padding: 1.2rem;
+        box-shadow: var(--shadow);
+        border-top: 4px solid transparent;
+        transition: all 0.25s ease;
+        text-align: left;
+
+        /* button reset */
+        width: 100%;
+        border-left: 0;
+        border-right: 0;
+        border-bottom: 0;
+        cursor: pointer;
+        font: inherit;
+        }
+
+        .hero-point:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(26, 138, 125, 0.18), var(--shadow-lg);
+        }
+        
+        /* hover effect */
+        .hero-point:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        }
+
+        .hero-details {
+            margin-top: 1.25rem;
+            }
+
+            .hero-details-card {
+            background: rgba(255,255,255,0.85);
+            border: 1px solid var(--border-gray);
+            border-radius: 12px;
+            padding: 1.25rem 1.25rem;
+            box-shadow: var(--shadow);
+            display: none; /* hidden until click */
+            }
+
+            .hero-details-card.show {
+            display: block;
+            }
+
+            .hero-details-title {
+            font-weight: 800;
+            color: var(--dark-navy);
+            margin-bottom: 0.5rem;
+            }
+
+            .hero-details-meta {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+            }
+
+            .hero-details-list {
+            margin: 0;
+            padding-left: 1.25rem;
+            }
+
+            .hero-details-list li {
+            margin-bottom: 0.4rem;
+            }
+
+        .hero-point.measure { border-top-color: var(--measure); }
+        .hero-point.reduce  { border-top-color: var(--reduce); }
+        .hero-point.report  { border-top-color: var(--report); }
+
+        /* color the titles  */
+        .hero-point.measure strong { color: var(--measure); }
+        .hero-point.reduce strong  { color: var(--reduce); }
+        .hero-point.report strong  { color: var(--report); }
+
+
+
+
+        .hero-point strong {
+        display: block;
+        color: var(--dark-navy);
+        font-size: 0.95rem;
+        margin-bottom: 0.25rem;
+        }
+
+        .hero-point span {
+        display: block;
+        color: var(--text-light);
+        font-size: 0.9rem;
+        }
+
+    /* Responsive hero points */
+    @media (max-width: 768px) {
+        .hero-points { grid-template-columns: 1fr; }
+    }
+
+    /* Scope 3 chart container  */
+    .scope3-chart-wrapper {
+        margin: 1.25rem 0 1.75rem;
+        padding: 1.25rem;
+        border: 1px solid var(--border-gray);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        background: var(--white);
+        height: 360px;
+    }
+
+    .scope3-chart-wrapper canvas {
+    width: 100% !important;
+    height: 100% !important;
+    } 
+    /* Split view: FY2021 vs FY2022 */
+    .scope3-split{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin: 1.25rem 0 1.75rem;
+    }
+
+    .scope3-chart-title{
+    margin: 0 0 0.75rem;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--dark-navy);
+    }
+
+    @media (max-width: 900px){
+    .scope3-split{ grid-template-columns: 1fr; }
+    }
+    
+
+
+       
     </style>
 </head>
 <body>
@@ -734,10 +1345,37 @@
 
     <!-- Hero Section -->
     <div class="hero">
-        <div class="container">
-            <h1>Healthcare Sustainability: The Complete Guide</h1>
-            <p>Understanding the environmental impact of healthcare and the path to net-zero operations</p>
-        </div>
+    <div class="container">
+        <div class="hero-badge">Healthcare • Net-Zero • ESG Reporting</div>
+
+        <h1>Healthcare Sustainability: The Complete Guide</h1>
+        <p class="hero-subtitle">
+        Understand healthcare’s footprint, identify the biggest emission drivers, and build a practical roadmap to net-zero operations.
+        </p>
+
+
+        <div class="hero-points">
+            <button class="hero-point measure" type="button" data-card="measure">
+                <strong>Measure</strong>
+                <span>Scope 1–3, waste, procurement, and travel</span>
+            </button>
+
+            <button class="hero-point reduce" type="button" data-card="reduce">
+                <strong>Reduce</strong>
+                <span>Hotspots , quick wins , long-term strategy</span>
+            </button>
+
+            <button class="hero-point report" type="button" data-card="report">
+                <strong>Report</strong>
+                <span>Audit-ready ESG outputs and progress tracking</span>
+            </button>
+            </div>
+
+            <!-- Click-to-reveal details -->
+            <div class="hero-details" id="heroDetails" aria-live="polite">
+            <div class="hero-details-card" id="heroDetailsCard"></div>
+            </div>
+    </div>
     </div>
 
     <!-- Main Content -->
@@ -764,6 +1402,40 @@
             <section id="footprint">
                 <h2>Healthcare's Environmental Footprint</h2>
                 <p>The healthcare sector is one of the world's largest contributors to climate change, yet this critical industry remains underrepresented in global sustainability discussions. Understanding the scale of healthcare's environmental impact is the first step toward meaningful change.</p>
+                 
+                <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Global GHG Share</div>
+                    <div class="kpi-value tooltip" data-tooltip="Includes direct and indirect healthcare emissions globally">
+                        4.4%
+                        </div>
+                    <div class="kpi-note">Healthcare’s contribution to global emissions</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-label">UK Healthcare Emissions</div>
+                    <div class="kpi-value tooltip" data-tooltip="Estimated annual NHS and UK healthcare emissions">
+                        25M
+                        </div>
+                    <div class="kpi-note">Tonnes CO₂e annually (headline estimate)</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-label">Compared to Sectors</div>
+                    <div class="kpi-value tooltip" data-tooltip="Healthcare emissions exceed aviation and shipping combined">
+                        2×
+                        </div>
+                    <div class="kpi-note">Aviation + shipping combined</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-label">Energy Intensity</div>
+                    <div class="kpi-value tooltip" data-tooltip="Hospitals consume significantly more energy than standard buildings">
+                        20–30%
+                        </div>
+                    <div class="kpi-note">Higher than similar buildings</div>
+                </div>
+                </div>
 
                 <h3>Key Statistics</h3>
                 <table class="stats-table">
@@ -804,21 +1476,89 @@
                 </table>
 
                 <h3>Why Healthcare is Energy-Intensive</h3>
-                <ul>
-                    <li><strong>24/7 Operations:</strong> Hospitals operate continuously with no seasonal variations, requiring constant heating, cooling, and lighting</li>
-                    <li><strong>Sterile Environments:</strong> Maintaining infection control standards demands significant energy investment in air handling systems</li>
-                    <li><strong>Medical Equipment:</strong> Diagnostic machines, imaging systems, and monitoring devices consume substantial electricity</li>
-                    <li><strong>Facility Requirements:</strong> Multiple operating theaters, labs, and patient areas create complex HVAC demands</li>
-                </ul>
+
+                <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                                                <svg viewBox="0 0 24 24" fill="none">
+                                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                                    <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                                </svg>
+                                                </div>
+                    <div class="feature-title">24/7 Operations</div>
+                    <div class="feature-text">Hospitals run continuously, requiring constant heating, cooling, lighting, and critical systems uptime.</div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                                                <svg viewBox="0 0 24 24" fill="none">
+                                                    <path d="M12 3l8 4v5c0 5-3.5 9-8 10-4.5-1-8-5-8-10V7l8-4z" stroke="currentColor" stroke-width="2"/>
+                                                </svg>
+                                                </div>
+                    <div class="feature-title">Sterile Environments</div>
+                    <div class="feature-text">Infection control standards depend on energy-intensive ventilation, filtration, and air handling.</div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                                                <svg viewBox="0 0 24 24" fill="none">
+                                                    <rect x="3" y="4" width="18" height="12" rx="2" stroke="currentColor" stroke-width="2"/>
+                                                    <path d="M7 20h10M9 16v4M15 16v4" stroke="currentColor" stroke-width="2"/>
+                                                </svg>
+                                                </div>
+                    <div class="feature-title">Medical Equipment</div>
+                    <div class="feature-text">Imaging, diagnostics, monitoring, and lab equipment consume substantial electricity.</div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                                                <svg viewBox="0 0 24 24" fill="none">
+                                                    <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                                                    <path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="currentColor" stroke-width="2"/>
+                                                </svg>
+                                                </div>
+                    <div class="feature-title">Complex Facilities</div>
+                    <div class="feature-text">Operating theatres, labs, wards, and critical areas create demanding HVAC and power requirements.</div>
+                </div>
+                </div>
 
                 <h3>Medical Waste Concerns</h3>
-                <p>Healthcare generates approximately 5.9 million tonnes of waste annually across the UK and Europe. Key challenges include:</p>
-                <ul>
-                    <li>Hazardous waste incineration producing toxic emissions</li>
-                    <li>Single-use medical devices contributing to landfill burden</li>
-                    <li>Pharmaceutical waste contaminating water systems</li>
-                    <li>Limited recycling infrastructure for complex medical materials</li>
-                </ul>
+
+                <p>
+                Healthcare generates approximately 5.9 million tonnes of waste annually across the UK and Europe. 
+                The biggest challenges are not just volume but how waste is treated, handled, and disposed.
+                </p>
+
+                <div class="waste-grid">
+                <div class="waste-card">
+                    <div class="waste-title">Hazardous Disposal</div>
+                    <div class="waste-text">
+                    Clinical waste is often incinerated, releasing toxic emissions and contributing to air pollution.
+                    </div>
+                </div>
+
+                <div class="waste-card">
+                    <div class="waste-title">Single-Use Culture</div>
+                    <div class="waste-text">
+                    Heavy reliance on disposable medical products significantly increases landfill waste.
+                    </div>
+                </div>
+
+                <div class="waste-card">
+                    <div class="waste-title">Pharmaceutical Pollution</div>
+                    <div class="waste-text">
+                    Improper disposal of medicines contaminates water systems and ecosystems.
+                    </div>
+                </div>
+
+                <div class="waste-card">
+                    <div class="waste-title">Recycling Limitations</div>
+                    <div class="waste-text">
+                    Complex materials and contamination make recycling difficult in healthcare environments.
+                    </div>
+                </div>
+                </div>
+                
             </section>
 
             <!-- Section 2: Understanding Healthcare Carbon Emissions -->
@@ -829,10 +1569,10 @@
                 <h3>The Three Scopes of Emissions</h3>
                 <div class="emissions-breakdown">
                     <div>
-                        <div class="emissions-chart">
+                        <div class="emissions-chart" id="emissionsDonut">
                             <div class="emissions-center">
-                                <p>Scope 3</p>
-                                <strong>~80%</strong>
+                                <p id="scopeLabel">Scope 3</p>
+                                <strong id="scopeValue">~0%</strong>
                             </div>
                         </div>
                     </div>
@@ -878,7 +1618,25 @@
                     <li><strong>Construction Materials:</strong> Building maintenance, renovations, new facilities</li>
                     <li><strong>Waste Management:</strong> Transportation and disposal of clinical waste</li>
                     <li><strong>Professional Services:</strong> Laundry, cleaning, and external contractors</li>
+                    
                 </ul>
+               
+                <p>To provide a clear understanding of how Scope 3 emissions are generated, the charts below show inhaler-related emissions for FY2021 and FY2022. Each value represents total emissions (tCO₂e), calculated using recorded doses multiplied by the product’s emission factor (gCO₂e per dose).:</p>
+
+                
+                <div class="scope3-split">
+                <div class="scope3-chart-wrapper">
+                    <h4 class="scope3-chart-title">FY2021 Emissions by inhaler type</h4>
+                    <canvas id="scope3BarFY2021"></canvas>
+                </div>
+
+                <div class="scope3-chart-wrapper">
+                    <h4 class="scope3-chart-title">FY2022 Emissions by inhaler type</h4>
+                    <canvas id="scope3BarFY2022"></canvas>
+                </div>
+                </div>
+
+
             </section>
 
             <!-- Section 3: Regulatory Landscape -->
@@ -887,20 +1645,23 @@
                 <p>Healthcare organizations face an increasingly stringent regulatory environment. Sustainability is no longer optional—it's mandated by law, professional standards, and accreditation bodies.</p>
 
                 <h3>Key Regulations & Targets</h3>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-date">2020</div>
-                        <div class="timeline-content">
-                            <h4>NHS Net Zero Target</h4>
-                            <p>NHS England committed to achieving net-zero carbon emissions by 2040 for direct emissions and 2050 for supply chain emissions.</p>
-                        </div>
-                    </div>
 
+                <div class="timeline">
+
+                    <!-- 2008 FIRST -->
                     <div class="timeline-item">
                         <div class="timeline-date">2008</div>
                         <div class="timeline-content">
                             <h4>UK Climate Change Act</h4>
                             <p>Establishes binding legal requirements for emissions reductions. Healthcare organizations must contribute to national carbon budgets.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">2020</div>
+                        <div class="timeline-content">
+                            <h4>NHS Net Zero Target</h4>
+                            <p>NHS England committed to achieving net-zero carbon emissions by 2040 for direct emissions and 2050 for supply chain emissions.</p>
                         </div>
                     </div>
 
@@ -927,6 +1688,7 @@
                             <p>Healthcare organizations increasingly validate emissions reduction targets against climate science. 50+ healthcare companies have SBTi-approved targets.</p>
                         </div>
                     </div>
+
                 </div>
 
                 <h3>Compliance Implications</h3>
@@ -943,35 +1705,86 @@
             <!-- Section 4: Greening Clinical Operations -->
             <section id="operations">
                 <h2>Greening Clinical Operations</h2>
-                <p>Decarbonizing healthcare requires simultaneous action across multiple fronts. The most effective organizations implement comprehensive operational changes.</p>
+                <p>
+                    Decarbonizing healthcare requires coordinated operational changes across waste, procurement,
+                    digital health, and clinical systems. The most effective organizations focus on high-impact,
+                    practical interventions first.
+                </p>
 
+                <!-- Waste Reduction -->
                 <h3>Medical Waste Reduction Strategies</h3>
-                <ul>
-                    <li><strong>Segregation Excellence:</strong> Rigorous sorting at point-of-use reduces infectious waste by 30-40%, enabling safer disposal methods</li>
-                    <li><strong>Incineration Alternatives:</strong> Plasma gasification and autoclaving technologies reduce emissions by 80% vs traditional methods</li>
-                    <li><strong>Reusable Systems:</strong> Transitioning from single-use to reusable surgical kits reduces waste volumes by 60% while lowering costs</li>
-                    <li><strong>Pharmaceutical Returns:</strong> Implementing take-back programs prevents water contamination and enables safe disposal</li>
-                </ul>
+                <div class="ops-grid-simple">
+                    <div class="ops-box">
+                        <h4>Segregation Excellence</h4>
+                        <p>Rigorous sorting at point-of-use reduces infectious waste by 30–40%, enabling safer and lower-carbon disposal methods.</p>
+                    </div>
 
-                <h3>Sustainable Procurement</h3>
-                <p>Supply chain emissions represent 80% of healthcare's carbon footprint. Strategic procurement drives meaningful change:</p>
-                <ul>
-                    <li><strong>Supplier Engagement:</strong> Require science-based emissions targets from pharmaceutical and device manufacturers</li>
-                    <li><strong>Local Sourcing:</strong> Reduce transportation emissions by prioritizing regional suppliers for non-specialized items</li>
-                    <li><strong>Lifecycle Assessment:</strong> Evaluate full environmental impact, not just price—reusable equipment often outperforms disposables</li>
-                    <li><strong>Green Certifications:</strong> Source from ISO 14001 and B-Corp certified suppliers with verified environmental commitments</li>
-                </ul>
+                    <div class="ops-box">
+                        <h4>Incineration Alternatives</h4>
+                        <p>Plasma gasification and autoclaving technologies reduce emissions by up to 80% compared to traditional incineration.</p>
+                    </div>
 
-                <h3>Telemedicine Carbon Savings</h3>
-                <p>Digital health interventions significantly reduce environmental impact:</p>
-                <ul>
-                    <li><strong>Patient Travel Reduction:</strong> Remote consultations eliminate 0.5-1kg CO₂ per appointment vs in-person visits</li>
-                    <li><strong>Facility Burden:</strong> Reduces facility occupancy by 20-30%, lowering energy consumption</li>
-                    <li><strong>Clinical Efficiency:</strong> Faster appointment scheduling reduces duplicate tests and unnecessary procedures</li>
-                    <li><strong>Scalability:</strong> Digital diagnostics enable home monitoring, reducing hospital admissions by 15%</li>
-                </ul>
+                    <div class="ops-box">
+                        <h4>Reusable Systems</h4>
+                        <p>Switching from single-use to reusable surgical kits reduces waste volumes by 60% while lowering long-term costs.</p>
+                    </div>
 
-                <h3>Reusable vs Disposable Equipment Analysis</h3>
+                    <div class="ops-box">
+                        <h4>Pharmaceutical Returns</h4>
+                        <p>Take-back programs prevent water contamination and ensure safe medicine disposal.</p>
+                    </div>
+                </div>
+
+                <!-- Procurement -->
+                <h3 style="margin-top:2rem;">Sustainable Procurement</h3>
+                <div class="ops-grid-simple">
+                    <div class="ops-box">
+                        <h4>Supplier Engagement</h4>
+                        <p>Require science-based emissions targets from pharmaceutical and device manufacturers.</p>
+                    </div>
+
+                    <div class="ops-box">
+                        <h4>Local Sourcing</h4>
+                        <p>Reduce transport emissions by prioritizing regional suppliers for non-specialized items.</p>
+                    </div>
+
+                    <div class="ops-box">
+                        <h4>Lifecycle Assessment</h4>
+                        <p>Evaluate full environmental impact, not just price — reusable equipment often outperforms disposables.</p>
+                    </div>
+
+                    <div class="ops-box">
+                        <h4>Green Certifications</h4>
+                        <p>Source from ISO 14001 and certified suppliers with verified sustainability commitments.</p>
+                    </div>
+                </div>
+
+                <!-- Telemedicine -->
+                <h3 style="margin-top:2rem;">Telemedicine Carbon Savings</h3>
+                <div class="ops-grid-simple">
+                    <div class="ops-box">
+                        <h4>Patient Travel Reduction</h4>
+                        <p>Remote consultations eliminate 0.5–1kg CO₂ per appointment compared to in-person visits.</p>
+                    </div>
+
+                    <div class="ops-box">
+                        <h4>Facility Burden Reduction</h4>
+                        <p>Lower on-site occupancy reduces heating, cooling, and electricity demand by 20–30%.</p>
+                    </div>
+
+                    <div class="ops-box">
+                        <h4>Clinical Efficiency</h4>
+                        <p>Digital scheduling reduces duplicate tests and unnecessary procedures.</p>
+                    </div>
+
+                    <div class="ops-box">
+                        <h4>Scalability</h4>
+                        <p>Home monitoring and remote diagnostics reduce hospital admissions by up to 15%.</p>
+                    </div>
+                </div>
+
+                
+                <h3 style="margin-top:2rem;">Reusable vs Disposable Equipment Analysis</h3>
                 <table class="stats-table">
                     <thead>
                         <tr>
@@ -1008,40 +1821,108 @@
             <!-- Section 5: How SustainZone Helps -->
             <section id="sustainzone">
                 <h2>How SustainZone Helps Healthcare Organizations</h2>
-                <p>SustainZone provides healthcare organizations with enterprise-grade tools to measure, track, and reduce their environmental footprint across all three scopes of emissions.</p>
+                <p>
+                    SustainZone equips healthcare leaders with enterprise-grade tools to measure, reduce, and report
+                    environmental impact across Scopes 1, 2, and 3 — with clarity, automation, and audit-ready outputs.
+                </p>
 
+                <!-- Carbon Measurement -->
                 <h3>Carbon Footprint Measurement</h3>
-                <ul>
-                    <li><strong>Comprehensive Baseline:</strong> Establish accurate emissions baselines using validated methodology and industry benchmarks</li>
-                    <li><strong>Automated Data Integration:</strong> Connect to facility management systems, billing records, and utilities for real-time emissions tracking</li>
-                    <li><strong>Scope 3 Visibility:</strong> Advanced algorithms map supply chain emissions from spending data—finally make the hidden 80% visible</li>
-                    <li><strong>Scenario Modeling:</strong> Model the impact of proposed changes before implementation</li>
-                </ul>
+                <div class="sz-grid">
+                    <div class="sz-box">
+                        <h4>Comprehensive Baseline</h4>
+                        <p>Establish accurate Scope 1–3 emissions baselines using validated methodologies and healthcare benchmarks.</p>
+                    </div>
 
-                <h3>Supply Chain Mapping</h3>
-                <ul>
-                    <li><strong>Supplier Intelligence:</strong> Access our database of 50,000+ healthcare suppliers with verified emissions profiles</li>
-                    <li><strong>Spend Analysis:</strong> Identify the highest-impact procurement categories and lowest-carbon alternatives</li>
-                    <li><strong>Engagement Tools:</strong> Collaborate with suppliers to set joint reduction targets and track progress</li>
-                    <li><strong>Compliance Tracking:</strong> Monitor suppliers' SBTi compliance and certifications in real-time</li>
-                </ul>
+                    <div class="sz-box">
+                        <h4>Automated Data Integration</h4>
+                        <p>Connect utilities, facility systems, and financial data for real-time emissions tracking.</p>
+                    </div>
 
-                <h3>ESG Reporting Automation</h3>
-                <ul>
-                    <li><strong>Regulatory Compliance:</strong> Automated reporting for NHS targets, Climate Change Act requirements, and EU directives</li>
-                    <li><strong>Standardized Frameworks:</strong> Pre-built templates for GRI, SASB, and TCFD reporting</li>
-                    <li><strong>Stakeholder Dashboard:</strong> Real-time visibility for board members, regulators, and sustainability teams</li>
-                    <li><strong>Audit-Ready Documentation:</strong> Complete audit trail and evidence packages for third-party verification</li>
-                </ul>
+                    <div class="sz-box">
+                        <h4>Scope 3 Visibility</h4>
+                        <p>Transform procurement spend into mapped supply chain emissions — making the hidden 80% visible.</p>
+                    </div>
 
-                <h3>Proven Impact</h3>
-                <p>Healthcare organizations using SustainZone achieve:</p>
-                <ul>
-                    <li><strong>70% Reduction in Carbon Management Costs:</strong> Automation eliminates manual tracking and spreadsheet management</li>
-                    <li><strong>30% Average Emissions Reduction:</strong> Within 18-24 months through data-driven interventions and supplier engagement</li>
-                    <li><strong>3x Faster Decarbonization:</strong> Compared to manual approaches by identifying high-impact opportunities immediately</li>
-                    <li><strong>Enhanced Competitive Advantage:</strong> Preferential procurement status and access to green funding opportunities</li>
-                </ul>
+                    <div class="sz-box">
+                        <h4>Scenario Modeling</h4>
+                        <p>Model the impact of operational changes before implementation and forecast savings.</p>
+                    </div>
+                </div>
+
+                <!-- Supply Chain -->
+                <h3 style="margin-top:2rem;">Supply Chain Mapping</h3>
+                <div class="sz-grid">
+                    <div class="sz-box">
+                        <h4>Supplier Intelligence</h4>
+                        <p>Access emissions insights across thousands of healthcare suppliers.</p>
+                    </div>
+
+                    <div class="sz-box">
+                        <h4>Spend Hotspot Analysis</h4>
+                        <p>Identify high-impact procurement categories and lower-carbon alternatives.</p>
+                    </div>
+
+                    <div class="sz-box">
+                        <h4>Supplier Engagement Tools</h4>
+                        <p>Collaborate with vendors to set reduction targets and monitor progress.</p>
+                    </div>
+
+                    <div class="sz-box">
+                        <h4>Compliance Monitoring</h4>
+                        <p>Track SBTi alignment and supplier sustainability commitments in real time.</p>
+                    </div>
+                </div>
+
+                <!-- Reporting -->
+                <h3 style="margin-top:2rem;">ESG Reporting Automation</h3>
+                <div class="sz-grid">
+                    <div class="sz-box">
+                        <h4>Regulatory Compliance</h4>
+                        <p>Automated reporting aligned with NHS targets, Climate Change Act, and EU directives.</p>
+                    </div>
+
+                    <div class="sz-box">
+                        <h4>Framework Templates</h4>
+                        <p>Pre-built templates for GRI, SASB, TCFD, and healthcare-specific reporting standards.</p>
+                    </div>
+
+                    <div class="sz-box">
+                        <h4>Board-Level Dashboards</h4>
+                        <p>Real-time insights for executives, regulators, and sustainability teams.</p>
+                    </div>
+
+                    <div class="sz-box">
+                        <h4>Audit-Ready Documentation</h4>
+                        <p>Maintain evidence trails and export-ready reports for third-party verification.</p>
+                    </div>
+                </div>
+
+                <!-- Impact Summary -->
+                <div class="sz-impact">
+                    <h3>Proven Impact</h3>
+                    <div class="sz-impact-grid">
+                        <div class="sz-impact-box">
+                            <div class="sz-impact-number">70%</div>
+                            <div class="sz-impact-label">Lower carbon management costs</div>
+                        </div>
+
+                        <div class="sz-impact-box">
+                            <div class="sz-impact-number">30%</div>
+                            <div class="sz-impact-label">Average emissions reduction (18–24 months)</div>
+                        </div>
+
+                        <div class="sz-impact-box">
+                            <div class="sz-impact-number">3×</div>
+                            <div class="sz-impact-label">Faster decarbonization vs manual tracking</div>
+                        </div>
+
+                        <div class="sz-impact-box">
+                            <div class="sz-impact-number">£</div>
+                            <div class="sz-impact-label">Improved access to green finance</div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <!-- Section 6: Case Study -->
@@ -1198,7 +2079,7 @@
             </section>
 
             <!-- CTA Section -->
-            <div class="cta-section">
+            <div class="cta-section" id="assessment">
                 <div class="container">
                     <div class="cta-content">
                         <h2>Ready to Transform Your Healthcare Organization?</h2>
@@ -1239,34 +2120,293 @@
         <p>&copy; 2024 SustainZone. All rights reserved.</p>
         <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact</a></p>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Smooth Scroll & FAQ Accordion -->
-    <script>
-        // Smooth scrolling for TOC links
-        document.querySelectorAll('.toc a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = document.querySelector(link.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
+<!-- Smooth Scroll & FAQ Accordion -->
+<script>
+    // Donut count-up animation (~0% -> ~80%)
+    (function animateDonutValue() {
+        const el = document.getElementById("scopeValue");
+        if (!el) return;
+
+        const target = 80;
+        const duration = 1100;
+        const start = performance.now();
+
+        function tick(now) {
+            const t = Math.min(1, (now - start) / duration);
+            const current = Math.round(target * (1 - Math.pow(1 - t, 3)));
+            el.textContent = `~${current}%`;
+            if (t < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+    })();
+
+    // Donut ring animation
+    (function animateDonutRing() {
+        const donut = document.getElementById("emissionsDonut");
+        const valueEl = document.getElementById("scopeValue");
+        if (!donut || !valueEl) return;
+
+        const s12 = 20;
+        const s3 = 80;
+
+        const tealEndFinal = (s12 / 100) * 360;
+        const totalFinal = 360;
+
+        let hasRun = false;
+
+        function setBackground(tealEndDeg, totalDeg) {
+            donut.style.background =
+                `conic-gradient(
+                    var(--teal) 0deg ${tealEndDeg}deg,
+                    var(--orange) ${tealEndDeg}deg ${totalDeg}deg,
+                    rgba(230,234,238,0.55) ${totalDeg}deg 360deg
+                )`;
+        }
+
+        function run() {
+            if (hasRun) return;
+            hasRun = true;
+
+            const duration = 1200;
+            const start = performance.now();
+
+            function tick(now) {
+                const t = Math.min(1, (now - start) / duration);
+                const ease = 1 - Math.pow(1 - t, 3);
+
+                const tealEnd = tealEndFinal * ease;
+                const total = totalFinal * ease;
+
+                setBackground(tealEnd, total);
+
+                const current = Math.round(s3 * ease);
+                valueEl.textContent = `~${current}%`;
+
+                if (t < 1) requestAnimationFrame(tick);
+            }
+
+            requestAnimationFrame(tick);
+        }
+
+        const io = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((e) => {
+                    if (e.isIntersecting) {
+                        run();
+                        io.disconnect();
+                    }
+                });
+            },
+            { threshold: 0.35 }
+        );
+
+        io.observe(donut);
+    })();
+
+    // Hero cards: click-to-reveal details
+    const heroCardData = {
+        measure: {
+            title: "Measure (Scope 3 Baseline)",
+            meta: "Example analysis reflecting NHS-scale inhaler usage and emissions (FY2021–FY2022).",
+            bullets: [
+                "Total inhalers footprint: FY2022 = 1,422,790 (FY2021 = 1,397,350)",
+                "Year-on-year change: +1.82%",
+                "Top FY2022 hotspot product: Symbicort 400 MCG x60 doses (750,000)"
+            ]
+        },
+        reduce: {
+            title: "Reduce (Biggest Levers)",
+            meta: "Reduce emissions by targeting high-impact products and switching options.",
+            bullets: [
+                "High-impact category: pMDI inhalers -697 gCO₂e per dose",
+                "Lower-impact options: dry powder inhalers -7–14 gCO₂e per dose",
+                "Potential intensity reduction: -99% lower per dose when switching (where clinically appropriate)"
+            ]
+        },
+        report: {
+            title: "Report (Progress & Hotspots)",
+            meta: "Use the baseline + hotspots to track improvements over time.",
+            bullets: [
+                "Track FY2021 - FY2022 changes by product and category",
+                "Top hotspot list helps prioritize interventions (procurement + clinical switching)",
+                "Export-ready: totals, hotspot ranking, and change over time"
+            ]
+        }
+    };
+
+    const detailsWrap = document.getElementById("heroDetails");
+    const detailsCard = document.getElementById("heroDetailsCard");
+
+    function renderHeroDetails(key) {
+        const d = heroCardData[key];
+        if (!d) return;
+
+        const html = `
+            <div class="hero-details-title">${d.title}</div>
+            <div class="hero-details-meta">${d.meta}</div>
+            <ul class="hero-details-list">
+                ${d.bullets.map(b => `<li>${b}</li>`).join("")}
+            </ul>
+        `;
+
+        detailsCard.innerHTML = html;
+        detailsCard.classList.add("show");
+        detailsWrap.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    document.querySelectorAll(".hero-point[data-card]").forEach(btn => {
+        btn.addEventListener("click", () => renderHeroDetails(btn.dataset.card));
+    });
+
+    // TOC active link highlight
+    const tocLinks = Array.from(document.querySelectorAll('.toc a'));
+    const sections = tocLinks
+        .map(a => document.querySelector(a.getAttribute('href')))
+        .filter(Boolean);
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                tocLinks.forEach(a => a.classList.remove('active'));
+                const active = document.querySelector(`.toc a[href="#${entry.target.id}"]`);
+                if (active) active.classList.add('active');
+            }
         });
+    }, { threshold: 0.25 });
 
-        // FAQ Accordion
-        document.querySelectorAll('.faq-item').forEach(item => {
-            const question = item.querySelector('.faq-question');
-            question.addEventListener('click', () => {
-                item.classList.toggle('active');
-            });
-        });
+    sections.forEach(sec => observer.observe(sec));
 
-        // Form submission
-        document.querySelector('.cta-form').addEventListener('submit', (e) => {
+    // Smooth scrolling for TOC links
+    document.querySelectorAll('.toc a').forEach(link => {
+        link.addEventListener('click', (e) => {
             e.preventDefault();
-            alert('Thank you for your interest! Our team will contact you shortly.');
-            e.target.reset();
+            const target = document.querySelector(link.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
         });
-    </script>
-</body>
+    });
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-item').forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => item.classList.toggle('active'));
+    });
+
+    // Form submission (keep only one)
+    document.querySelector('.cta-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for your interest! Our team will contact you shortly.');
+        e.target.reset();
+    });
+
+    // Scope 3 (Inhalers) Emissions  Summary sheet
+/* Scope 3 (Inhalers) — split charts per year (clearer) */
+(function () {
+  const categories = [
+    { name: "DPI (9 gCO₂e/dose)",  factor: 9,   doses: [775900, 969000], tco2e: [  6.9831,   8.7210] },
+    { name: "DPI (14 gCO₂e/dose)", factor: 14,  doses: [129000, 161000], tco2e: [  1.8060,   2.2540] },
+    { name: "DPI (7 gCO₂e/dose)",  factor: 7,   doses: [ 10500,  15000], tco2e: [  0.0735,   0.1050] },
+    { name: "pMDI (697 gCO₂e/dose)",factor: 697, doses: [162500, 151000], tco2e: [113.2625, 105.2470] }
+  ];
+
+  // Simple plugin to draw labels at end of each bar (no extra library needed)
+  const valueLabels = {
+    id: "valueLabels",
+    afterDatasetsDraw(chart) {
+      const { ctx } = chart;
+      ctx.save();
+      ctx.font = "12px system-ui, -apple-system, Segoe UI, Roboto, sans-serif";
+      ctx.fillStyle = "#111827";
+
+      chart.data.datasets.forEach((ds, di) => {
+        const meta = chart.getDatasetMeta(di);
+        meta.data.forEach((bar, i) => {
+          const val = ds.data[i];
+          if (val == null) return;
+
+          const x = bar.x + 6;
+          const y = bar.y + 4;
+
+          // Show small values with 3 decimals; larger with 1 decimal
+          const txt = val < 1 ? `${val.toFixed(3)} t` : `${val.toFixed(1)} t`;
+          ctx.fillText(txt, x, y);
+        });
+      });
+
+      ctx.restore();
+    }
+  };
+
+  function buildYearChart(canvasId, yearIndex, yearLabel) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+
+    const labels = categories.map(c => c.name);
+    const data = categories.map(c => c.tco2e[yearIndex]);
+
+    new Chart(canvas.getContext("2d"), {
+      type: "bar",
+      data: {
+        labels,
+        datasets: [{
+          label: `Emissions (tCO₂e) — ${yearLabel}`,
+          data,
+          borderRadius: 10,
+          barThickness: 28
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        indexAxis: "y",  // horizontal bars = clearer labels
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: function(ctx){
+                const c = categories[ctx.dataIndex];
+                const t = c.tco2e[yearIndex];
+                const doses = c.doses[yearIndex];
+
+                // Explanation (matches the Excel logic)
+                // tCO2e = doses * (gCO2e/dose) / 1,000,000
+                return [
+                  ` ${t.toFixed(3)} tCO₂e`,
+                  ` Doses: ${doses.toLocaleString()}`,
+                  ` Factor: ${c.factor} gCO₂e/dose`,
+                  ` Calc: doses × factor ÷ 1,000,000`
+                ];
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            title: { display: true, text: "Emissions (tCO₂e)" },
+            grid: { color: "rgba(0,0,0,0.06)" },
+            ticks: { color: "#1f2937" }
+          },
+          y: {
+            grid: { display: false },
+            ticks: { color: "#1f2937" }
+          }
+        }
+      },
+      plugins: [valueLabels]
+    });
+  }
+
+  buildYearChart("scope3BarFY2021", 0, "FY2021");
+  buildYearChart("scope3BarFY2022", 1, "FY2022");
+})();
+
+</script>
+
+<!-- Botpress Chat Widget -->
+<script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2026/02/26/14/20260226144913-Z77LK7U9.js" defer></script>
+
+  </body>
 </html>
